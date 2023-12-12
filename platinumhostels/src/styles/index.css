@@ -26,6 +26,10 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
     @apply text-[16px] font-semibold text-primary;
   }
 
+  h4 {
+    @apply text-[14px] text-primary;
+  }
+
   .hero-desc {
     @apply mt-6 text-lg text-center max-w-3xl mx-auto font-normal text-secondary;
   }
@@ -39,34 +43,99 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   }
 
   .btn-primary1 {
-    @apply text-sm text-secondary border border-primary bg-primary p-6 
+    @apply rounded-[8px] text-sm text-secondary border-[2px] border-primary bg-primary font-semibold px-6 py-3; 
   }
 
   .btn-primary2 {
-    @apply text-sm text-primary border border-secondary bg-secondary p-6 
-  }
-
-  .btn-sec2 {
-    @apply text-sm text-primary border border-primary bg-transparent p-6
+    @apply rounded-[8px] text-sm text-primary border-[2px] border-secondary bg-secondary font-semibold px-6 py-3; 
   }
 
   .btn-sec1 {
-    @apply text-sm text-secondary border border-secondary bg-secondary p-6
+    @apply rounded-[8px] text-sm text-secondary border-[2px] border-secondary bg-transparent font-semibold px-6 py-3;
+  }
+
+  .btn-sec2 {
+    @apply rounded-[8px] text-sm text-primary border-[2px] border-primary bg-transparent font-semibold px-6 py-3;
   }
 
   .btn-ghost1 {
-    @apply text-sm text-secondary bg-transparent p-6
+    @apply text-sm text-secondary bg-transparent font-semibold px-6 py-3;
   }
   
   .btn-ghost2 {
-    @apply text-sm text-primary bg-transparent p-6
+    @apply text-sm text-primary bg-transparent font-semibold px-6 py-3;
   }
 
   section {
     @apply px-[5%] py-20 md:py-32
   }
 
+  .hero-section {
+    @apply py-24 md:py-36
+  }
+
   .section-container {
     @apply max-w-7xl mx-auto
   }
+
+  .active-link {
+    @apply underline;
+  }
+
+  img {
+    @apply w-full block
+  }
+
+  .bg-home {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bomso/bomso1.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-bomso {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bomso/bomso1.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-ayeduase {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/ayeduase/ayeduase1.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-gaza {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/gaza/gaza1.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-tech-junc {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bomso/bomso1.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
+
+.dropdown {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .dropdown {
+    display: inline-block;
+    margin-left: 5px;
+  }
+}
+
+/* .dropdown-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px
+} */

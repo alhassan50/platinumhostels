@@ -1,0 +1,20 @@
+[
+    { "to": "/", "title": "Home" },
+    { "to": "/about", "title": "About" },
+    {
+      "to": "/hostels",
+      "title": "Hostels",
+      "dropdown": [
+        { "to": "/hostels/ayeduase", "title": "Ayeeduase" },
+        { "to": "/hostels/bomso", "title": "Bomso" },
+        { "to": "/hostels/tech-junction", "title": "Tech Junction" },
+        { "to": "/hostels/gaza", "title": "Gaza" }
+      ]
+    },
+    { "to": "/our-team", "title": "Our Team" },
+    { "to": "/contact", "title": "Contact" },
+    { "to": "/gallery", "title": "Gallery" },
+    { "to": "/login", "title": "Login" },
+    { "to": "/booknow", "title": "Book Now" }
+]
+  
