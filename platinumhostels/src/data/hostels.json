@@ -1,0 +1,45 @@
+[
+    {
+      "image": "/assets/ayeduase/ayeduase1.webp",
+      "location": "Ayeduase",
+      "distance": "2.5 km from Knust Campus",
+      "to": "/ayeduase",
+      "amenities": [
+        {"name": "WiFi", "image": "/assets/amenities/wifi.png"},
+        {"name": "Security", "image": "/assets/amenities/security.png"},
+        {"name": "Laundry", "image": "/assets/amenities/laundry.png"},
+        {"name": "Gym", "image": "/assets/amenities/gym.webp"},
+        {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
+        {"name": "DSTV Satellite", "image": "/assets/amenities/satelite.webp"}
+      ]
+    },
+    {
+      "image": "/assets/bomso/bomso1.webp",
+      "location": "Bomso",
+      "distance": "1.8 km from Knust Campus",
+      "to": "/bomso",
+      "amenities": [
+        {"name": "WiFi", "image": "/assets/amenities/wifi.png"},
+        {"name": "Security", "image": "/assets/amenities/security.png"},
+        {"name": "Laundry", "image": "/assets/amenities/laundry.png"},
+        {"name": "Gym", "image": "/assets/amenities/gym.webp"},
+        {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
+        {"name": "DSTV Satellite", "image": "/assets/amenities/satelite.webp"}
+      ]
+    },
+    {
+      "image": "/assets/gaza/gaza1.webp",
+      "location": "Gaza",
+      "distance": "4.5 km from Knust Campus",
+      "to": "/gaza",
+      "amenities": [
+        {"name": "WiFi", "image": "/assets/amenities/wifi.png"},
+        {"name": "Security", "image": "/assets/amenities/security.png"},
+        {"name": "Laundry", "image": "/assets/amenities/laundry.png"},
+        {"name": "Gym", "image": "/assets/amenities/gym.webp"},
+        {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
+        {"name": "DSTV Satellite", "image": "/assets/amenities/satelite.webp"}
+      ]
+    }
+  ]
+  

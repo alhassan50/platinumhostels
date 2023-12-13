@@ -35,39 +35,50 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   }
 
   p {
-    @apply text-base
+    @apply text-base font-light;
   }
 
   .p-card {
     @apply text-sm
   }
 
+  button {
+    @apply text-sm rounded-[8px] font-semibold px-6 py-3 transition-all duration-150;
+  }
+
   .btn-primary1 {
-    @apply rounded-[8px] text-sm text-secondary border-[2px] border-primary bg-primary font-semibold px-6 py-3; 
+    @apply text-secondary border-[2px] border-primary bg-primary hover:bg-[#2f4858f1]; 
   }
 
   .btn-primary2 {
-    @apply rounded-[8px] text-sm text-primary border-[2px] border-secondary bg-secondary font-semibold px-6 py-3; 
+    @apply text-primary border-[2px] border-secondary bg-secondary hover:bg-[#e5e4e2e8] ; 
   }
 
   .btn-sec1 {
-    @apply rounded-[8px] text-sm text-secondary border-[2px] border-secondary bg-transparent font-semibold px-6 py-3;
+    @apply text-secondary border-[2px] border-secondary bg-transparent hover:bg-secondary hover:text-primary;
   }
 
   .btn-sec2 {
-    @apply rounded-[8px] text-sm text-primary border-[2px] border-primary bg-transparent font-semibold px-6 py-3;
+    @apply text-primary border-[2px] border-primary bg-transparent
+    hover:bg-primary hover:text-secondary;
   }
 
   .btn-ghost1 {
-    @apply text-sm text-secondary bg-transparent font-semibold px-6 py-3;
+    @apply text-secondary bg-transparent
+    hover:bg-[#fafafa];
   }
   
   .btn-ghost2 {
-    @apply text-sm text-primary bg-transparent font-semibold px-6 py-3;
+    @apply text-primary bg-transparent
+    hover:bg-[#fafafa];
   }
 
   section {
     @apply px-[5%] py-20 md:py-32
+  }
+
+  .section-body {
+    @apply mt-10;
   }
 
   .hero-section {
@@ -78,6 +89,10 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
     @apply max-w-7xl mx-auto
   }
 
+  .section-body {
+    @apply mt-20
+  }
+
   .active-link {
     @apply underline;
   }
@@ -85,46 +100,47 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   img {
     @apply w-full block
   }
+}
 
-  .bg-home {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bomso/bomso1.webp');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.bg-home {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/bomso/bomso1.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .bg-bomso {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bomso/bomso1.webp');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.bg-bomso {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/bomso/bomso1.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .bg-ayeduase {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/ayeduase/ayeduase1.webp');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.bg-ayeduase {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/ayeduase/ayeduase1.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .bg-gaza {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/gaza/gaza1.webp');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.bg-gaza {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/gaza/gaza1.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .bg-tech-junc {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bomso/bomso1.webp');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.bg-tech-junc {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/bomso/bomso1.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .dropdown {
   display: none;
 }
+
 
 @media screen and (min-width: 768px) {
   .dropdown {

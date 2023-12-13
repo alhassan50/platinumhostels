@@ -1,7 +1,4 @@
-import './styles/App.css';
-import { 
-  BrowserRouter,
-  Routes,
+import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
@@ -22,10 +19,14 @@ import BookNow from './pages/booknow';
 //layouts
 import Main from './shared/layouts/main';
 
+//styles
+import './styles/App.css';
+
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Main/>}>
     <Route index element={<Home/>} />
+    <Route path='home' element={<Home/>} />
     <Route path='about' element={<About/>} />
     <Route path='hostels'>
       <Route index element={<Hostel/>} />
