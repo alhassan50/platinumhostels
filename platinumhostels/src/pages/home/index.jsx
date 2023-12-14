@@ -6,6 +6,7 @@ import Endorsement from './components/sections/EndorsementsSection'
 import AboutSection from './components/sections/AboutSection'
 import HostelsSection from './components/sections/HostelsSection'
 import ReviewsSection from './components/sections/ReviewsSection'
+import Newsletter from './components/sections/Newsletter'
 
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <AboutSection />
       <HostelsSection />
       <ReviewsSection />
+      <Newsletter />
     </div>
   )
 }

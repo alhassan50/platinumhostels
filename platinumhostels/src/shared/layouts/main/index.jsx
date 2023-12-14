@@ -3,13 +3,14 @@ import {Outlet} from 'react-router-dom'
 
 //custom components
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 export default function Main() {
   return (
-    <div className=''>
+    <div className='overflow-x-hidden'>
         <Header />
         <Outlet />
-        footer
+        <Footer />
     </div>
   )
 }

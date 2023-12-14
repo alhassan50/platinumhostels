@@ -1,5 +1,6 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 
 // css
 import 'swiper/css';
@@ -15,25 +16,14 @@ import {Reviewers} from '../../../../data/data components/Reviewers'
 
 export default function ReviewsSection() {
   const breakpoints = {
-    320: {
-      slidesPerView: 1,
-  },
-  // when window width is >= 640px
-  640: {
-      slidesPerView: 2,
-  },
-  // when window width is >= 768px
-  768: {
-      slidesPerView: 2,
-  },
-  // when window width is >= 1024px
-  1024: {
-      slidesPerView: 3,
-  },
+    320: { slidesPerView: 1 },
+    640: { slidesPerView: 1 },
+    768: { slidesPerView: 3 },
+    1024: { slidesPerView: 3 },
   };
 
   return (
-    <section className='bg-[#fafafa]'>
+    <section className='review-section bg-[#fafafa]'>
         <div className='section-container'>
             <div className='section-header capitalize text-center'>
                 <h2>
@@ -44,12 +34,14 @@ export default function ReviewsSection() {
             <div className='section-body'>
               <Swiper
                   breakpoints={breakpoints}
-                  spaceBetween={20}
-                  className='grid gap-3'
+                  modules={[Navigation]}
+                  navigation
+                  spaceBetween={30}
+                  className=''
               >
                 {
                   Reviewers.map(reviewer => (
-                    <SwiperSlide>
+                    <SwiperSlide className=''>
                       <ReviewCard reviewer={reviewer}/>
                     </SwiperSlide>
                   ))

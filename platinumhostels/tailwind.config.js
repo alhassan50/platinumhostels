@@ -13,6 +13,7 @@ module.exports = {
         custom: ['Lexend', 'system-ui', '-apple-system', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif']
       },
       screens: {
+        's-sm': '480px',
 				's-lg': '950px',
 				
 			},

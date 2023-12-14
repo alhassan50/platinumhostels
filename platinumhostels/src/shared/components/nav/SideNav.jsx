@@ -10,7 +10,7 @@ import arrow from '../../../assets/icons/arrow.png'
 export default function SideNav(props) {
   return (
     <nav
-        className='side-bar w-full h-full absolute top-0 left-0 bg-secondary overflow-y-auto'
+        className='side-bar w-full h-full fixed top-0 left-0 bg-secondary overflow-y-auto'
     >
         <div 
             className='flex justify-center items-center w-full min-h-full'

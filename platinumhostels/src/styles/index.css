@@ -109,6 +109,13 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   background-size: cover;
 }
 
+.bg-about {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/about/hallway.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .bg-bomso {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/bomso/bomso1.webp');
   background-position: center;
@@ -130,12 +137,6 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   background-size: cover;
 }
 
-.bg-tech-junc {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/bomso/bomso1.webp');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 .dropdown {
   display: none;

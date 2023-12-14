@@ -1,10 +1,15 @@
 .swiper-wrapper {
     padding-top: 50px;
     padding-bottom: 50px;
-    padding-right: 20px;
-    padding-left: 20px;
+    /* padding-right: 20px;
+    padding-left: 20px; */
+}
+
+.review-section .swiper {
+  overflow: visible;
 }
   
-.swiper-wrapper .swiper-slide {
-    max-width: 390px;
+.review-section .swiper-wrapper .swiper-slide {
+    max-width: 350px;
+    min-width: 350px;
 }
