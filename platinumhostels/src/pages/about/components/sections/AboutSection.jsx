@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import entrance from '../../../../assets/about/entrance.webp'
 
@@ -21,11 +22,11 @@ export default function AboutSection() {
                                 Join a community where every student's story becomes a cherished part of the hostel's legacy, creating a haven for academic, social, and personal growth. Welcome to Platinum Hostels, redefining the college living experience.
                             </p>
 
-                            <div>
+                            <Link to={'/home'}>
                                 <button className='btn-primary1 mt-7'>
-                                    Learn More
+                                    View Hostels
                                 </button>
-                            </div>
+                            </Link>
                         </div>
                     </div>
 

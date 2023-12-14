@@ -2,7 +2,8 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider
+  RouterProvider,
+  ScrollRestoration
 } from 'react-router-dom';
 
 //pages
