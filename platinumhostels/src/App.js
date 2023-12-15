@@ -12,9 +12,11 @@ import About from './pages/about';
 import Hostel from './pages/hostels';
 import HostelDetail from './pages/hostels/hosteldetail';
 import Team from './pages/team';
-import Gallery from './pages/gallery';
 import Login from './pages/login';
 import BookNow from './pages/booknow';
+
+//components
+import ScrollToTop from './shared/components/ScrollToTop';
 
 
 //layouts
@@ -34,7 +36,6 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path=':hostelName' element={<HostelDetail/>} />
     </Route>
     <Route path='ourteam' element={<Team/>} />
-    <Route path='gallery' element={<Gallery/>} />
     <Route path='login' element={<Login/>} />
     <Route path='booknow' element={<BookNow/>} />
 
@@ -42,9 +43,11 @@ const router = createBrowserRouter(createRoutesFromElements(
   </Route>
 ))
 
+
 function App() {
   return (
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
+    
   );
 }
 

@@ -29,7 +29,7 @@ export default function HostelCard(props) {
                 <div className='flex gap-4 mt-4'>
                     {
                         props.hostel.amenities.map( amenity => (
-                            <figure className='w-5'>
+                            <figure key={amenity.name} className='w-5'>
                                 <img src={amenity.image} alt={amenity.name} title={amenity.name}/>
                             </figure>
                         ))

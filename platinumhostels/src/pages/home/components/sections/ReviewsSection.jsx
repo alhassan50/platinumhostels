@@ -41,7 +41,7 @@ export default function ReviewsSection() {
               >
                 {
                   Reviewers.map(reviewer => (
-                    <SwiperSlide className=''>
+                    <SwiperSlide key={reviewer.name} className=''>
                       <ReviewCard reviewer={reviewer}/>
                     </SwiperSlide>
                   ))
