@@ -1,45 +1,155 @@
 [
-    {
-      "image": "/assets/ayeduase/ayeduase1.webp",
-      "location": "Ayeduase",
-      "distance": "2.5 km from Knust Campus",
-      "to": "/ayeduase",
-      "amenities": [
-        {"name": "WiFi", "image": "/assets/amenities/wifi.png"},
-        {"name": "Security", "image": "/assets/amenities/security.png"},
-        {"name": "Laundry", "image": "/assets/amenities/laundry.png"},
-        {"name": "Gym", "image": "/assets/amenities/gym.webp"},
-        {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
-        {"name": "DSTV Satellite", "image": "/assets/amenities/satelite.webp"}
+  {
+    "id": "a1b2c3",
+    "image": "/assets/ayeduase/ayeduase1.webp",
+    "location": "Ayeduase",
+    "distance": "2.5 km from Knust Campus",
+    "to": "/ayeduase",
+    "heroHeaderText": "Welcome To Platinum Hostel, Ayeduase",
+    "heroDescText": "Embrace a Vibrant Lifestyle at Platinum Hostel, Ayeduase!",
+    "bgImage": "bg-ayeduase",
+    "about": {
+      "aboutHostel": "Welcome to Platinum Hostel, Ayeduase! Situated in Ayeduase, our branch is the second closest to campus, offering a convenient location for college students. With three room types available, we provide comfortable and modern accommodations tailored to meet your needs. Our branch boasts a well-equipped gym, basketball court, and a game room, where you can relax and unwind after a busy day of studies. At Platinum Hostel, Ayeduase, we strive to create a welcoming environment that promotes both personal growth and community engagement.",
+      "images": [
+        "/assets/ayeduase/ayeduase1.webp",
+        "/assets/ayeduase/ayeduase2.webp"
       ]
     },
-    {
-      "image": "/assets/bomso/bomso1.webp",
-      "location": "Bomso",
-      "distance": "1.8 km from Knust Campus",
-      "to": "/bomso",
-      "amenities": [
-        {"name": "WiFi", "image": "/assets/amenities/wifi.png"},
-        {"name": "Security", "image": "/assets/amenities/security.png"},
-        {"name": "Laundry", "image": "/assets/amenities/laundry.png"},
-        {"name": "Gym", "image": "/assets/amenities/gym.webp"},
-        {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
-        {"name": "DSTV Satellite", "image": "/assets/amenities/satelite.webp"}
+    "amenities": [
+      {"name": "Stable WiFi", "image": "/assets/amenities/wifi.webp"},
+      {"name": "24/7 Security", "image": "/assets/amenities/security.webp"},
+      {"name": "Laundry", "image": "/assets/amenities/laundry.webp"},
+      {"name": "Gym", "image": "/assets/amenities/gym.webp"},
+      {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
+      {"name": "Cozy beds", "image": "/assets/amenities/bed.webp"},
+      {"name": "air conditioned rooms", "image": "/assets/amenities/ac.webp"},
+      {"name": "generator", "image": "/assets/amenities/generator.webp"},
+      {"name": "mini mart", "image": "/assets/amenities/mart.webp"},
+      {"name": "basketball court", "image": "/assets/amenities/basketball.webp"},
+      {"name": "lounge", "image": "/assets/amenities/lounge.webp"},
+      {"name": "table tennis", "image": "/assets/amenities/tennis.webp"}
+    ],
+    "rooms": [
+      {
+        "id": "r1",
+        "name": "Single Room", 
+        "occupants": "1",
+        "image": "/assets/ayeduase/ayeduase-bed-1.webp"
+      },
+      {
+        "id": "r2",
+        "name": "Double Room", 
+        "occupants": "2",
+        "image": "/assets/ayeduase/ayeduase-bed-2.webp"
+      },
+      {
+        "id": "r3",
+        "name": "Shared Room", 
+        "occupants": "3",
+        "image": "/assets/ayeduase/ayeduase-bed-2.webp"
+      }
+    ]
+  },
+  {
+    "id": "x7y8z9",
+    "image": "/assets/bomso/bomso1.webp",
+    "location": "Bomso",
+    "distance": "1.8 km from Knust Campus",
+    "to": "/bomso",
+    "heroHeaderText": "Welcome To Platinum Hostel, Bomso",
+    "heroDescText": "Experience Comfort and Convenience at Platinum Hostel, Bomso",
+    "bgImage": "bg-bomso",
+    "about": {
+      "aboutHostel": "Welcome to Platinum Hostel, Bomso! Located in the heart of Bomso, our branch is the closest to campus, ensuring convenience and easy access for college students. As the largest of all three branches, we offer spacious and comfortable accommodations with three room types to choose from. In addition, we take pride in our extensive facilities, including a fully equipped gym, basketball court, and a game room. At Platinum Hostel, Bomso, we are committed to providing an exceptional living experience that combines comfort, convenience, and a vibrant community.",
+      "images": [
+        "/assets/bomso/bomso1.webp",
+        "/assets/bomso/bomso2.webp"
       ]
     },
-    {
-      "image": "/assets/gaza/gaza1.webp",
-      "location": "Gaza",
-      "distance": "4.5 km from Knust Campus",
-      "to": "/gaza",
-      "amenities": [
-        {"name": "WiFi", "image": "/assets/amenities/wifi.png"},
-        {"name": "Security", "image": "/assets/amenities/security.png"},
-        {"name": "Laundry", "image": "/assets/amenities/laundry.png"},
-        {"name": "Gym", "image": "/assets/amenities/gym.webp"},
-        {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
-        {"name": "DSTV Satellite", "image": "/assets/amenities/satelite.webp"}
+    "amenities": [
+      {"name": "Stable WiFi", "image": "/assets/amenities/wifi.webp"},
+      {"name": "24/7 Security", "image": "/assets/amenities/security.webp"},
+      {"name": "Laundry", "image": "/assets/amenities/laundry.webp"},
+      {"name": "Gym", "image": "/assets/amenities/gym.webp"},
+      {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
+      {"name": "Cozy beds", "image": "/assets/amenities/bed.webp"},
+      {"name": "air conditioned rooms", "image": "/assets/amenities/ac.webp"},
+      {"name": "generator", "image": "/assets/amenities/generator.webp"},
+      {"name": "mini mart", "image": "/assets/amenities/mart.webp"},
+      {"name": "basketball court", "image": "/assets/amenities/basketball.webp"},
+      {"name": "lounge", "image": "/assets/amenities/lounge.webp"},
+      {"name": "table tennis", "image": "/assets/amenities/tennis.webp"}
+    ],
+    "rooms": [
+      {
+        "id": "r4",
+        "name": "Single Room", 
+        "occupants": "1",
+        "image": "/assets/bomso/bomso-bed-1.webp"
+      },
+      {
+        "id": "r5",
+        "name": "Double Room", 
+        "occupants": "2",
+        "image": "/assets/bomso/bomso-bed-2.webp"
+      },
+      {
+        "id": "r6",
+        "name": "Shared Room", 
+        "occupants": "3",
+        "image": "/assets/bomso/bomso-bed-3.webp"
+      }
+    ]
+  },
+  {
+    "id": "m4n5o6",
+    "image": "/assets/gaza/gaza1.webp",
+    "location": "Gaza",
+    "distance": "4.5 km from Knust Campus",
+    "to": "/gaza",
+    "heroHeaderText": "Welcome To Platinum Hostel, Gaza",
+    "heroDescText": "Discover Community and Convenience at Platinum Hostel, Gaza!",
+    "bgImage": "bg-gaza",
+    "about": {
+      "aboutHostel": "Welcome to Platinum Hostel, Gaza! Located in the vibrant area of Gaza, our branch offers a range of amenities and services designed to enhance your college experience. Our well-equipped gym, basketball court, and game room provide opportunities for relaxation, recreation, and socialization. What sets us apart is our campus bus service, offering free transportation to and from campus, ensuring convenience and ease of commute. At Platinum Hostel, Gaza, we are dedicated to providing a comfortable and inclusive living environment that supports your academic journey.",
+      "images": [
+        "/assets/gaza/gaza1.webp",
+        "/assets/gaza/gaza2.webp"
       ]
-    }
-  ]
-  
+    },
+    "amenities": [
+      {"name": "Stable WiFi", "image": "/assets/amenities/wifi.webp"},
+      {"name": "24/7 Security", "image": "/assets/amenities/security.webp"},
+      {"name": "Laundry", "image": "/assets/amenities/laundry.webp"},
+      {"name": "Gym", "image": "/assets/amenities/gym.webp"},
+      {"name": "Parking Lot", "image": "/assets/amenities/parking.webp"},
+      {"name": "Cozy beds", "image": "/assets/amenities/bed.webp"},
+      {"name": "air conditioned rooms", "image": "/assets/amenities/ac.webp"},
+      {"name": "generator", "image": "/assets/amenities/generator.webp"},
+      {"name": "mini mart", "image": "/assets/amenities/mart.webp"},
+      {"name": "basketball court", "image": "/assets/amenities/basketball.webp"},
+      {"name": "lounge", "image": "/assets/amenities/lounge.webp"},
+      {"name": "table tennis", "image": "/assets/amenities/tennis.webp"}
+    ],
+    "rooms": [
+      {
+        "id": "r7",
+        "name": "Single Room", 
+        "occupants": "1",
+        "image": "/assets/gaza/gaza-bed-1.webp"
+      },
+      {
+        "id": "r8",
+        "name": "Double Room", 
+        "occupants": "2",
+        "image": "/assets/gaza/gaza-bed-2.webp"
+      },
+      {
+        "id": "r9",
+        "name": "Shared Room", 
+        "occupants": "3",
+        "image": "/assets/gaza/gaza-bed-3.webp"
+      }
+    ]
+  }
+]

@@ -18,7 +18,9 @@ export default function HostelsSection() {
 
             <div className='section-body grid md:grid-cols-2 s-lg:grid-cols-3 gap-10'>
                 {hostelsdata.map(hostel => (
-                   <HostelCard hostel={hostel} /> 
+                   <div key={hostel.id}>
+                        <HostelCard hostel={hostel} />
+                   </div> 
                 ))}
             </div>
         </div>

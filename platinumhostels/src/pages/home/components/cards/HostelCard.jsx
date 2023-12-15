@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import distance from '../../../../assets/icons/heights.png'
 
 export default function HostelCard(props) {
+  const amenitiesToShow = props.hostel.amenities.slice(0, 5);
   return (
     <div className='card shadow rounded overflow-hidden hover:shadow-primary transition-all duration-150 cursor-pointer'>
         <div className='card-container'>
@@ -26,12 +27,12 @@ export default function HostelCard(props) {
                     {props.hostel.distance}
                 </p>
 
-                <div className='flex gap-4 mt-4'>
+                <div className='flex gap-6 mt-4'>
                     {
-                        props.hostel.amenities.map( amenity => (
-                            <figure key={amenity.name} className='w-5'>
-                                <img src={amenity.image} alt={amenity.name} title={amenity.name}/>
-                            </figure>
+                        amenitiesToShow.map( amenity => ( 
+                                <figure key={amenity.name} className='w-6'>
+                                    <img src={amenity.image} alt={amenity.name} title={amenity.name}/>
+                                </figure>
                         ))
                     }
                 </div>

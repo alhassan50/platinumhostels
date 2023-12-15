@@ -3,20 +3,17 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  ScrollRestoration
 } from 'react-router-dom';
 
 //pages
 import Home from './pages/home';
 import About from './pages/about';
 import Hostel from './pages/hostels';
-import HostelDetail from './pages/hostels/hosteldetail';
+import HostelDetail, {loader as HostelLoader} from './pages/hosteldetail';
 import Team from './pages/team';
 import Login from './pages/login';
 import BookNow from './pages/booknow';
-
-//components
-import ScrollToTop from './shared/components/ScrollToTop';
+import NotFound from './pages/NotFound';
 
 
 //layouts
@@ -33,13 +30,18 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='about' element={<About/>} />
     <Route path='hostels'>
       <Route index element={<Hostel/>} />
-      <Route path=':hostelName' element={<HostelDetail/>} />
+      <Route 
+        path=':hostelLocation' 
+        element={<HostelDetail/>}
+        loader={HostelLoader}
+      />
     </Route>
     <Route path='ourteam' element={<Team/>} />
     <Route path='login' element={<Login/>} />
     <Route path='booknow' element={<BookNow/>} />
+    <Route path='/notfound' element={<NotFound/>} />
 
-    <Route path='*' element={<h1>404</h1>} />
+    <Route path='*' element={<NotFound/>} />
   </Route>
 ))
 
