@@ -8,6 +8,7 @@ import getHostelDetails from './utility/getHostelDetails'
 import HostelsDetailsHero from './components/sections/HostelsDetailsHero'
 import AboutHostel from './components/sections/AboutHostel'
 import RoomSection from './components/sections/RoomSection'
+import Gallery from './components/sections/Gallery'
 
 //loader
 export const loader = ({params}) => {
@@ -33,12 +34,16 @@ export default function HostelDetail() {
       />
 
       <AboutHostel
-        aboutHostel={hostelDetails.about.aboutHostel}
+        aboutHostel={hostelDetails.aboutHostel}
         amenities={hostelDetails.amenities}
       />
 
       <RoomSection 
         roomdetails={hostelDetails.rooms}
+      />
+
+      <Gallery 
+        gallery={hostelDetails.gallery}
       />
     </div>
   )

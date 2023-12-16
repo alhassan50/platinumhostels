@@ -34,9 +34,10 @@ const router = createBrowserRouter(createRoutesFromElements(
         path=':hostelLocation' 
         element={<HostelDetail/>}
         loader={HostelLoader}
+        
       />
     </Route>
-    <Route path='ourteam' element={<Team/>} />
+    <Route path='our-team' element={<Team/>} />
     <Route path='login' element={<Login/>} />
     <Route path='booknow' element={<BookNow/>} />
     <Route path='/notfound' element={<NotFound/>} />
