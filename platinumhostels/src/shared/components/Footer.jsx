@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { FullLogo } from './Logo'
-import { QuickLinks } from '../../data/data components/footerlinks'
+import { footerLinks } from '../../data/data components/footerlinks'
 
 export default function Footer() {
   return (
@@ -17,7 +17,7 @@ export default function Footer() {
                 <div className='flex flex-wrap gap-10 s-sm:justify-between basis-auto'>
 
                     {
-                        QuickLinks.map((section, index) => (
+                        footerLinks.map((section, index) => (
                             <div key={index} className='capitalize'>
                                 <h3 className='text-secondary text-[14px]'>{section.header}</h3>
 

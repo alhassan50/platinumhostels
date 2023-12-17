@@ -6,7 +6,7 @@ import occupants from '../../../../assets/icons/occupants.png'
 
 export default function RoomCard(props) {
   return (
-    <div className='card shadow rounded overflow-hidden hover:shadow-primary transition-all duration-150 cursor-pointer'>
+    <div className='card'>
         <div className='card-container'>
             <figure className='overflow-hidden'>
                 <img src={props.room.image} alt={props.room.image}

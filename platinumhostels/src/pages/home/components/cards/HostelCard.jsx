@@ -7,7 +7,7 @@ import distance from '../../../../assets/icons/heights.png'
 export default function HostelCard(props) {
   const amenitiesToShow = props.hostel.amenities.slice(0, 5);
   return (
-    <div className='card shadow rounded overflow-hidden hover:shadow-primary transition-all duration-150 cursor-pointer'>
+    <div className='card'>
         <div className='card-container'>
             <figure className='overflow-hidden'>
                 <img src={props.hostel.image} alt={props.hostel.image}

@@ -16,10 +16,7 @@ import {Reviewers} from '../../../../data/data components/Reviewers'
 
 export default function ReviewsSection() {
   const breakpoints = {
-    320: { slidesPerView: 1 },
-    640: { slidesPerView: 1 },
-    768: { slidesPerView: 3 },
-    1024: { slidesPerView: 3 },
+    320: { slidesPerView: 1 }
   };
 
   return (

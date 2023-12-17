@@ -46,10 +46,15 @@
     "gallery": [
       "/assets/ayeduase/ayeduase1.webp",
       "/assets/ayeduase/ayeduase2.webp",
-      "/assets/ayeduase/ayeduase2.webp",
-      "/assets/ayeduase/ayeduase1.webp",
-      "/assets/ayeduase/ayeduase2.webp"
-    ]
+      "/assets/about/hallway.webp",
+      "/assets/ayeduase/ayeduase3.webp",
+      "/assets/ayeduase/ayeduase4.webp"
+    ],
+    "contactInfo" : {
+      "location":"8 Ayeduas Lane, Kumasi, Ghana",
+      "phone": "platinumayeduase@gmail.com",
+      "email":"+233-509-080-776"
+    }
   },
   {
     "id": "x7y8z9",
@@ -98,10 +103,15 @@
     "gallery": [
       "/assets/bomso/bomso1.webp",
       "/assets/bomso/bomso2.webp",
-      "/assets/bomso/bomso2.webp",
-      "/assets/bomso/bomso1.webp",
-      "/assets/bomso/bomso2.webp"
-    ]
+      "/assets/bomso/bomso3.webp",
+      "/assets/bomso/bomso4.webp",
+      "/assets/bomso/bomso5.webp"
+    ],
+    "contactInfo" : {
+      "location":"12 Bomso Avenue, Kumasi, Ghana",
+      "phone": "platinumbomso@gmail.com",
+      "email":"+233-557-169-843"
+    }
   },
   {
     "id": "m4n5o6",
@@ -152,8 +162,12 @@
       "/assets/gaza/gaza2.webp",
       "/assets/gaza/gaza1.webp",
       "/assets/gaza/gaza2.webp",
-      "/assets/gaza/gaza1.webp",
-      "/assets/gaza/gaza2.webp"
-    ]
+      "/assets/gaza/gaza1.webp"
+    ],
+    "contactInfo" : {
+      "location":"23 Akaibi Close, Kumasi, Ghana",
+      "phone": "platinumgaza@gmail.com",
+      "email":"+233-846-525-926"
+    }
   }
 ]

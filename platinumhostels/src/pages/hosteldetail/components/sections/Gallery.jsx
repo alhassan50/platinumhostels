@@ -17,7 +17,7 @@ export default function Gallery({gallery}) {
                             <img 
                                 src={image} 
                                 alt={image} 
-                                className={`${index === 0 ? 'w-full h-full object-cover object-center' : ''} group-hover:scale-110 transition-all duration-[400ms]`}
+                                className={`w-full h-full object-cover object-center group-hover:scale-110 transition-all duration-[400ms]`}
                             />
                         </figure>
                     ))}

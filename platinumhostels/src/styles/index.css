@@ -100,6 +100,10 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   img {
     @apply w-full block
   }
+
+  .card {
+    @apply max-w-[400px] mx-auto shadow rounded overflow-hidden hover:shadow-primary transition-all duration-150 cursor-pointer;
+  }
 }
 
 .bg-home {
@@ -132,6 +136,13 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
 
 .bg-gaza {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/gaza/gaza1.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-team {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/assets/team/teampic.webp');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

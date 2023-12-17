@@ -1,4 +1,4 @@
-export const QuickLinks = [
+export const footerLinks = [
     {
       header: 'Quick Links',
       links: [
@@ -14,10 +14,6 @@ export const QuickLinks = [
           title: 'Contact',
           to: '/contact',
         },
-        {
-          title: 'Gallery',
-          to: '/gallery',
-        },
       ],
     },
 
@@ -26,15 +22,15 @@ export const QuickLinks = [
         links: [
           {
             title: 'Ayeduase',
-            to: '/ayeduase',
+            to: '/hostels/ayeduase',
           },
           {
             title: 'Bomso',
-            to: '/bomso',
+            to: '/hostels/bomso',
           },
           {
             title: 'Gaza',
-            to: '/gaza',
+            to: '/hostels/gaza',
           }
         ],
     },
@@ -67,11 +63,7 @@ export const QuickLinks = [
           {
             title: 'Instagram',
             to: 'https://instagram.com',
-          },
-          {
-            title: 'TikTok',
-            to: 'https://tiktok.com',
-          },
+          }
         ],
     },
 
@@ -79,12 +71,8 @@ export const QuickLinks = [
         header: 'Legal',
         links: [
           {
-            title: 'Terns',
-            to: '/lgeal/terms',
-          },
-          {
-            title: 'Conditons',
-            to: '/conditons',
+            title: 'Conducts',
+            to: '/conducts',
           },
           {
             title: 'Policies',

@@ -1,15 +1,43 @@
 .swiper-wrapper {
     padding-top: 50px;
     padding-bottom: 50px;
-    /* padding-right: 20px;
-    padding-left: 20px; */
 }
 
 .review-section .swiper {
   overflow: visible;
-}
+  /* background-color: red; */
+  max-width: 350px;
+  min-width: 300px;
+  margin-right: 0;
+  margin-left: 0;
   
-.review-section .swiper-wrapper .swiper-slide {
-    max-width: 350px;
-    min-width: 350px;
+}
+
+.swiper-button-disabled {
+  display: none;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  /* background-color: #2F4858; */
+  font-size: 30px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  top: 480px;
+  width: 60px;
+  height: 60px;
+  transition: linear 150ms;
+}
+
+.swiper-button-next {
+  left: 40%;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #2F4858;
+  color: #fff;
+  border-radius: 50%;
 }

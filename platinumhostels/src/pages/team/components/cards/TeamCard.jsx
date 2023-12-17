@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function TeamCard({name, title, image}) {
   return (
-    <div className='card shadow rounded overflow-hidden hover:shadow-primary transition-all duration-150 cursor-pointer'>
+    <div className='card'>
         <div className='card-container'>
             <figure className='overflow-hidden'>
                 <img src={image} alt={image}

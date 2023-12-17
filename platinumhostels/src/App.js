@@ -11,6 +11,7 @@ import About from './pages/about';
 import Hostel from './pages/hostels';
 import HostelDetail, {loader as HostelLoader} from './pages/hosteldetail';
 import Team from './pages/team';
+import Contact from './pages/contact';
 import Login from './pages/login';
 import BookNow from './pages/booknow';
 import NotFound from './pages/NotFound';
@@ -38,6 +39,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       />
     </Route>
     <Route path='our-team' element={<Team/>} />
+    <Route path='contact' element={<Contact/>} />
     <Route path='login' element={<Login/>} />
     <Route path='booknow' element={<BookNow/>} />
     <Route path='/notfound' element={<NotFound/>} />

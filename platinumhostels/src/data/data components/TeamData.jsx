@@ -15,14 +15,14 @@ import raymond from '../../assets/team/frontdesk/raymond owusu.webp'
 
 //security
 import alex from '../../assets/team/security/alex bernard.jpg'
-import benoduro from '../../assets/team/security/ben oduro.jpg'
+import benoduro from '../../assets/team/security/ben oduro.webp'
 import danieladdo from '../../assets/team/security/danial addo.jpg'
 import joshua from '../../assets/team/security/joshua oluwagbe.jpg'
 import sitso from '../../assets/team/security/sitso micheal.jpg'
 
 export const owners = [
-    {name: 'mark scout', title: 'owner', image: markscout},
-    {name: 'david ansah', title: 'owner', image: davidansah}
+    {name: 'david ansah', title: 'owner', image: davidansah},
+    {name: 'mark scout', title: 'owner', image: markscout}
 ]
 
 export const managers = [
@@ -40,8 +40,13 @@ export const frontdeskstaff = [
 
 export const security =[
     {name: 'alex bernard', title: 'security', image: alex},
-    {name: 'ben oduro', title: 'security', image: benoduro},
+    /* {name: 'ben oduro', title: 'security', image: benoduro}, */
+    {name: 'joshua oluwagbe', title: 'security', image: joshua},
     {name: 'daniel addo', title: 'security', image: danieladdo},
     {name: 'joshua oluwagbe', title: 'security', image: joshua},
-    {name: 'sitso micheal', title: 'security', image: sitso}
+    {name: 'sitso micheal', title: 'security', image: sitso},
+    {name: 'alex bernard', title: 'security', image: alex},
+    /* {name: 'ben oduro', title: 'security', image: benoduro}, */
+    {name: 'joshua oluwagbe', title: 'security', image: joshua},
+    {name: 'daniel addo', title: 'security', image: danieladdo}
 ]
