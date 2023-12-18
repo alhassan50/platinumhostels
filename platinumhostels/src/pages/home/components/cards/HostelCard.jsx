@@ -20,12 +20,14 @@ export default function HostelCard(props) {
                     Platinum Hostels, {props.hostel.location}
                 </h3>
 
-                <p className='mt-3 flex items-center'>
+                <div className='mt-3 flex items-center'>
                     <figure className='w-4 mr-2'>
                         <img src={distance} alt='distance' />
                     </figure>
-                    {props.hostel.distance}
-                </p>
+                    <p>
+                        {props.hostel.distance}
+                    </p>
+                </div>
 
                 <div className='flex gap-6 mt-4'>
                     {

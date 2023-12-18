@@ -17,7 +17,7 @@ export default function Header() {
   }
 
   return (
-    <header className='flex justify-between items-center pl-3 pr-4 py-3 lg:pl-4 lg:pr-5 bg-primary fixed w-full top-0 left-0 z-50'>
+    <header className='flex justify-between items-center pl-3 pr-4 py-3 lg:pl-4 lg:pr-5 bg-primary fixed w-full top-0 left-0 z-[100000000000000000]'>
       <Logo />
       
       <Navbar />

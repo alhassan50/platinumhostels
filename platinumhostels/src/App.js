@@ -25,26 +25,28 @@ import './styles/App.css';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path='/' element={<Main/>}>
-    <Route index element={<Home/>} />
-    <Route path='home' element={<Home/>} />
-    <Route path='about' element={<About/>} />
-    <Route path='hostels'>
-      <Route index element={<Hostel/>} />
-      <Route 
-        path=':hostelLocation' 
-        element={<HostelDetail/>}
-        loader={HostelLoader}
-        
-      />
+  <Route>
+    <Route path='/' element={<Main/>}>
+      <Route index element={<Home/>} />
+      <Route path='home' element={<Home/>} />
+      <Route path='about' element={<About/>} />
+      <Route path='hostels'>
+        <Route index element={<Hostel/>} />
+        <Route 
+          path=':hostelLocation' 
+          element={<HostelDetail/>}
+          loader={HostelLoader}
+          errorElement={<NotFound />}
+        />
+      </Route>
+      <Route path='ourteam' element={<Team/>} />
+      <Route path='contact' element={<Contact/>} />
+      <Route path='*' element={<NotFound/>} />
     </Route>
-    <Route path='our-team' element={<Team/>} />
-    <Route path='contact' element={<Contact/>} />
-    <Route path='login' element={<Login/>} />
-    <Route path='booknow' element={<BookNow/>} />
-    <Route path='/notfound' element={<NotFound/>} />
 
-    <Route path='*' element={<NotFound/>} />
+    <Route path='/login' element={<Login/>} />
+    <Route path='/booknow' element={<BookNow/>} />
+    <Route path='/notfound' element={<NotFound/>} />    
   </Route>
 ))
 

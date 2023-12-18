@@ -10,7 +10,7 @@
         { "to": "/hostels/gaza", "title": "Gaza" }
       ]
     },
-    { "to": "/our-team", "title": "Our Team" },
+    { "to": "/ourteam", "title": "Our Team" },
     { "to": "/contact", "title": "Contact" },
     { "to": "/login", "title": "Login" },
     { "to": "/booknow", "title": "Book Now" }

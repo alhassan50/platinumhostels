@@ -22,6 +22,10 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
     @apply text-3xl sm:text-4xl font-extrabold tracking-tight text-primary capitalize;
   }
 
+  .h2 {
+    @apply text-3xl sm:text-4xl font-extrabold tracking-tight text-primary;
+  }
+
   h3 {
     @apply text-[16px] font-semibold text-primary;
   }
@@ -103,6 +107,10 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
 
   .card {
     @apply max-w-[400px] mx-auto shadow rounded overflow-hidden hover:shadow-primary transition-all duration-150 cursor-pointer;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 }
 

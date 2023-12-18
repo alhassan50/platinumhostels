@@ -54,7 +54,7 @@ export default function ContactForm() {
             <textarea
                 rows={5}
                 cols={100}
-                className='border rounded w-full py-2 px-4'
+                className='border outline-primary rounded w-full py-2 px-4'
             ></textarea>
         </div>
 

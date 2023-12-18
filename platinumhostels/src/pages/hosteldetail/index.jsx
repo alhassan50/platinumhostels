@@ -1,5 +1,5 @@
 import React from 'react'
-import {redirect, useLoaderData} from 'react-router-dom' 
+import {useLoaderData} from 'react-router-dom' 
 
 //utility
 import getHostelDetails from './utility/getHostelDetails'
@@ -16,7 +16,7 @@ export const loader = ({params}) => {
   const hostelDetails = getHostelDetails(hostelLocation)
 
   if (hostelDetails.response_code === 404) {
-    throw redirect('/notfound')
+    throw new Error('page not found')
   }
 
   return hostelDetails.data
