@@ -161,6 +161,14 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   display: none;
 }
 
+.login-page .quick-nav-login {
+  display: none;
+}
+
+.booknow-page .quick-nav-booknow {
+  display: none;
+}
+
 
 @media screen and (min-width: 768px) {
   .dropdown {

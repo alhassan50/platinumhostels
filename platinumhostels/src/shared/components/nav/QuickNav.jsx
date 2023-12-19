@@ -41,9 +41,15 @@ export default function QuickNav() {
                 </Link>
             </div>
 
-            <div>
+            <div className='quick-nav-booknow'>
                 <Link className='font-light text-[14px]' to={`/booknow`}>
                     Book Now
+                </Link>
+            </div>
+
+            <div className='quick-nav-login'>
+                <Link className='font-light text-[14px]' to={`/login`}>
+                    Login
                 </Link>
             </div>
         </div>

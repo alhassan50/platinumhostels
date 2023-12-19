@@ -5,8 +5,7 @@ import { Navigation } from 'swiper/modules';
 // css
 import 'swiper/css';
 import 'swiper/css/bundle'
-import 'swiper/css/autoplay'
-import '../../styles/reviews.css'
+import '../../../../styles/customSwiper.css'
 
 //custom components
 import ReviewCard from '../cards/ReviewCard'

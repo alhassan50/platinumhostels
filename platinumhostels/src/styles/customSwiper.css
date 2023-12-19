@@ -1,4 +1,4 @@
-.swiper-wrapper {
+.review-section .swiper-wrapper {
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -13,30 +13,30 @@
   
 }
 
-.swiper-button-disabled {
+.review-section .swiper-button-disabled {
   display: none;
 }
 
-.swiper-button-prev::after,
-.swiper-button-next::after {
+.review-section .swiper-button-prev::after,
+.review-section .swiper-button-next::after {
   /* background-color: #2F4858; */
   font-size: 30px;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
+.review-section .swiper-button-prev,
+.review-section .swiper-button-next {
   top: 480px;
   width: 60px;
   height: 60px;
   transition: linear 150ms;
 }
 
-.swiper-button-next {
+.review-section .swiper-button-next {
   left: 40%;
 }
 
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
+.review-section .swiper-button-prev:hover,
+.review-section .swiper-button-next:hover {
   background-color: #2F4858;
   color: #fff;
   border-radius: 50%;
