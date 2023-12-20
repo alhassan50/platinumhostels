@@ -40,13 +40,13 @@ export default function HostelCard(props) {
                 </div>
 
                 <div className='mt-8 flex gap-4'>
-                    <Link to={`/hostels${props.hostel.to}`}>
+                    <Link to={`/hostels${props.hostel.to}?hostelLocation=${props.hostel.to}`}>
                         <button className='btn-primary1 text-white'>
                             View Hostel
                         </button>
                     </Link>
 
-                    <Link to={'/'}>
+                    <Link to={`/booknow?hostelLocation=${props.hostel.location}`}>
                         <button className='btn-ghost2'>
                             Book Now
                         </button>

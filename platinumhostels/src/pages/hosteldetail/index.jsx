@@ -36,10 +36,12 @@ export default function HostelDetail() {
       <AboutHostel
         aboutHostel={hostelDetails.aboutHostel}
         amenities={hostelDetails.amenities}
+        hostelLocation={hostelDetails.location}
       />
 
       <RoomSection 
         roomdetails={hostelDetails.rooms}
+        hostelLocation={hostelDetails.location}
       />
 
       <Gallery 

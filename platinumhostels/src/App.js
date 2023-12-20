@@ -13,7 +13,7 @@ import HostelDetail, {loader as HostelLoader} from './pages/hosteldetail';
 import Team from './pages/team';
 import Contact from './pages/contact';
 import Login, {Action as LogInAction} from './pages/login';
-import BookNow, {Action as BookNowAction} from './pages/booknow';
+import BookNow, {Action as BookNowAction, loader as BookNowLoader} from './pages/booknow';
 import NotFound from './pages/NotFound';
 
 
@@ -52,6 +52,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route 
       path='/booknow' 
       element={<BookNow/>} 
+      loader={BookNowLoader}
       action={BookNowAction}
     />
     <Route path='/notfound' element={<NotFound/>} />    

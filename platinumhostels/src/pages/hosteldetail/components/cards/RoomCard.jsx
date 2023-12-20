@@ -27,7 +27,7 @@ export default function RoomCard(props) {
                 </p>
 
                 <div className='mt-8 flex gap-4'>
-                  <Link to={`/`}>
+                  <Link to={`/booknow?hostelLocation=${props.hostelLocation}&roomType=${props.room.id}`}>
                         <button className='btn-primary1 text-white'>
                             Book Now
                         </button>

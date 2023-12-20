@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function AboutHostel({aboutHostel, amenities}) {
+export default function AboutHostel({aboutHostel, amenities, hostelLocation}) {
   return (
     <section className=''>
         <div className='section-container'>
@@ -19,11 +20,13 @@ export default function AboutHostel({aboutHostel, amenities}) {
                             {aboutHostel}
                         </p>
 
-                        <div>
-                            <button className='btn-primary1 mt-7'>
-                                Book A Room
-                            </button>
-                        </div>
+                        <Link to={`/booknow?hostelLocation=${hostelLocation}`}>
+                            <div>
+                                <button className='btn-primary1 mt-7'>
+                                    Book A Room
+                                </button>
+                            </div>
+                        </Link>
                     </div>
                 </div>
 

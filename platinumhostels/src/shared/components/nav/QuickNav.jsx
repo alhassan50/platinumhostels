@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function QuickNav() {
   return (
     <div>
-        <div className='flex flex-wrap gap-5'>
+        <div className='quicknav flex flex-wrap gap-5'>
             <div>
                 <Link className='font-light text-[14px]' to={`/`}>
                     Home

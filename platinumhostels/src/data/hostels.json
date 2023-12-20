@@ -25,19 +25,19 @@
     ],
     "rooms": [
       {
-        "id": "r1",
+        "id": "single",
         "name": "Single Room", 
         "occupants": "1",
         "image": "/assets/ayeduase/ayeduase-bed-1.webp"
       },
       {
-        "id": "r2",
+        "id": "double",
         "name": "Double Room", 
         "occupants": "2",
         "image": "/assets/ayeduase/ayeduase-bed-2.webp"
       },
       {
-        "id": "r3",
+        "id": "shared",
         "name": "Shared Room", 
         "occupants": "3",
         "image": "/assets/ayeduase/ayeduase-bed-2.webp"
@@ -82,19 +82,19 @@
     ],
     "rooms": [
       {
-        "id": "r4",
+        "id": "single",
         "name": "Single Room", 
         "occupants": "1",
         "image": "/assets/bomso/bomso-bed-1.webp"
       },
       {
-        "id": "r5",
+        "id": "double",
         "name": "Double Room", 
         "occupants": "2",
         "image": "/assets/bomso/bomso-bed-2.webp"
       },
       {
-        "id": "r6",
+        "id": "shared",
         "name": "Shared Room", 
         "occupants": "3",
         "image": "/assets/bomso/bomso-bed-3.webp"
@@ -139,19 +139,19 @@
     ],
     "rooms": [
       {
-        "id": "r7",
+        "id": "single",
         "name": "Single Room", 
         "occupants": "1",
         "image": "/assets/gaza/gaza-bed-1.webp"
       },
       {
-        "id": "r8",
+        "id": "double",
         "name": "Double Room", 
         "occupants": "2",
         "image": "/assets/gaza/gaza-bed-2.webp"
       },
       {
-        "id": "r9",
+        "id": "shared",
         "name": "Shared Room", 
         "occupants": "3",
         "image": "/assets/gaza/gaza-bed-3.webp"

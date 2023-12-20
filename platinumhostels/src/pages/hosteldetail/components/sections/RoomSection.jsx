@@ -3,7 +3,7 @@ import React from 'react'
 //components
 import RoomCard from '../cards/RoomCard'
 
-export default function RoomSection({roomdetails}) {
+export default function RoomSection({roomdetails, hostelLocation}) {
   return (
     <section className='bg-[#fafafa]'>
         <div className='section-container'>
@@ -17,7 +17,7 @@ export default function RoomSection({roomdetails}) {
                 <div className='grid md:grid-cols-2 s-lg:grid-cols-3 gap-10'>
                     {roomdetails.map(room => (
                         <div key={room.id}>
-                            <RoomCard room={room} />
+                            <RoomCard room={room} hostelLocation={hostelLocation} />
                         </div>
                     ))}
                 </div>
