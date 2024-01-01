@@ -1,0 +1,34 @@
+[
+    {
+      "title": "Dashboard",
+      "to": "dashboard"
+    },
+    {
+      "title": "Profile",
+      "to": "profile"
+    },
+    {
+      "title": "My Roomie",
+      "to": "myroomie"
+    },
+    {
+      "title": "Payment",
+      "to": "payment"
+    },
+    {
+      "title": "Book Room",
+      "to": "booknow"
+    },
+    {
+      "title": "FAQs",
+      "to": "faqs"
+    },
+    {
+      "title": "Account Settings",
+      "to": "account-settings"
+    },
+    {
+      "title": "Logout",
+      "to": "logout"
+    }
+  ]

@@ -15,10 +15,12 @@ import Contact from './pages/contact';
 import Login, {Action as LogInAction} from './pages/login';
 import BookNow, {Action as BookNowAction, loader as BookNowLoader} from './pages/booknow';
 import NotFound from './pages/NotFound';
+import Dashboard from './pages/dashboard';
 
 
 //layouts
 import Main from './shared/layouts/main';
+import PlatinumPortal from './shared/layouts/platinumportal';
 
 //styles
 import './styles/App.css';
@@ -41,6 +43,16 @@ const router = createBrowserRouter(createRoutesFromElements(
       </Route>
       <Route path='ourteam' element={<Team/>} />
       <Route path='contact' element={<Contact/>} />
+
+      <Route path='*' element={<NotFound/>} />
+    </Route>
+
+    <Route 
+      path="/platinumportal" 
+      element={<PlatinumPortal />}
+    >
+      <Route index element={<Dashboard />} />
+      <Route index path='dashboard' element={<Dashboard />} />
       <Route path='*' element={<NotFound/>} />
     </Route>
 
@@ -49,12 +61,14 @@ const router = createBrowserRouter(createRoutesFromElements(
       element={<Login/>} 
       action={LogInAction}
     />
+
     <Route 
       path='/booknow' 
       element={<BookNow/>} 
       loader={BookNowLoader}
       action={BookNowAction}
     />
+
     <Route path='/notfound' element={<NotFound/>} />    
   </Route>
 ))
