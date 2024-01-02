@@ -1,0 +1,21 @@
+{
+    "personalInfo": {
+      "fullName": "John Doe",
+      "phoneNumber": "0123456789",
+      "gender": "male"
+    },
+    "studentInfo": {
+      "course": "BSc Physics",
+      "level": "200"
+    },
+    "accountInfo": {
+      "email": "abc@gmail.com",
+      "password": "yourPassword123",
+      "confirmPassword": "yourPassword123"
+    },
+    "hostelInfo": {
+      "hostel": "ayeduase",
+      "roomType": "single"
+    }
+  }
+  

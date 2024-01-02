@@ -77,6 +77,10 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
     hover:bg-[#fafafa];
   }
 
+  .btn-disabled {
+    @apply text-primary bg-gray-400 cursor-not-allowed
+  }
+
   section {
     @apply px-[5%] py-20 md:py-32
   }
@@ -191,6 +195,17 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   display: none;
 }
 
+td, th {
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #2F4858;
+  font-size: 14px;
+  text-align: left;
+}
 
 
 
