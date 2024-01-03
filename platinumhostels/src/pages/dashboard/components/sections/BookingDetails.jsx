@@ -7,11 +7,11 @@ import arrow from '../../../../assets/icons/right-arrow-3.png'
 export default function BookingDetails() {
   return (
     <div className='bg-white rounded-md mt-4 py-8 px-4'>
-        <h3>Booking Details</h3>
+        <h3>Booking Summary</h3>
         <table className='w-full mt-4'>
             <tbody>
                 <tr>
-                    <th>
+                    <th> 
                         Booking Date
                     </th>
                     <td>
@@ -37,7 +37,7 @@ export default function BookingDetails() {
             </tbody>
         </table>
 
-        <div className='mt-8 flex gap-4 items-center'>
+        <div className='mt-8 flex flex-wrap gap-4 items-center'>
             <Link to={'/platinumportal/payment'} className=''>
                 <button className='btn-primary1 flex justify-center items-center gap-2 group text-white'>
                     Make Payment

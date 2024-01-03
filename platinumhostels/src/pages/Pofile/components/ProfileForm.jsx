@@ -150,7 +150,7 @@ export default function ProfileForm({enableBtn}) {
                         id='course'
                         placeholder='BSc Physics'
                         defaultValue='BSc Physics'
-                        className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
+                        className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light cursor-not-allowed'
                         checked
                         disabled
                     />

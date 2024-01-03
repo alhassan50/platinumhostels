@@ -13,7 +13,10 @@ export default function Gallery({gallery}) {
             <div className='section-body'>
                 <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
                     {gallery.map((image, index) => (
-                        <figure className={`${index === 0 ? 'md:col-span-2 md:row-span-2' : ''} overflow-hidden rounded-md shadow-sm group cursor-pointer`}>
+                        <figure 
+                            className={`${index === 0 ? 'md:col-span-2 md:row-span-2' : ''} overflow-hidden rounded-md shadow-sm group cursor-pointer`}
+                            key={index}
+                        >
                             <img 
                                 src={image} 
                                 alt={image} 

@@ -12,13 +12,15 @@ import Hostel from './pages/hostels';
 import HostelDetail, {loader as HostelLoader} from './pages/hosteldetail';
 import Team from './pages/team';
 import Contact from './pages/contact';
-import Login, {Action as LogInAction} from './pages/login';
+import Login from './pages/login';
 import BookNow, {Action as BookNowAction, loader as BookNowLoader} from './pages/booknow';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/dashboard';
 import Profile from './pages/Pofile';
 import MyRoomie from './pages/MyRoomie';
 import AccountSettings from './pages/AccountSettings';
+import Payment from './pages/Payment';
+import FAQs from './pages/FAQs';
 
 
 //layouts
@@ -60,14 +62,15 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='dashboard' element={<Dashboard />} />
       <Route path='profile' element={<Profile />} />
       <Route path='myroomie' element={<MyRoomie />} />
+      <Route path='payment' element={<Payment />} />
+      <Route path='faqs' element={<FAQs />} />
       <Route path='accountsettings' element={<AccountSettings />} />
       <Route path='*' element={<NotFound/>} />
     </Route>
 
     <Route 
       path='/login' 
-      element={<Login/>} 
-      action={LogInAction}
+      element={<Login/>}
     />
 
     <Route 
