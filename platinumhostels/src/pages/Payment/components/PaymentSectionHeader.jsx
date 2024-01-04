@@ -6,7 +6,7 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 
 export default function PaymentSectionHeader() {
   return (
-    <div className='bg-white rounded-md py-8 px-4'>
+    <div className='bg-white rounded-md py-8 px-4 border'>
         <h2 className='text-primary text-left'>
             Payment
         </h2>

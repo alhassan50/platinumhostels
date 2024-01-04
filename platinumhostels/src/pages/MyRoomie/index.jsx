@@ -13,7 +13,7 @@ export default function MyRoomie() {
             <SectionHeder />
         </div>
 
-        <div className='mt-4 bg-white py-8 px-4 rounded-md'>
+        <div className='mt-4 bg-white py-8 px-4 rounded-md border'>
             <div className='grid grid-col-1 md:grid-cols-2 gap-5'>
                 <RoomieCard 
                     profileBg={'bg-lime-600'} 

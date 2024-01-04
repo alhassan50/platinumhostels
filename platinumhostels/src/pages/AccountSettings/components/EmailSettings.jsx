@@ -1,19 +1,26 @@
 import {React, useState} from 'react'
-import { Form } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 //icons
 import arrow from '../../../assets/icons/right-arrow-3.png'
 
 export default function EmailSettings() {
-    const [isDisabled, setBtnEnability] = useState(true) 
+    const {register, handleSubmit, formState: {errors, dirtyFields, isDirty, isValid}} = useForm({
+        defaultValues: {
+            email: 'abc@gmail.com'
+        }
+    })
 
     const enableBtn = () => {
-      setBtnEnability(false)
-      console.log(isDisabled);
+        return;
+    }
+    
+    const onSubmit = (formData) => {
+        console.log(dirtyFields);
     }
 
   return (
-    <Form onChange={() => (enableBtn())}>
+    <form onChange={handleSubmit(enableBtn)} onSubmit={handleSubmit(onSubmit)}>
         <div>
             <h3>
                 Change Your Email Address
@@ -25,20 +32,27 @@ export default function EmailSettings() {
                 </label>
                 <input 
                     type='email'
-                    name='email'
+                    {...register("email", { 
+                        required: "Your email address is required to verify your account.",
+                        pattern: {
+                          value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
+                          message: "Oops! Pls make sure you email address matches the format 'abc@example.domain'"
+                        }
+                      })}
                     id='email'
                     placeholder='abc@gmail.com'
-                    defaultValue='abc@gmail.com'
                     className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
                 />
+
+                <div className='max-w-[380px]'>
+                    <p className='text-red-600 text-[12px]'>{errors.email?.message}</p>
+                </div>
             </div>
 
             <div className='mt-5'>
                 <button 
-                    className={`${isDisabled ? 'btn-disabled' : 'group btn-primary1'} text-white flex justify-center items-center gap-2`}
-                    onClick={()=> {
-                        console.log('save changes');
-                    }}
+                    className={`${(isDirty && isValid) ? ' group btn-primary1 ' : ' btn-disabled '} text-white flex justify-center items-center gap-2`}
+                    type='submit'
                 >
                     Change Email
                     <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
@@ -47,6 +61,6 @@ export default function EmailSettings() {
                 </button>
             </div>
         </div>
-    </Form>
+    </form>
   )
 }

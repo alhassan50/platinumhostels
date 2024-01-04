@@ -14,7 +14,7 @@ export default function Dashboard({user}) {
   return (
     <div>
       <div>
-        <div className='bg-white p-4 rounded-md'>
+        <div className='bg-white p-4 rounded-md border'>
           <h3>
             Welcome to Platinum Portal, {userr.personalInfo.fullName}
           </h3>

@@ -6,7 +6,7 @@ import arrow from '../../../../assets/icons/right-arrow-3.png'
 
 export default function RoomDetails() {
   return (
-    <div className='bg-white rounded-md mt-4 py-8 px-4 row-span-2'>
+    <div className='bg-white rounded-md border mt-4 py-8 px-4 row-span-2'>
         <h3>Room Details</h3>
         <table className='w-full mt-4'>
             <tbody>

@@ -6,7 +6,7 @@ import arrow from '../../../../assets/icons/right-arrow-3.png'
 
 export default function BookingDetails() {
   return (
-    <div className='bg-white rounded-md mt-4 py-8 px-4'>
+    <div className='bg-white rounded-md mt-4 py-8 px-4 border'>
         <h3>Booking Summary</h3>
         <table className='w-full mt-4'>
             <tbody>

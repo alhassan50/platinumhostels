@@ -26,6 +26,7 @@ import FAQs from './pages/FAQs';
 //layouts
 import Main from './shared/layouts/main';
 import PlatinumPortal, {loader as PlatinumPortalLoader} from './shared/layouts/platinumportal';
+import FAQsContainer from './shared/layouts/FAQsContainer';
 
 //styles
 import './styles/App.css';
@@ -48,7 +49,11 @@ const router = createBrowserRouter(createRoutesFromElements(
       </Route>
       <Route path='ourteam' element={<Team/>} />
       <Route path='contact' element={<Contact/>} />
-
+      
+      <Route path='faqs' element={<FAQsContainer />}>
+        <Route index element={<FAQs />} />
+      </Route>
+      
       <Route path='*' element={<NotFound/>} />
     </Route>
 
@@ -79,6 +84,8 @@ const router = createBrowserRouter(createRoutesFromElements(
       loader={BookNowLoader}
       action={BookNowAction}
     />
+
+    
 
     <Route path='/notfound' element={<NotFound/>} />    
   </Route>

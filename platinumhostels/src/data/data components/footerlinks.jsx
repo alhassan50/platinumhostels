@@ -46,6 +46,10 @@ export const footerLinks = [
             title: 'Login',
             to: '/login',
           },
+          {
+            title: 'FAQs',
+            to: '/faqs',
+          },
         ],
       },
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function RoomieCard(props) {
   return (
-    <div className='shadow-primary rounded-md'>
+    <div className='border rounded-md hover:shadow-md'>
         <div className='p-4'>
             <div className='mb-5 flex justify-center items-center'>
                 <div className={`${props.profileBg} p-2 rounded-[50%] w-[100px] h-[100px] flex justify-center items-center`}>

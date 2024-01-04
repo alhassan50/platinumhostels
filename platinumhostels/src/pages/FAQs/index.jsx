@@ -11,7 +11,7 @@ export default function FAQs() {
 
   return (
     <div>
-        <div className='bg-white rounded-md py-8 px-4'>
+        <div className='bg-white rounded-md py-8 px-4 border'>
             <h2 className='text-primary text-left'>
                 Frequently Asked Questions
             </h2>
@@ -26,7 +26,7 @@ export default function FAQs() {
                 <div 
                     key={faq.id} 
                     id={faq.id}
-                    className={`bg-white rounded-md py-4 px-8`}
+                    className={`bg-white rounded-md py-4 px-8 border`}
                 >
                     <div className='flex justify-between items-center cursor-pointer'
                         onClick={() => toggleIsOpened(faq.id)}

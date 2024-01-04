@@ -5,7 +5,7 @@ import arrow from '../../../../assets/icons/right-arrow.png'
 
 export default function ProfileSummary(props) {
   return (
-    <div className='mt-4 py-8 px-4 bg-white rounded-md'>
+    <div className='mt-4 py-8 px-4 bg-white rounded-md border'>
         <div className='flex gap-4 items-center'>
             <div className='bg-amber-600 p-2 rounded-[50%] w-[100px] h-[100px] flex justify-center items-center'>
                 <h2 className='text-white'>JD</h2>

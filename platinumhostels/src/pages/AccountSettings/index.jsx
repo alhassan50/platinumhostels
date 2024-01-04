@@ -8,7 +8,7 @@ export default function AccountSettings() {
   return (
     <div>
         <div>
-            <div className='bg-white rounded-md py-8 px-4'>
+            <div className='bg-white rounded-md py-8 px-4 border'>
                 <h2 className='text-primary text-left'>
                     Account Settings
                 </h2>
@@ -18,7 +18,7 @@ export default function AccountSettings() {
                 </p>
             </div>
 
-            <div className='bg-white rounded-md py-8 px-4 mt-4'>
+            <div className='bg-white rounded-md py-8 px-4 mt-4 border'>
                 <EmailSettings />
                 <hr className='my-10' />
                 <PasswordSettings />

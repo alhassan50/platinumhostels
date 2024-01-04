@@ -42,7 +42,7 @@ export default function BookNow() {
             Secure Your Spot - Platinum Hostel Booking
           </h3>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} onChange={handleSubmit(onSubmit)}>
             <div className='personal-info'>
                 <h3>
                     Tell Us About Yourself (1/4)
@@ -124,11 +124,15 @@ export default function BookNow() {
                     </label>
                     <input 
                         type='text'
-                        {...register("course")}
+                        {...register('course', {required: "Your course is required"})}
                         id='course'
                         placeholder='BSc Physics'
                         className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
                     />
+
+                    <div className='max-w-[300px]'>
+                        <p className='text-red-600 text-[12px]'>{errors.course?.message}</p>
+                    </div>
                 </div>
 
                 <div className='flex flex-col gap-2 mt-5'>
@@ -136,7 +140,12 @@ export default function BookNow() {
                         Level
                     </label>
                     <select 
-                        {...register("level")}
+                        {...register('level', {
+                            validate: (levelValue) => (
+                                levelValue !== 'none' || 
+                                "Oops! You forgot to select a level"
+                            )
+                        })}
                         id='level'
                         className='text-[14px] border outline-primary rounded py-2 px-4'
                     >
@@ -149,6 +158,10 @@ export default function BookNow() {
                         <option value={'600'}>Level 600</option>
                         <option value={'700'}>Level 700</option>
                     </select>
+
+                    <div className='max-w-[300px]'>
+                        <p className='text-red-600 text-[12px]'>{errors.level?.message}</p>
+                    </div>
                 </div>
             </div>
 

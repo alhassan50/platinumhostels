@@ -7,7 +7,7 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 export default function PaymentHistory() {
   return (
     <div>
-        <div className='bg-white rounded-md  py-8 px-4 row-span-2'>
+        <div className='bg-white rounded-md  py-8 px-4 row-span-2 border'>
             <h3>Payment History</h3>
 
             <div>

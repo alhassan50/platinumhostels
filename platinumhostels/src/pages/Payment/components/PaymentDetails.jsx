@@ -3,7 +3,7 @@ import React from 'react'
 export default function PaymentDetails() {
   return (
     <div>
-        <div className='bg-white rounded-md py-8 px-4 row-span-2'>
+        <div className='bg-white rounded-md py-8 px-4 row-span-2 border'>
             <h3>Payment Details</h3>
             <table className='w-full mt-4'>
                 <tbody>

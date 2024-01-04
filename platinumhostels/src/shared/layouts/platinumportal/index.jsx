@@ -8,7 +8,7 @@
 
 
   export const loader = ({params, request}) => {
-    console.log('plat port');
+    /* console.log('plat port'); */
     let isLoggedIn = true
     const url = new URL(request.url)
     if (!isLoggedIn) {
@@ -19,7 +19,7 @@
 
   export default function PlatinumPortal() {
     const user = userJSON
-    console.log(user);
+    /* console.log(user); */
     return (
       <div className='overflow-x-hidden'>
           <ScrollRestoration/>
