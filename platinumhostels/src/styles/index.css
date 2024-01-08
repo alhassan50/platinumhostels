@@ -138,6 +138,10 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   .active-side-link h3 {
     @apply text-primary
   }
+
+  .active-box-link {
+    @apply font-bold border-b-2 border-primary
+  }
 }
 
 .bg-home {
@@ -195,8 +199,9 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   display: none;
 }
 
+
+
 td, th {
-  border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -207,7 +212,32 @@ td, th {
   text-align: left;
 }
 
+td, 
+.platinum-portal th {
+  border-top: 1px solid #efefef;
+}
 
+
+svg {
+  fill: #2F4858
+}
+
+
+.room-info-view:hover svg,
+#tableView svg, 
+#pictorialView svg {
+  fill: white;
+}
+
+#tableView, #pictorialView {
+  background-color: #2F4858;
+}
+
+.booking-summary th,
+.booking-summary td,
+.booking-summary tr {
+  border: 0px
+}
 
 
 
@@ -215,6 +245,50 @@ td, th {
   .dropdown {
     display: inline-block;
     margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .hostel-td,
+  .room-type-td,
+  .room-type-th,
+  .hostel-th {
+    display: none;
+  }
+
+  .personalDetails-body tr,
+  .roomDetails-body tr {
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px; */
+    padding: 0px;
+  }
+
+  .personalDetails-body tr th,
+  .personalDetails-body tr td,
+  .roomDetails-body tr th, 
+  .roomDetails-body tr td {
+    padding: 0px;
+  }
+  
+  .personalDetails-body,
+  .roomDetails-body {
+    display: grid;
+    gap: 8px;
+  }
+  
+}
+
+/* @media screen and (min-width: 600px) {
+  .booking-summary {
+    overflow-y: scroll;
+  }
+}
+ */
+@media screen and (max-width: 470px) {
+  .booking-summary-box {
+    min-width: 0px;
+    min-height: 0px;
   }
 }
 

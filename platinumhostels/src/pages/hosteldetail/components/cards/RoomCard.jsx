@@ -19,12 +19,23 @@ export default function RoomCard(props) {
                    {props.room.name}
                 </h3>
 
-                <p className='mt-3 flex gap-4 items-center'>
+                <div className='mt-3 flex gap-4 items-center'>
+                    <p className=''>
+                        {props.room.occupants} Occupants
+                    </p>
                     <figure className='w-6'>
                         <img src={occupants} alt='occupants' />
                     </figure>
-                    {props.room.occupants} Occupants
-                </p>
+                </div>
+
+                <div className='mt-3 flex gap-4 items-center'>
+                    <p className=''>
+                        {props.room.price}
+                    </p>
+                    {/* <figure className='w-6'>
+                        <img src={occupants} alt='occupants' />
+                    </figure> */}
+                </div>
 
                 <div className='mt-8 flex gap-4'>
                   <Link to={`/booknow?hostelLocation=${props.hostelLocation}&roomType=${props.room.id}`}>

@@ -13,7 +13,7 @@ import HostelDetail, {loader as HostelLoader} from './pages/hosteldetail';
 import Team from './pages/team';
 import Contact from './pages/contact';
 import Login from './pages/login';
-import BookNow, {Action as BookNowAction, loader as BookNowLoader} from './pages/booknow';
+import BookNow, {loader as BookNowLoader} from './pages/booknow';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/dashboard';
 import Profile from './pages/Pofile';
@@ -21,15 +21,25 @@ import MyRoomie from './pages/MyRoomie';
 import AccountSettings from './pages/AccountSettings';
 import Payment from './pages/Payment';
 import FAQs from './pages/FAQs';
+import Rooms, {loader as RoomsLoader} from './pages/Rooms';
 
 
 //layouts
 import Main from './shared/layouts/main';
 import PlatinumPortal, {loader as PlatinumPortalLoader} from './shared/layouts/platinumportal';
 import FAQsContainer from './shared/layouts/FAQsContainer';
+/* import {bookNow as BookNowLayout} from './shared/layouts/bookNow'; */
+import {BooNow as BookNowLayout }  from './shared/layouts/BookNow';
+
+//contexts
+import { BookNowContextProvider } from './Context/BookNowContext';
 
 //styles
 import './styles/App.css';
+
+
+//test
+import IsBookFormReady from './pages/booknow/utility/IsBookFormReady';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -78,14 +88,25 @@ const router = createBrowserRouter(createRoutesFromElements(
       element={<Login/>}
     />
 
-    <Route 
-      path='/booknow' 
-      element={<BookNow/>} 
-      loader={BookNowLoader}
-      action={BookNowAction}
-    />
+    <Route
+      path="/booknow" 
+      element={<BookNowLayout />}
+      /* loader={PlatinumPortalLoader} */
+    >
+      <Route 
+        index 
+        element={<BookNow/>} 
+        loader={BookNowLoader}
+      />  
 
-    
+      <Route 
+        index
+        path='rooms' 
+        element={<Rooms/>} 
+        /* loader={IsBookFormReady} */
+      />    
+    </Route>
+
 
     <Route path='/notfound' element={<NotFound/>} />    
   </Route>

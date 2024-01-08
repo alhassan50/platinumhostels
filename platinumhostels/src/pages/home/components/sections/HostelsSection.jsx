@@ -8,7 +8,7 @@ import hostelsdata from '../../../../data/hostels.json'
 
 export default function HostelsSection() {
   return (
-    <section>
+    <section id='hostels'>
         <div className='section-container'>
             <div className='header-section text-center'>
                 <h2>

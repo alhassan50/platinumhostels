@@ -21,7 +21,7 @@
     const user = userJSON
     /* console.log(user); */
     return (
-      <div className='overflow-x-hidden'>
+      <div className='overflow-x-hidden platinum-portal'>
           <ScrollRestoration/>
           <div className='grid grid-cols-1 s-lg:grid-cols-[250px,auto]'>
               <PortalHeader />

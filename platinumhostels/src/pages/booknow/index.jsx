@@ -1,7 +1,8 @@
-import React from 'react'
-import { Link, Form, useLoaderData, ScrollRestoration } from 'react-router-dom'
+import {React, useContext, useEffect, useState} from 'react'
+import { Link, useLoaderData, ScrollRestoration, redirect, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
+import { useBookNowContext } from '../../Context/BookNowContext'
 
 //components
 import QuickNav from '../../shared/components/nav/QuickNav'
@@ -9,40 +10,78 @@ import QuickNav from '../../shared/components/nav/QuickNav'
 //icons
 import arrow from '../../assets/icons/right-arrow-3.png'
 
-//form action
-export const Action = ({request}) => {
-  console.log('haaa');
-  return request
-}
 
 //loader
 export const loader = ({request}) => {
     const hostelLocation = new URL(request.url).searchParams.get('hostelLocation')
     const roomType = new URL(request.url).searchParams.get('roomType')
+    const message = new URL(request.url).searchParams.get('message')
 
-    return {hostelLocation, roomType}
+    return {hostelLocation, roomType, message}
 }
 
 export default function BookNow() {
-  const {hostelLocation, roomType} = useLoaderData()
-  const {register, handleSubmit, formState: {errors}, control, getValues} = useForm()
+  const navigate = useNavigate()
+  const {hostelLocation, roomType, message} = useLoaderData()
+  const [isReadyToRedirect, setIsReadyToRedirect] = useState(false)
 
-  const onSubmit = (formData) => {
-    console.log(formData);
-    //make api posts to backend
+  const readyToRedirect = () => {
+    setIsReadyToRedirect(true)
   }
+
+  const {
+    defaultValues,
+    bookNowFormData, 
+    handleFormData, 
+    isRoomBookDataReady, 
+    makeBookNowFormDataReady
+  } = useBookNowContext()
+
+  const {register, handleSubmit, formState: {errors}, trigger, control, getValues} = useForm({    
+    defaultValues: {
+        ...bookNowFormData, 
+        hostelLocation: hostelLocation ? hostelLocation.toLowerCase() : bookNowFormData.hostelLocation,
+        roomType: roomType ? roomType.toLowerCase() : bookNowFormData.roomType,
+    }
+  })
+
+
+  //handles form submission
+  const onSubmit = (formData) => {
+    handleFormData(formData)
+    readyToRedirect()
+  }
+
+  //makes booking form data ready for processing 
+  useEffect(() => {
+    console.log("use - ", bookNowFormData);
+    if ((bookNowFormData !== defaultValues) & isReadyToRedirect) {
+        makeBookNowFormDataReady()
+        navigate(`/booknow/rooms?hostelLocation=${bookNowFormData.hostelLocation}&roomType=${bookNowFormData.roomType}&gender=${bookNowFormData.gender}`)
+    }
+  }, [bookNowFormData, defaultValues, makeBookNowFormDataReady, navigate, isReadyToRedirect])
   
 
   return (
     <div className='booknow-page px-[5%] min-h-screen'>
       <ScrollRestoration />
-      <section>
+      <section className=''>
         <div className='section-body mt-0 max-w-[400px] mx-auto'>
+
+          { 
+            message &&
+          <div className='bg-secondary py-2 px-4 mb-2 rounded flex gap-4 items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" className='fill fill-red-600' height="16" width="16" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+
+            <h3 className='text-red-600 '>{message}</h3>
+          </div>
+          }
+
           <h3 className='h2 mb-7 text-[24px]'>
             Secure Your Spot - Platinum Hostel Booking
           </h3>
 
-          <form onSubmit={handleSubmit(onSubmit)} onChange={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className='personal-info'>
                 <h3>
                     Tell Us About Yourself (1/4)
@@ -188,7 +227,8 @@ export default function BookNow() {
                         id='email'
                         placeholder='abc@gmail.com'
                         className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
-                        />
+                        /* onChange={() => trigger('email')} */
+                    />
                     <div className='max-w-[380px]'>
                         <p className='text-red-600 text-[12px]'>{errors.email?.message}</p>
                     </div>
@@ -256,7 +296,6 @@ export default function BookNow() {
                             validate: (hostelLocationValue) => (hostelLocationValue !== 'none' || 
                             "Please select your hostel of preference")
                         },)}
-                        defaultValue={hostelLocation ? hostelLocation.toLowerCase() : 'none'}
                         className='text-[14px] border outline-primary rounded py-2 px-4'
                     >
                         <option value={'none'}></option>
@@ -279,7 +318,6 @@ export default function BookNow() {
                             "Please select your room of preference")
                         },)}
                         id='roomType'
-                        defaultValue={roomType ? roomType.toLowerCase() : 'none'}
                         className='text-[14px] border outline-primary rounded py-2 px-4'
                     >
                         <option value={'none'}></option>
@@ -295,7 +333,7 @@ export default function BookNow() {
 
             <div className='flex flex-col gap-2 mt-10'>
                 <button className='btn-primary1 text-white flex justify-center items-center gap-2 group'>
-                    Choose Room
+                    {isRoomBookDataReady ? 'Confirm Booking' : 'Choose Room'}
                     <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
                         <img src={arrow} alt='right arrow'/>
                     </figure>

@@ -2,7 +2,7 @@
     { "to": "/", "title": "Home" },
     { "to": "/about", "title": "About" },
     {
-      "to": "/hostels",
+      "to": "/#hostels",
       "title": "Hostels",
       "dropdown": [
         { "to": "/hostels/ayeduase", "title": "Ayeduase" },
