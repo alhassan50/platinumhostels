@@ -30,7 +30,7 @@ export default function Rooms() {
     
     //handle illegal routing to rooms page
     useEffect(() => {
-        if (isBookNowFormDataReady) {
+        if (!isBookNowFormDataReady) {
             navigate('/booknow?message=Fill booking form first.', {replace: true})
         } else {
             console.log('is form ready - ',isBookNowFormDataReady);
