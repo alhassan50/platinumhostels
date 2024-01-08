@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, redirect } from 'react-router-dom';
 import { useBookNowContext } from '../../Context/BookNowContext';
-import {useLockBodyScroll, useToggle} from 'react-use';
 
 //fake data
 import availableRooms from '../../data/rooms.json'
-
-//icons
-import arrow from '../../assets/icons/right-arrow-3.png'
 
 //components
 import SummaryBox from './components/SummaryBox';
@@ -34,7 +30,7 @@ export default function Rooms() {
     
     //handle illegal routing to rooms page
     useEffect(() => {
-        if (!isBookNowFormDataReady) {
+        if (isBookNowFormDataReady) {
             navigate('/booknow?message=Fill booking form first.', {replace: true})
         } else {
             console.log('is form ready - ',isBookNowFormDataReady);
@@ -61,10 +57,7 @@ export default function Rooms() {
 
     const [view, setView] =useState('pictorial')
     const [showSummaryBox, setShowSummaryBox] =useState(false)
-    const [selectedRoom, setSelectedRoom] = useState('')
-
-    useLockBodyScroll(showSummaryBox);
-    
+    const [selectedRoom, setSelectedRoom] = useState('')    
     
     //switches display view between table and pictorial
     const toggleView = (view) => {

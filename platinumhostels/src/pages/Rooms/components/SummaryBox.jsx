@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 //context
 import { useBookNowContext } from '../../../Context/BookNowContext'
@@ -9,8 +8,7 @@ import { useBookNowContext } from '../../../Context/BookNowContext'
 import arrow from '../../../assets/icons/right-arrow-3.png'
 
 export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
-    useLockBodyScroll();
-    
+
     const [bookingSummary, setBookingSummary] = useState('personalDetails')
     const {
         bookNowFormData,
@@ -40,7 +38,7 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
 
   return (
     <div className='booking-summary overflow-y-auto fixed bg-[#0001] left-0 top-0 w-full h-full flex justify-center items-start py-[40px] px-[5%]'>
-        <div className='booking-summary-box p-4 bg-white overflow-y-scroll border rounded shadow-primary  w-[450px] h-[450px]'>
+        <div className='booking-summary-box p-4 bg-white overflow-scroll border rounded shadow-primary  w-[450px] h-[450px]'>
             <div className=''>
                 <div className='flex gap-4 justify-between items-center'>
                     <h2 className='font-normal text-[20px] capitalize'>
