@@ -2,6 +2,7 @@ import React from 'react'
 
 import hospitality from '../../../../assets/about/groupies.webp'
 import teamwork from '../../../../assets/about/teamwork.webp'
+import integrity from '../../../../assets/about/integrity.webp'
 
 export default function Values() {
   return (
@@ -45,7 +46,7 @@ export default function Values() {
 
                     <div className='hospitality grid md:grid-cols-2 gap-10 items-center mt-10 md:mt-24'>
                         <figure className='rounded-md md:rounded-sm overflow-hidden shadow-primary order-2 md:order-1'>
-                            <img src={teamwork} alt='team work' />
+                            <img src={integrity} alt='team work' />
                         </figure>
 
                         <div className='md:order-2'>

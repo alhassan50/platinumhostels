@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 //context
@@ -25,16 +25,20 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
             if (isBookNowFormDataReady ) {
                 //create user account
                 handleRoomData(room)
-                console.log('booking data: ', bookNowFormData);
-                console.log('room data: ', roomBookData);
-                navigate('/platinumportal')
             } else {
-                navigate('/booknow?haa=haa')
+                navigate('/booknow?message=Fill booking form first.')
             }
         } else {
             alert('Something went wrong')
         }
     }
+
+    useEffect(() => {
+        if (roomBookData !== null) {
+            console.log("dsddsd:", roomBookData);
+            navigate('/platinumportal')
+        }
+    }, [roomBookData, navigate])
 
   return (
     <div className='booking-summary overflow-y-auto fixed bg-[#0001] left-0 top-0 w-full h-full flex justify-center items-center py-[40px] px-[5%]'>

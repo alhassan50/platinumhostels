@@ -14,11 +14,14 @@ import miraanim from '../../assets/team/frontdesk/mira anim.webp'
 import raymond from '../../assets/team/frontdesk/raymond owusu.webp'
 
 //security
-import alex from '../../assets/team/security/alex bernard.jpg'
-import benoduro from '../../assets/team/security/ben oduro.webp'
-import danieladdo from '../../assets/team/security/danial addo.jpg'
-import joshua from '../../assets/team/security/joshua oluwagbe.jpg'
-import sitso from '../../assets/team/security/sitso micheal.jpg'
+import alex from '../../assets/team/security/alex-bernard.webp'
+import emmamensah from '../../assets/team/security/emma.webp'
+/* import benoduro from '../../assets/team/security/ben oduro.webp' */
+import danieladdo from '../../assets/team/security/daniel-addo.webp'
+import joshua from '../../assets/team/security/joshua-oluwagbe.webp'
+import sitso from '../../assets/team/security/sitso-micheal.webp'
+import dani from '../../assets/team/security/daniel.webp'
+import mutala from '../../assets/team/security/mutala.webp'
 
 export const owners = [
     {name: 'david ansah', title: 'owner', image: davidansah},
@@ -39,14 +42,12 @@ export const frontdeskstaff = [
 ]
 
 export const security =[
-    {name: 'alex bernard', title: 'security', image: alex},
-    /* {name: 'ben oduro', title: 'security', image: benoduro}, */
+    {name: 'alex bernard', title: 'head of security', image: alex},
+    {name: 'emmanuel mensah', title: 'security', image: emmamensah},
+   /*  {name: 'ben oduro', title: 'security', image: benoduro}, */
     {name: 'joshua oluwagbe', title: 'security', image: joshua},
     {name: 'daniel addo', title: 'security', image: danieladdo},
-    {name: 'joshua oluwagbe', title: 'security', image: joshua},
     {name: 'sitso micheal', title: 'security', image: sitso},
-    {name: 'alex bernard', title: 'security', image: alex},
-    /* {name: 'ben oduro', title: 'security', image: benoduro}, */
-    {name: 'joshua oluwagbe', title: 'security', image: joshua},
-    {name: 'daniel addo', title: 'security', image: danieladdo}
+    {name: 'Daniel Toguo', title: 'security', image: dani},
+    {name: 'mutala ashie', title: 'security', image: mutala},
 ]

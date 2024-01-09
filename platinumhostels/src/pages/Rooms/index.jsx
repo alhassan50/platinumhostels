@@ -33,8 +33,8 @@ export default function Rooms() {
         if (!isBookNowFormDataReady) {
             navigate('/booknow?message=Fill booking form first.', {replace: true})
         } else {
-            console.log('is form ready - ',isBookNowFormDataReady);
-            console.log('form - ', bookNowFormData);
+            /* console.log('is form ready - ',isBookNowFormDataReady);
+            console.log('form - ', bookNowFormData); */
         }
     },[isBookNowFormDataReady, bookNowFormData, navigate])
     
@@ -54,6 +54,25 @@ export default function Rooms() {
             document.removeEventListener('keydown', closeSummaryBox);
         };
     }, [])
+
+    useEffect(() => {
+        // Add event listener to intercept page refresh
+        const handleBeforeUnload = (e) => {
+            const confirmationMessage = 'Form booking process will restart. Are you sure you want to leave?';
+            e.returnValue = confirmationMessage; // Standard for most browsers
+            return confirmationMessage; // For some older browsers
+        };
+
+        //reload event listner
+        window.addEventListener('beforeunload', handleBeforeUnload)
+    
+    
+        return () => {
+            // Cleanup: remove event listener when component unmounts
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    
+    }, [bookNowFormData, defaultValues])
 
     const [view, setView] =useState('pictorial')
     const [showSummaryBox, setShowSummaryBox] =useState(false)

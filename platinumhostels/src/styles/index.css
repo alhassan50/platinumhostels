@@ -256,20 +256,20 @@ svg {
     display: none;
   }
 
-  .personalDetails-body tr,
+  /*.personalDetails-body tr,
   .roomDetails-body tr {
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     /* gap: 5px; */
-    padding: 0px;
-  }
+    /* padding: 0px; */
+  /*} */
 
-  .personalDetails-body tr th,
+  /* .personalDetails-body tr th,
   .personalDetails-body tr td,
   .roomDetails-body tr th, 
   .roomDetails-body tr td {
     padding: 0px;
-  }
+  } */
   
   .personalDetails-body,
   .roomDetails-body {
