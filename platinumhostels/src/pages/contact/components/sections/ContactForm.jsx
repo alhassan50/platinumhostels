@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the styles
+
 
 //icons
 import arrow from '../../../../assets/icons/right-arrow-3.png'
 
 
 export default function ContactForm() {
-    const {register, handleSubmit, formState: {errors}, reset } = useForm({
+    const {register, handleSubmit, formState: {errors, isSubmitting}, reset } = useForm({
         defaultValues: {
             fullName: "",
             phoneNumber: "",
@@ -18,10 +22,10 @@ export default function ContactForm() {
     const [resetForm, setResetForm] = useState(false)
 
     const onSubmit = async (contactFormData) => {
-        console.log(contactFormData);
+        /* console.log(contactFormData); */
     
         try {
-            console.log("start fetching...");
+            /* console.log("start fetching..."); */
             let responseRAW = await fetch("http://localhost:8888/.netlify/functions/contact", {
                 method: 'POST',
                 headers: {
@@ -29,7 +33,7 @@ export default function ContactForm() {
                 },
                 body: JSON.stringify(contactFormData),
             })
-            console.log("done fetching...");
+            /* console.log("done fetching..."); */
     
             if (!responseRAW.ok) {
                 throw new Error(`HTTP error! Status: ${responseRAW.status}.`);
@@ -45,7 +49,7 @@ export default function ContactForm() {
     
             alert(responseJSON.message);
         } catch (error) {
-            console.error(error);
+            /* console.error(error); */
             alert('Message not sent. Pls try again. ' + error.message);
         }
     };
@@ -191,11 +195,21 @@ export default function ContactForm() {
         </div>
 
         <div className='flex flex-col gap-2 mt-5'>
-            <button className='btn-primary1 text-white flex justify-center items-center gap-2 group'>
-                Sumit Message
-                <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
-                    <img src={arrow} alt='right arrow'/>
-                </figure>
+            <button className={`${isSubmitting ? 'btn-disabled' : 'btn-primary1 group'} text-white flex justify-center items-center gap-2`}>
+                {isSubmitting ? "Submitting" : 'Sumit Message'}
+
+                {
+                    isSubmitting ? 
+
+                    <FontAwesomeIcon icon={faSpinner}  spinPulse />                 
+
+                    :
+
+                    <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
+                        <img src={arrow} alt='right arrow'/>
+                    </figure>
+                }
+
             </button>
         </div>
     </form>
