@@ -56,9 +56,9 @@ export default function ContactForm() {
 
     useEffect(() => {
         if (resetForm) {
-            console.log('reseting form..');
+            
             reset()
-            console.log('done reseting form..');
+            
         }
     }, [resetForm, reset])
 
