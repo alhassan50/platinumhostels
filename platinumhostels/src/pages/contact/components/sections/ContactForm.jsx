@@ -26,7 +26,7 @@ export default function ContactForm() {
     
         try {
             /* console.log("start fetching..."); */
-            let responseRAW = await fetch("http://localhost:8888/.netlify/functions/contact", {
+            let responseRAW = await fetch("https://platinumfunctions.netlify.app/.netlify/functions/contact", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
