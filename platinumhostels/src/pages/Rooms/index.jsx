@@ -40,12 +40,7 @@ export default function Rooms() {
     //handle illegal routing to rooms page
     useEffect(() => {
         if (!isBookNowFormDataReady) {
-            /* console.log('is form ready - ',isBookNowFormDataReady);
-            console.log('form - ', bookNowFormData); */
             navigate('/booknow?message=Fill booking form first.', {replace: true})
-        } else {
-            /* console.log('is form ready - ',isBookNowFormDataReady);
-            console.log('form - ', bookNowFormData); */
         }
     },[isBookNowFormDataReady, bookNowFormData, navigate])
     
@@ -110,35 +105,6 @@ export default function Rooms() {
             
         }
     }
-    
-    
-    
-
-    /* useEffect(() => {
-        if (roomBookData != null & bookNowFormData !== defaultValues) {
-            console.log('ready - ', roomBookData);
-            console.log('form - ', bookNowFormData);
-            console.log('def - ', defaultValues);
-            console.log(bookNowFormData === defaultValues);
-        } else {
-            console.log('booking incomplete');
-            console.log('room - ', roomBookData);
-            console.log('form - ', bookNowFormData);
-            console.log('def - ', defaultValues);
-            console.log(roomBookData !== null);
-            console.log(bookNowFormData !== defaultValues);
-            setDisableConformBtn(true)
-        }
-    }, [roomBookData, bookNowFormData]) */
-
-    /* useEffect(() => {
-        if (!isBookNowFormDataReady) {
-            navigate('/booknow?message=Fill booking form first.')
-        } else {
-            console.log('dd',isBookNowFormDataReady);
-        }
-    }, [isBookNowFormDataReady]) */
-
 
   return (
     <div className='px-[1%] sm:px-[2%] md:px-[3%] s-lg:px-[4%] lg:px-[5%] py-[30px] relative'>
