@@ -103,7 +103,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         index
         path='rooms' 
         element={<Rooms/>} 
-        /* loader={IsBookFormReady} */
+        loader={RoomsLoader}
       />    
     </Route>
 

@@ -1,53 +1,70 @@
 import React from 'react'
 
 export default function TableView({availableRooms, handleSelectedRoom}) {
+    console.log("table view availableRooms: ", availableRooms)
+    /* if (availableRooms) {
+        throw new Error ("Couldn't Fetch available rooms.")
+    } */
   return (
-    <div>
-        <table className='min-w-full'>
-            <thead className='room-table-header'>
-                <tr>
-                    <th className='hostel-th'>Hostel</th>
-                    <th className='room-type-th'>Room Type</th>
-                    <th>Room Price</th>
-                    <th>Room Number</th>
-                    <th>Room Capacity</th>
-                    <th>Current Occupants</th>
-                </tr>
-            </thead>
-            <tbody>
-                {availableRooms.map(room => (
-                    room.capacity > room.currentOccupants && 
-                    <tr 
-                        key={room.id} 
-                        id={room.id}
-                        className='cursor-pointer hover:bg-primary group'
-                        onClick={() => (
-                            /* console.log('id: ', room.id) */
-                            handleSelectedRoom(room)
-                        )}
-                    >
-                        <td className='hostel-td text-primary group-hover:text-secondary'>
-                            {room.hostel}
-                        </td>
-                        <td className='room-type-td text-primary group-hover:text-secondary'>
-                            {room.type}
-                        </td>
-                        <td className='room-price-td text-primary group-hover:text-secondary'>
-                            {room.price}
-                        </td>
-                        <td className='room-number-td text-primary group-hover:text-secondary'>
-                            {room.number}
-                        </td>
-                        <td className='room-capacity-td text-primary group-hover:text-secondary'>
-                            {room.capacity}
-                        </td>
-                        <td className='room-capacity-td text-primary group-hover:text-secondary'>
-                            {room.currentOccupants}
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+    <div className=''>
+        <div>
+            {
+                availableRooms.length > 0 ?
+                <table className='min-w-full'>
+                    <thead className='room-table-header'>
+                        <tr>
+                            <th className='hostel-th'>Hostel</th>
+                            <th className='block-td'>Block</th>
+                            <th className='room-type-th'>Type</th>
+                            <th>Price</th>
+                            <th>Number</th>
+                            <th>Capacity</th>
+                            <th>Current Occupants</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {availableRooms.map(room => (
+                            room.capacity > room.currentOccupants && 
+                            <tr 
+                                key={room.roomID} 
+                                id={room.roomID}
+                                className='cursor-pointer hover:bg-primary group'
+                                onClick={() => (
+                                    /* console.log('id: ', room.roomID) */
+                                    handleSelectedRoom(room)
+                                )}
+                            >
+                                <td className='capitalize hostel-td text-primary group-hover:text-secondary'>
+                                    {room.hostelLocation}
+                                </td>
+                                <td className='capitalize block-td text-primary group-hover:text-secondary'>
+                                    {room.roomBlock}
+                                </td>
+                                <td className='capitalize room-type-td text-primary group-hover:text-secondary'>
+                                    {room.roomType}
+                                </td>
+                                <td className='capitalize room-price-td text-primary group-hover:text-secondary'>
+                                    GH₵ {room.roomPrice}
+                                </td>
+                                <td className='capitalize room-number-td text-primary group-hover:text-secondary'>
+                                    {room.roomNumber}
+                                </td>
+                                <td className='capitalize room-capacity-td text-primary group-hover:text-secondary'>
+                                    {room.capacity}
+                                </td>
+                                <td className='capitalize room-capacity-td text-primary group-hover:text-secondary'>
+                                    {room.currentOccupants}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                :
+                <div>
+                   <p className='text-center'>Sorry! No Available Rooms</p>
+                </div>
+            }
+        </div>
     </div>
   )
 }

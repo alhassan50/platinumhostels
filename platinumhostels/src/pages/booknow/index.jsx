@@ -6,11 +6,12 @@ import { useBookNowContext } from '../../Context/BookNowContext'
 
 //components
 import QuickNav from '../../shared/components/nav/QuickNav'
+import NextBtn from './components/NextBtn'
 import PrevBtn from './components/PrevBtn'
+import RequiredFields from '../../shared/components/RequiredFields'
 
 //icons
 import arrow from '../../assets/icons/right-arrow-3.png'
-import NextBtn from './components/NextBtn'
 
 
 //loader
@@ -26,6 +27,7 @@ export default function BookNow() {
   const navigate = useNavigate()
   const {hostelLocation, roomType, message} = useLoaderData()
   const [isReadyToRedirect, setIsReadyToRedirect] = useState(false)
+  /*console.log('checker: ', isReadyToRedirect); */
   const [formStep, setFormStep] = useState(0)
 
   const {
@@ -33,6 +35,7 @@ export default function BookNow() {
     bookNowFormData, 
     handleFormData, 
     isRoomBookDataReady, 
+    isBookNowFormDataReady,
     makeBookNowFormDataReady
   } = useBookNowContext()
 
@@ -85,17 +88,37 @@ export default function BookNow() {
   //handles form submission
   const onSubmit = (formData) => {
     handleFormData(formData)
+    /* console.log(formData); */
+   /*  console.log("readyToRedirect...");
+    console.log("onsubmit isReadyToRedirect - ", isReadyToRedirect); */
     readyToRedirect()
+    /* console.log("onsubmit isReadyToRedirect - ", isReadyToRedirect);
+    console.log("done readyToRedirect..."); */
   }
 
   //makes booking form data ready for processing 
   useEffect(() => {
-    /* console.log("use - ", bookNowFormData); */
-    if ((bookNowFormData !== defaultValues) & isReadyToRedirect) {
+    /* console.log("use bookNowFormData - ", bookNowFormData);
+    console.log("use defaultValues - ", defaultValues);
+    console.log("use isReadyToRedirect - ", isReadyToRedirect);
+    console.log("use bookNowFormData !== defaultValues - ", (bookNowFormData !== defaultValues)); */
+    /* console.log("bookNowFormData: ", bookNowFormData); */
+    if ((bookNowFormData !== defaultValues) && isReadyToRedirect) {
         makeBookNowFormDataReady()
-        navigate(`/booknow/rooms?hostelLocation=${bookNowFormData.hostelLocation}&roomType=${bookNowFormData.roomType}&gender=${bookNowFormData.gender}`)
+        /* console.log('book now use - isBookNowFormDataReady: ', isBookNowFormDataReady); */
+        if (isBookNowFormDataReady) {
+           /*  console.log('inner book now use - isBookNowFormDataReady: ', isBookNowFormDataReady);
+            console.log('inner yep isBookNowFormDataReady is ready for naviagting'); */
+            console.log('naviagting');
+            navigate(`/booknow/rooms?hostelLocation=${bookNowFormData.hostelLocation}&roomType=${bookNowFormData.roomType}&gender=${bookNowFormData.gender}`)
+        } else {
+            /* console.log('book now use - isBookNowFormDataReady: ', isBookNowFormDataReady);
+            console.log('no isBookNowFormDataReady is not ready for naviagting'); */
+        }
+        //navigate(`/booknow/rooms?hostelLocation=${bookNowFormData.hostelLocation}&roomType=${bookNowFormData.roomType}&gender=${bookNowFormData.gender}`)
     }
-  }, [bookNowFormData, defaultValues, makeBookNowFormDataReady, navigate, isReadyToRedirect])
+  }, [bookNowFormData, defaultValues, makeBookNowFormDataReady, navigate, isReadyToRedirect, isBookNowFormDataReady])
+  
 
   useEffect(() => {
     // Add event listener to intercept page refresh
@@ -131,9 +154,15 @@ export default function BookNow() {
             </div>
           }
 
-          <h3 className='h2 mb-7 text-[24px]'>
+          <h3 className='h2 text-[24px]'>
             Secure Your Spot - Platinum Hostel Booking
           </h3>
+
+          <hr className='my-4'/>
+
+          <small className='mb-3 block text-primary italic'>
+            Required fields are marked with an asterisk (*).
+          </small>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             {
@@ -141,12 +170,13 @@ export default function BookNow() {
                 <>
                     <div className='personal-info'>
                     <h3>
-                        Tell Us About Yourself (1/4)
+                        Tell Us About Yourself (Step 1 of 4)
                     </h3>
 
                     <div className='flex flex-col gap-2 mt-5'>
                         <label className='text-primary text-sm'>
-                            Full Name
+                            Full Name    
+                            &nbsp;<RequiredFields />
                         </label>
                         <input 
                             type='text'
@@ -164,6 +194,7 @@ export default function BookNow() {
                     <div className='flex flex-col gap-2 mt-5'>
                         <label className='text-primary text-sm'>
                             Phone Number
+                            &nbsp;<RequiredFields />
                         </label>
                         <input 
                             type='tel'
@@ -187,6 +218,7 @@ export default function BookNow() {
                     <div className='flex flex-col gap-2 mt-5'>
                         <label className='text-primary text-sm'>
                             Gender/Sex
+                            &nbsp;<RequiredFields />
                         </label>
                         <select 
                             {...register("gender", {
@@ -216,12 +248,13 @@ export default function BookNow() {
                     {/* <hr className='my-10'/> */}
                     <div className='student-info'>
                     <h3>
-                        Share Your Academic Details (2/4)
+                        Share Your Academic Details (Step 2 of 4)
                     </h3>
 
                     <div className='flex flex-col gap-2 mt-5'>
                         <label className='text-primary text-sm'>
                             Course/Program
+                            &nbsp;<RequiredFields />
                         </label>
                         <input 
                             type='text'
@@ -239,6 +272,7 @@ export default function BookNow() {
                     <div className='flex flex-col gap-2 mt-5'>
                         <label className='text-primary text-sm'>
                             Level
+                            &nbsp;<RequiredFields />
                         </label>
                         <select 
                             {...register('level', {
@@ -275,12 +309,13 @@ export default function BookNow() {
                     {/* <hr className='my-10'/> */}
                     <div className='account-info'>
                         <h3>
-                            Create Your Account (3/4)
+                            Create Your Account (Step 3 of 4)
                         </h3>
 
                         <div className='flex flex-col gap-2 mt-5'>
                             <label className='text-primary text-sm'>
                                 Email Address
+                                &nbsp;<RequiredFields />
                             </label>
                             <input 
                                 type='email'
@@ -307,6 +342,7 @@ export default function BookNow() {
                         >
                             <label className='text-primary text-sm'>
                                 Password
+                                &nbsp;<RequiredFields />
                             </label>
                             <input 
                                 type='password'
@@ -330,6 +366,7 @@ export default function BookNow() {
                         <div className='flex flex-col gap-2 mt-5'>
                             <label className='text-primary text-sm'>
                                 Confirm Password
+                                &nbsp;<RequiredFields />
                             </label>
                             <input 
                                 type='password'
@@ -356,11 +393,12 @@ export default function BookNow() {
                     {/* <hr className='my-10'/> */}
                     <div className='hostel-info'>
                     <h3>
-                        Choose Your Room Details (4/4)
+                        Choose Your Room Details (Step 4 of 4)
                     </h3>
                     <div className='flex flex-col gap-2 mt-5'>
                         <label className='text-primary text-sm'>
                             Hostel
+                            &nbsp;<RequiredFields />
                         </label>
                         <select 
                             id='hostelLocation'
@@ -383,6 +421,7 @@ export default function BookNow() {
                     <div className='flex flex-col gap-2 mt-5'>
                         <label className='text-primary text-sm'>
                             Room Type
+                            &nbsp;<RequiredFields />
                         </label>
                         <select 
                             {...register("roomType", {

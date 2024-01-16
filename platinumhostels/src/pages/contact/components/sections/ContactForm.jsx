@@ -8,6 +8,9 @@ import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the styles
 //icons
 import arrow from '../../../../assets/icons/right-arrow-3.png'
 
+//components
+import RequiredFields from '../../../../shared/components/RequiredFields';
+
 
 export default function ContactForm() {
     const {register, handleSubmit, formState: {errors, isSubmitting}, reset } = useForm({
@@ -67,12 +70,7 @@ export default function ContactForm() {
         <div className='flex flex-col gap-2'>
             <label className='text-primary text-sm'>
                 Full Name &nbsp;
-                <span 
-                    className='text-red-600'
-                    title='this is a required field'
-                >
-                    *
-                </span>
+                <RequiredFields />
             </label>
             <input 
                 type='text'
@@ -118,12 +116,7 @@ export default function ContactForm() {
         <div className='flex flex-col gap-2 mt-5'>
             <label className='text-primary text-sm'>
                 Email Address &nbsp;
-                <span 
-                    className='text-red-600'
-                    title='this is a required field'
-                >
-                    *
-                </span>
+                <RequiredFields />
             </label>
             <input 
                 type='email'
@@ -169,12 +162,7 @@ export default function ContactForm() {
         <div className='flex flex-col gap-2 mt-5'>
             <label className='text-primary text-sm'>
                 Message &nbsp;
-                <span 
-                    className='text-red-600'
-                    title='this is a required field'
-                >
-                    *
-                </span>
+                <RequiredFields />
             </label>
             <textarea
                 {...register("message", {

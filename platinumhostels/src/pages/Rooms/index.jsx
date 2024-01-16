@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, redirect } from 'react-router-dom';
+import { Link, useNavigate, redirect, useLoaderData, defer, Await } from 'react-router-dom';
 import { useBookNowContext } from '../../Context/BookNowContext';
 
-//fake data
-import availableRooms from '../../data/rooms.json'
+//utility
+import getAvailableRooms from '../../utility/getAvailableRooms';
 
 //components
 import SummaryBox from './components/SummaryBox';
 import TableView from './components/TableView';
 import PictorialView from './components/PictorialView';
+import Loader from '../../shared/Loader';
+import TryAgain from './components/TryAgain';
 
-export const loader = ({params, request}) => {
-    return 0;
+export const loader = async ({params, request}) => {
+    const hostelLocation = new URL(request.url).searchParams.get('hostelLocation')
+    const roomType = new URL(request.url).searchParams.get('roomType')
+    const gender = new URL(request.url).searchParams.get('gender')
+
+    const availableRoomsPromise = getAvailableRooms(hostelLocation, roomType, gender)
+    return defer({availableRooms: availableRoomsPromise});
 }
 
-export default function Rooms() {    
+export default function Rooms() {   
+    const loadedAvailableRoomsData = useLoaderData()
     
+    /* console.log("availableRooms: ", loadedAvailableRoomsData); */
 
     //use booking context
     const {
@@ -31,6 +40,8 @@ export default function Rooms() {
     //handle illegal routing to rooms page
     useEffect(() => {
         if (!isBookNowFormDataReady) {
+            /* console.log('is form ready - ',isBookNowFormDataReady);
+            console.log('form - ', bookNowFormData); */
             navigate('/booknow?message=Fill booking form first.', {replace: true})
         } else {
             /* console.log('is form ready - ',isBookNowFormDataReady);
@@ -172,21 +183,39 @@ export default function Rooms() {
 
                 <hr className='mt-5 mb-8' />
 
-                <div className=''> 
-                    { 
-                        view === 'pictorial' ? 
-                        <PictorialView 
-                            availableRooms={availableRooms}
-                            handleSelectedRoom={handleSelectedRoom}
-                        />
-                        :
-                        <TableView 
-                            availableRooms={availableRooms}
-                            handleSelectedRoom={handleSelectedRoom}
-                        />
-                        
+                <React.Suspense 
+                    fallback={
+                        <div className='flex justify-center items-center'>
+                            Fetching rooms. Please wait 
+                            &nbsp;<Loader/>
+                        </div>
                     }
-                </div>
+                >
+                    <Await 
+                        resolve={loadedAvailableRoomsData.availableRooms} 
+                        errorElement={<TryAgain />}
+                    >
+                        {(availableRooms) => (
+                            <div className=''> 
+                                { 
+                                    view === 'pictorial' ? 
+                                    <PictorialView 
+                                        availableRooms={availableRooms}
+                                        handleSelectedRoom={handleSelectedRoom}
+                                    />
+                                    :
+                                    <TableView 
+                                        availableRooms={availableRooms}
+                                        handleSelectedRoom={handleSelectedRoom}
+                                    />
+                                    
+                                }
+                            </div>
+                        )}
+                    </Await>
+                </React.Suspense>
+
+
             </div>
         </div>
 

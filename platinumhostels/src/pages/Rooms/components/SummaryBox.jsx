@@ -42,7 +42,7 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
 
   return (
     <div className='booking-summary overflow-y-auto fixed bg-[#0001] left-0 top-0 w-full h-full flex justify-center items-center py-[40px] px-[5%]'>
-        <div className='booking-summary-box p-4 bg-white overflow-scroll border rounded shadow-primary  w-[450px] h-[450px]'>
+        <div className='booking-summary-box p-4 bg-white overflow-scroll border rounded shadow-primary  w-[500px] h-[500px]'>
             <div className=''>
                 <div className='flex gap-4 justify-between items-center'>
                     <h2 className='font-normal text-[20px] capitalize'>
@@ -143,39 +143,39 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
                                 <th>
                                     Hostel:
                                 </th>
-                                <td>
-                                    {selectedRoom.hostel}
+                                <td className="capitalize">
+                                    {selectedRoom.hostelLocation}
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Room Type:
                                 </th>
-                                <td>
-                                    {selectedRoom.type}
+                                <td className="capitalize">
+                                    {selectedRoom.roomType}
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Room Price:
                                 </th>
-                                <td>
-                                    {selectedRoom.price}
+                                <td className="capitalize">
+                                    {selectedRoom.roomPrice}
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Room Number:
                                 </th>
-                                <td>
-                                    {selectedRoom.number}
+                                <td className="capitalize">
+                                    {selectedRoom.roomNumber}
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Room Capacity:
                                 </th>
-                                <td>
+                                <td className="capitalize">
                                     {selectedRoom.capacity}
                                 </td>
                             </tr>

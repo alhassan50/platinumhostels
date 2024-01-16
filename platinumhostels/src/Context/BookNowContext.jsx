@@ -1,4 +1,5 @@
-import React, { useState, useContext, createContext } from 'react'
+import React, { useState, useContext, createContext, useEffect } from 'react'
+import {useNavigate} from 'react-router-dom';
 
 const BookNowContext = createContext()
 
@@ -16,6 +17,7 @@ export function BookNowContextProvider({children}) {
         hostelLocation: 'none',
         roomType: 'none',
     }
+    const navigate = useNavigate()
 
     const [bookNowFormData, setBookNowFormData] = useState(defaultValues)
     const [roomBookData, setRoomBookData] = useState(null)
@@ -24,11 +26,11 @@ export function BookNowContextProvider({children}) {
     const [isRoomBookDataReady, setIsRoomBookDataReady] = useState(false)
 
     const makeBookNowFormDataReady = () => {
-        return setIsBookNowFormDataReady(true)
+        setIsBookNowFormDataReady(true)
     }
 
     const makeRoomBookDataReady = () => {
-        return setIsRoomBookDataReady(true)
+        setIsRoomBookDataReady(true)
     }
 
     const handleFormData = (formData) => {
