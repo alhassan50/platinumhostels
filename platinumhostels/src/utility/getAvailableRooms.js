@@ -4,7 +4,7 @@ const getAvailableRooms = async (hostelLocation, roomType, gender) => {
   await delay(20000); */
   try {
     let responseRAW = await fetch(
-      `http://platinumfunctions/.netlify/functions/getAvailableRooms?hostelLocation=${hostelLocation}&roomType=${roomType}&gender=${gender}`, {
+      `https://platinumfunctions/.netlify/functions/getAvailableRooms?hostelLocation=${hostelLocation}&roomType=${roomType}&gender=${gender}`, {
         headers: {
           'Content-Type': 'application/json'
         }
