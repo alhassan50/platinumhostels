@@ -6,7 +6,7 @@ import TryAgain from './TryAgain';
 export default function TableView({availableRooms, handleSelectedRoom}) {
     /* console.log("table view availableRooms: ", availableRooms)
     if (!Array.isArray(availableRooms)) {
-       throw new Error ("Couldn't Fetch available rooms.") 
+       //throw new Error ("Couldn't Fetch available rooms.") 
         console.log('error');
     } */
   return (

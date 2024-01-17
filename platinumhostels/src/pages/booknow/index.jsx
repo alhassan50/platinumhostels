@@ -24,6 +24,7 @@ export const loader = ({request}) => {
 }
 
 export default function BookNow() {
+    //console.log('book now');
   const navigate = useNavigate()
   const {hostelLocation, roomType, message} = useLoaderData()
   const [isReadyToRedirect, setIsReadyToRedirect] = useState(false)
@@ -39,7 +40,7 @@ export default function BookNow() {
     makeBookNowFormDataReady
   } = useBookNowContext()
 
-  const {register, handleSubmit, formState: {errors, isValid}, trigger, control, getValues} = useForm({    
+  const {register, handleSubmit, formState: {errors, isValid, isSubmitting}, trigger, control, getValues} = useForm({    
     defaultValues: {
         ...bookNowFormData, 
         hostelLocation: hostelLocation ? hostelLocation.toLowerCase() : bookNowFormData.hostelLocation,
@@ -88,34 +89,24 @@ export default function BookNow() {
   //handles form submission
   const onSubmit = (formData) => {
     handleFormData(formData)
-    /* console.log(formData); */
-   /*  console.log("readyToRedirect...");
-    console.log("onsubmit isReadyToRedirect - ", isReadyToRedirect); */
     readyToRedirect()
-    /* console.log("onsubmit isReadyToRedirect - ", isReadyToRedirect);
-    console.log("done readyToRedirect..."); */
   }
 
   //makes booking form data ready for processing 
   useEffect(() => {
-    /* console.log("use bookNowFormData - ", bookNowFormData);
-    console.log("use defaultValues - ", defaultValues);
-    console.log("use isReadyToRedirect - ", isReadyToRedirect);
-    console.log("use bookNowFormData !== defaultValues - ", (bookNowFormData !== defaultValues)); */
-    /* console.log("bookNowFormData: ", bookNowFormData); */
+    /* console.log('bookNowFormData:', bookNowFormData);
+    console.log('defaultValues:', defaultValues);
+    console.log("isBookNowFormDataReady:", isBookNowFormDataReady);
+    console.log("isReadyToRedirect:", isReadyToRedirect); */
+    
+
     if ((bookNowFormData !== defaultValues) && isReadyToRedirect) {
         makeBookNowFormDataReady()
-        /* console.log('book now use - isBookNowFormDataReady: ', isBookNowFormDataReady); */
         if (isBookNowFormDataReady) {
-           /*  console.log('inner book now use - isBookNowFormDataReady: ', isBookNowFormDataReady);
-            console.log('inner yep isBookNowFormDataReady is ready for naviagting'); */
-            console.log('naviagting');
+           /*  console.log("from booknow isBookNowFormDataReady: ", isBookNowFormDataReady);
+            console.log('naviagting'); */
             navigate(`/booknow/rooms?hostelLocation=${bookNowFormData.hostelLocation}&roomType=${bookNowFormData.roomType}&gender=${bookNowFormData.gender}`)
-        } else {
-            /* console.log('book now use - isBookNowFormDataReady: ', isBookNowFormDataReady);
-            console.log('no isBookNowFormDataReady is not ready for naviagting'); */
         }
-        //navigate(`/booknow/rooms?hostelLocation=${bookNowFormData.hostelLocation}&roomType=${bookNowFormData.roomType}&gender=${bookNowFormData.gender}`)
     }
   }, [bookNowFormData, defaultValues, makeBookNowFormDataReady, navigate, isReadyToRedirect, isBookNowFormDataReady])
   
@@ -449,7 +440,7 @@ export default function BookNow() {
                             className='btn-primary1 text-white flex justify-center items-center gap-2 group'
                             type='submit'
                         >
-                            {isRoomBookDataReady ? 'Confirm Booking' : 'Choose Room'}
+                            {isSubmitting ? 'Submitting' : 'Choose Room'}
                             <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
                                 <img src={arrow} alt='right arrow'/>
                             </figure>

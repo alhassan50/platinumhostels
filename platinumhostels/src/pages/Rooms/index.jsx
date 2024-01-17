@@ -22,9 +22,8 @@ export const loader = async ({params, request}) => {
 }
 
 export default function Rooms() {   
+    /* console.log('room'); */
     const loadedAvailableRoomsData = useLoaderData()
-    
-    /* console.log("availableRooms: ", loadedAvailableRoomsData); */
 
     //use booking context
     const {
@@ -101,10 +100,12 @@ export default function Rooms() {
             setSelectedRoom(room)
             /* handleRoomData(room) */
             /* console.log(bookNowFormData); */
-        } else {
-            
         }
     }
+
+    /* useEffect(() => {
+        console.log('use - ',loadedAvailableRoomsData.availableRooms);
+    }, [loadedAvailableRoomsData.availableRooms]) */
 
   return (
     <div className='px-[1%] sm:px-[2%] md:px-[3%] s-lg:px-[4%] lg:px-[5%] py-[30px] relative'>
@@ -180,7 +181,14 @@ export default function Rooms() {
                         )}
                     </Await>
                 </React.Suspense>
-
+                
+                {/* <div
+                    onClick={() => {
+                        navigate(`/booknow/rooms`)
+                    }}
+                >
+                    refresh
+                </div> */}
 
             </div>
         </div>

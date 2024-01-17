@@ -59,9 +59,7 @@ export default function ContactForm() {
 
     useEffect(() => {
         if (resetForm) {
-            
-            reset()
-            
+            reset()   
         }
     }, [resetForm, reset])
 
