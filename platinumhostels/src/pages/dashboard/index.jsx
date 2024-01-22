@@ -20,7 +20,9 @@ export default function Dashboard({user}) {
           </h3>
         </div>
 
-        <ProfileSummary user={userr} />
+        <div>
+          <ProfileSummary user={userr} />
+        </div>
 
         <div className='grid mt-4 gap-4 grid-cols-1 items-start lg:grid-cols-2'>
           <ArrivalEvacuation />
