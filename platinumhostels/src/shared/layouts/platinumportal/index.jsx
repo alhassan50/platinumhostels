@@ -45,9 +45,8 @@
           <ScrollRestoration/>
           <div className='grid grid-cols-1 s-lg:grid-cols-[250px,auto]'>
               <PortalHeader/>
-              <div></div>
-
-              <div className='bg-[#fbfbfb] px-4 pb-4 pt-16 min-h-screen'>
+              {/* <div></div> */}
+              <div className='bg-[#fbfbfb] px-4 pb-4 pt-16 s-lg:pt-4 min-h-screen'>
                   <PortalMobileHeader />
                   <Outlet user={user} />
               </div>

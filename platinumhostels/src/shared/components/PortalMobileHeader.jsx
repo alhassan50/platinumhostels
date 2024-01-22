@@ -11,7 +11,7 @@ export default function PortalMobileHeader() {
 
   return (
     !showSideBar &&
-    <header className='flex justify-between items-center pl-3 pr-4 py-3 lg:pl-4 lg:pr-5 bg-primary fixed w-full top-0 left-0 z-[100000000000000000]'>
+    <header className='flex justify-between s-lg:hidden items-center pl-3 pr-4 py-3 lg:pl-4 lg:pr-5 bg-primary fixed w-full top-0 left-0 z-[100000000000000000]'>
         <Logo />
 
         <figure 
