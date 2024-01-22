@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { Link, useNavigate, redirect, useLoaderData, defer, Await } from 'react-router-dom';
 import { useBookNowContext } from '../../Context/BookNowContext';
 
@@ -12,18 +12,31 @@ import PictorialView from './components/PictorialView';
 import Loader from '../../shared/components/Loader';
 import TryAgain from './components/TryAgain';
 
+//icons
+import arrow from '../../assets/icons/right-arrow.png'
+
 export const loader = async ({params, request}) => {
     const hostelLocation = new URL(request.url).searchParams.get('hostelLocation')
     const roomType = new URL(request.url).searchParams.get('roomType')
     const gender = new URL(request.url).searchParams.get('gender')
 
+    return {hostelLocation, roomType, gender}
+}
+
+const loadAvailableRooms = (hostelLocation, roomType, gender) => {
     const availableRoomsPromise = getAvailableRooms(hostelLocation, roomType, gender)
     return defer({availableRooms: availableRoomsPromise});
 }
 
 export default function Rooms() {   
     /* console.log('room'); */
-    const loadedAvailableRoomsData = useLoaderData()
+    const {hostelLocation, roomType, gender} = useLoaderData()
+
+    const [refreshComponent, setRefreshComponent] = useState(false)
+
+    const availableRoomsPromise = useMemo(() => {
+        return loadAvailableRooms(hostelLocation, roomType, gender)
+    }, [hostelLocation, roomType, gender, refreshComponent])
 
     //use booking context
     const {
@@ -60,6 +73,7 @@ export default function Rooms() {
         };
     }, [])
 
+    //handle confirmation of page reload
     useEffect(() => {
         // Add event listener to intercept page refresh
         const handleBeforeUnload = (e) => {
@@ -103,13 +117,23 @@ export default function Rooms() {
         }
     }
 
-    /* useEffect(() => {
-        console.log('use - ',loadedAvailableRoomsData.availableRooms);
-    }, [loadedAvailableRoomsData.availableRooms]) */
-
   return (
     <div className='px-[1%] sm:px-[2%] md:px-[3%] s-lg:px-[4%] lg:px-[5%] py-[30px] relative'>
-        <div className='grid gap-6'>
+        <div className='grid gap-6 max-w-[1500px] mx-auto'>
+            <div className='px-4'>
+                <Link
+                    to={'..'}
+                > 
+                    <div className='flex gap-2 items-center group'>
+                        <figure className='w-4 rotate-180 group-hover:-translate-x-1 transition-all duration-150'>
+                            <img src={arrow} alt='arrow'/>
+                        </figure>
+                        <h3>
+                            Room Details
+                        </h3>
+                    </div>
+                </Link>
+            </div>
             <div className='bg-white rounded-md py-8 px-4 border'>
                 <h2 className='text-primary text-left'>
                     Platinum Room Allocation
@@ -152,43 +176,40 @@ export default function Rooms() {
 
                 <React.Suspense 
                     fallback={
-                        <div className='flex justify-center items-center'>
-                            Fetching rooms. Please wait 
+                        <div className='flex items-center'>
+                            <p>
+                                Fetching rooms. Please wait 
+                            </p>
                             &nbsp;<Loader/>
                         </div>
                     }
                 >
                     <Await 
-                        resolve={loadedAvailableRoomsData.availableRooms} 
-                        errorElement={<TryAgain />}
+                        resolve={availableRoomsPromise.data.availableRooms} 
+                        errorElement={<TryAgain setRefreshComponent={setRefreshComponent} />}
                     >
-                        {(availableRooms) => (
-                            <div className=''> 
-                                { 
-                                    view === 'pictorial' ? 
-                                    <PictorialView 
-                                        availableRooms={availableRooms}
-                                        handleSelectedRoom={handleSelectedRoom}
-                                    />
-                                    :
-                                    <TableView 
-                                        availableRooms={availableRooms}
-                                        handleSelectedRoom={handleSelectedRoom}
-                                    />
-                                    
-                                }
-                            </div>
-                        )}
+                        {(availableRooms) => {
+                            //console.log(availableRooms);
+                            return (
+                                <div className=''> 
+                                    { 
+                                        view === 'pictorial' ? 
+                                        <PictorialView 
+                                            availableRooms={availableRooms}
+                                            handleSelectedRoom={handleSelectedRoom}
+                                        />
+                                        :
+                                        <TableView 
+                                            availableRooms={availableRooms}
+                                            handleSelectedRoom={handleSelectedRoom}
+                                        />
+                                        
+                                    }
+                                </div>
+                            )
+                        }}
                     </Await>
                 </React.Suspense>
-                
-                {/* <div
-                    onClick={() => {
-                        navigate(`/booknow/rooms`)
-                    }}
-                >
-                    refresh
-                </div> */}
 
             </div>
         </div>

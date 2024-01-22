@@ -39,7 +39,7 @@ export default function PictorialView({availableRooms, handleSelectedRoom}) {
                 </div>
                 :
                 <div>
-                    <p className='text-center'>Sorry! No Available Rooms</p>
+                    <p className=''>Sorry! There are no available rooms.</p>
                 </div>
             :
             <TryAgain/>

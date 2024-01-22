@@ -14,7 +14,6 @@ import { useUserContext } from '../../../../Context/UserContext'
 //utility
 import getRoomDetails from '../../../../utility/getRoomDetails'
 
-//loader
 const loadRoomDetails = (userTokenID) => {
     const roomPromise = getRoomDetails(userTokenID)
     return defer({room: roomPromise})
