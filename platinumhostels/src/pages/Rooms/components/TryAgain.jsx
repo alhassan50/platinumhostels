@@ -17,7 +17,7 @@ export default function TryAgain({errorMessage, setRefreshComponent}) {
         &nbsp;
         <div className='flex items-center flex-wrap'>
             <p> 
-                Wait a moment and try again?
+                Check your internet connection and try again?
             </p>
             &nbsp;
             <figure 

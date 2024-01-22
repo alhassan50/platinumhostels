@@ -22,10 +22,10 @@ const loadBookingSummary = (userTokenID) => {
 
 export default function BookingSummary() {
     const {userTokenID} = useUserContext()
+    const [refreshComponent, setRefreshComponent] = useState(false)
     const bookingSummarypPromise = useMemo(() => {
         return loadBookingSummary(userTokenID)
-    }, [userTokenID]) 
-    const [refreshComponent, setRefreshComponent] = useState(false)
+    }, [userTokenID, refreshComponent]) 
 
   return (
     <div className='bg-white rounded-md py-8 px-4 border'>

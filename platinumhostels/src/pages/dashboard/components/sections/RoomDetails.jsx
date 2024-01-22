@@ -22,10 +22,11 @@ const loadRoomDetails = (userTokenID) => {
 
 export default function RoomDetails() {
     const {userTokenID} = useUserContext()
+    const [refreshComponent, setRefreshComponent] = useState(false)
     const roomPromise = useMemo(() => {
         return loadRoomDetails(userTokenID)
-    }, [userTokenID])
-    const [refreshComponent, setRefreshComponent] = useState(false)
+    }, [userTokenID, refreshComponent])
+   
 
   return (
     <div className='bg-white rounded-md border py-8 px-4 row-span-2'>
@@ -45,7 +46,7 @@ export default function RoomDetails() {
                 resolve={roomPromise.data.room}
                 errorElement={
                     <TryAgain 
-                        errorMessage={"Couldn't fetch room details"} 
+                        errorMessage={"Something went wrong."} 
                         setRefreshComponent={setRefreshComponent}
                     />
                 }

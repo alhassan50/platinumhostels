@@ -1,6 +1,6 @@
 export default async function getBookingSummary(userTokenID) {
     try {
-        let bookingSummaryStr = await fetch('http://localhost:8888/.netlify/functions/bookingSummary',
+        let bookingSummaryStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/bookingSummary',
             {
                 method: 'POST',
                 headers: {
