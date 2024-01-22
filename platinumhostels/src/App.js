@@ -12,7 +12,7 @@ import Hostel from './pages/hostels';
 import HostelDetail, {loader as HostelLoader} from './pages/hosteldetail';
 import Team from './pages/team';
 import Contact from './pages/contact';
-import Login from './pages/login';
+import Login, {loader as LogInLoader} from './pages/login';
 import BookNow, {loader as BookNowLoader} from './pages/booknow';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/dashboard';
@@ -31,15 +31,8 @@ import FAQsContainer from './shared/layouts/FAQsContainer';
 /* import {bookNow as BookNowLayout} from './shared/layouts/bookNow'; */
 import {BooNow as BookNowLayout }  from './shared/layouts/BookNow';
 
-//contexts
-import { BookNowContextProvider } from './Context/BookNowContext';
-
 //styles
 import './styles/App.css';
-
-
-//test
-import IsBookFormReady from './pages/booknow/utility/IsBookFormReady';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -71,10 +64,15 @@ const router = createBrowserRouter(createRoutesFromElements(
       path="/platinumportal" 
       element={<PlatinumPortal />}
       loader={PlatinumPortalLoader}
-      /* errorElement={<Login/>} */
     >
-      <Route index element={<Dashboard />} />
-      <Route path='dashboard' element={<Dashboard />} />
+      <Route 
+        index 
+        element={<Dashboard />} 
+      />
+      <Route 
+        path='dashboard' 
+        element={<Dashboard />} 
+      />
       <Route path='profile' element={<Profile />} />
       <Route path='myroomie' element={<MyRoomie />} />
       <Route path='payment' element={<Payment />} />
@@ -86,6 +84,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route 
       path='/login' 
       element={<Login/>}
+      loader={LogInLoader}
     />
 
     <Route

@@ -2,23 +2,29 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 
+//context
+import { useUserContext } from '../../../Context/UserContext'
+
+//icon
 import arrow from '../../../assets/icons/right-arrow-3.png'
 
 export default function ProfileForm() {
+    const {user} = useUserContext()
+
     const {register, handleSubmit, trigger, formState: {errors, dirtyFields, isValid, isDirty}, control} = useForm(
         {
             defaultValues:{
-                fullName: 'John Doe',
-                phoneNumber: '0123456789',
+                fullName: `${user.displayName ? user.displayName : 'John Doe'}`,
+                phoneNumber: `${user.phoneNumber ? user.phoneNumber : '0123456789'}`,
                 gender: 'male',
                 course: 'BSc Physics',
                 level: '300',
-                privacyProfilePic: false,  
+               /*  privacyProfilePic: false,  
                 privacyFullName: true,  
                 privacyPhoneNumber: true,  
                 privacyEmail: false,  
                 privacyCourse: false,  
-                privacyLevel: false, 
+                privacyLevel: false,  */
             },
             mode: "onChange"
         })
@@ -158,18 +164,18 @@ export default function ProfileForm() {
                 </div>
             </div>
 
-            <hr className='my-10'/>
+            {/* <hr className='my-10'/> */}
 
             <div>
-                <h3>
+                {/* <h3>
                     Privacy Preferences
                 </h3>
                 <p className='mt-2 text-primary text-sm'>
                     Customize what information you share with your roommates. Your comfort and privacy matter.
-                </p>
+                </p> */}
                 
                 <div className='mt-5 grid grid-cols-1 sm:grid-cols-3 gap-5'>
-                    <div className='flex items-center gap-2'>
+                    {/* <div className='flex items-center gap-2'>
                         <input 
                             type='checkbox'
                             {...register("privacyProfilePic")}
@@ -248,7 +254,7 @@ export default function ProfileForm() {
                         <label className='text-primary text-sm'>
                             Level
                         </label>
-                    </div>
+                    </div> */}
 
                     <div className='mt-8'>
                         <button 

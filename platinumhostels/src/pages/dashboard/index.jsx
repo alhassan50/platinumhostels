@@ -5,12 +5,12 @@ import userr from '../../data/user.json'
 
 //sections
 import ProfileSummary from './components/sections/ProfileSummary';
-import BookingDetails from './components/sections/BookingDetails';
+import BookingSummary from './components/sections/BookingSummary';
 import RoomDetails from './components/sections/RoomDetails';
 import ArrivalEvacuation from './components/sections/ArrivalEvacuation';
 
-export default function Dashboard({user}) {
-  console.log(user);
+export default function Dashboard({user}) { 
+
   return (
     <div>
       <div>
@@ -22,10 +22,10 @@ export default function Dashboard({user}) {
 
         <ProfileSummary user={userr} />
 
-        <div className='grid gap-4 grid-cols-1 lg:grid-cols-2'>
-          <BookingDetails />
-          <RoomDetails />
+        <div className='grid mt-4 gap-4 grid-cols-1 items-start lg:grid-cols-2'>
           <ArrivalEvacuation />
+          <RoomDetails/>
+          <BookingSummary/>
         </div>
 
       </div>

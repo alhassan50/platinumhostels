@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ArrivalEvacuation() {
   return (
-    <div className='bg-white rounded-md border mt-4 md:mt-0 py-8 px-4'>
+    <div className='bg-white rounded-md border md:mt-0 py-8 px-4'>
         <h3>Arrival and Evacuation</h3>
         <table className='w-full mt-4'>
             <tbody>

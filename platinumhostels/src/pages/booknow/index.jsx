@@ -29,7 +29,6 @@ export default function BookNow() {
   const {hostelLocation, roomType, message} = useLoaderData()
   const [isReadyToRedirect, setIsReadyToRedirect] = useState(false)
   /*console.log('checker: ', isReadyToRedirect); */
-  const [formStep, setFormStep] = useState(0)
 
   const {
     defaultValues,
@@ -37,7 +36,9 @@ export default function BookNow() {
     handleFormData, 
     isRoomBookDataReady, 
     isBookNowFormDataReady,
-    makeBookNowFormDataReady
+    makeBookNowFormDataReady,
+    formStep,
+    setFormStep
   } = useBookNowContext()
 
   const {register, handleSubmit, formState: {errors, isValid, isSubmitting}, trigger, control, getValues} = useForm({    

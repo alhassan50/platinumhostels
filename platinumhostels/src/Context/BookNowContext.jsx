@@ -25,6 +25,8 @@ export function BookNowContextProvider({children}) {
     const [isBookNowFormDataReady, setIsBookNowFormDataReady] = useState(false)
     const [isRoomBookDataReady, setIsRoomBookDataReady] = useState(false)
 
+    const [formStep, setFormStep] = useState(0) 
+
     const makeBookNowFormDataReady = () => {
         setIsBookNowFormDataReady(true)
     }
@@ -57,7 +59,9 @@ export function BookNowContextProvider({children}) {
         isBookNowFormDataReady,
         isRoomBookDataReady,
         makeBookNowFormDataReady,
-        makeRoomBookDataReady
+        makeRoomBookDataReady,
+        formStep,
+        setFormStep
     }}>
         {children}
     </BookNowContext.Provider>

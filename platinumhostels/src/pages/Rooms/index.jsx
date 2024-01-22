@@ -9,7 +9,7 @@ import getAvailableRooms from '../../utility/getAvailableRooms';
 import SummaryBox from './components/SummaryBox';
 import TableView from './components/TableView';
 import PictorialView from './components/PictorialView';
-import Loader from '../../shared/Loader';
+import Loader from '../../shared/components/Loader';
 import TryAgain from './components/TryAgain';
 
 export const loader = async ({params, request}) => {

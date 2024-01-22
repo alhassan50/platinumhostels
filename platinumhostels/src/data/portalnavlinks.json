@@ -29,6 +29,6 @@
     },
     {
       "title": "Logout",
-      "to": "logout"
+      "to": null
     }
   ]
