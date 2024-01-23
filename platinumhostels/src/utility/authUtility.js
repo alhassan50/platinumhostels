@@ -4,7 +4,8 @@ import {
     onAuthStateChanged, 
     signInWithEmailAndPassword, 
     signOut ,
-    getIdToken
+    getIdToken,
+    signInWithCustomToken
 } from "firebase/auth"
 
 export const signUpUser = async (email, password) => {
@@ -14,6 +15,11 @@ export const signUpUser = async (email, password) => {
 
 export const signInUser = async (email, password) => {
     const user = await signInWithEmailAndPassword(auth, email, password)
+    return user
+}
+
+export const signInUserWithToken = async (customToken) => {
+    const user = await signInWithCustomToken(auth, customToken)
     return user
 }
 

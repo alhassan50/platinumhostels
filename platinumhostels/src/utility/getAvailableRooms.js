@@ -13,8 +13,8 @@ const getAvailableRooms = async (hostelLocation, roomType, gender) => {
           'Content-Type': 'application/json'
         }
       }
-    ) */
-
+    )
+ */
     if (!responseRAW.ok) {
       throw new Error(`Couldn't fetch rooms! Status: ${responseRAW.status}.`);
     }

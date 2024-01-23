@@ -9,14 +9,18 @@ import BookingSummary from './components/sections/BookingSummary';
 import RoomDetails from './components/sections/RoomDetails';
 import ArrivalEvacuation from './components/sections/ArrivalEvacuation';
 
-export default function Dashboard({user}) { 
+//context
+import { useUserContext } from '../../Context/UserContext';
+
+export default function Dashboard() { 
+  const {user} = useUserContext()
 
   return (
     <div>
       <div>
         <div className='bg-white p-4 rounded-md border'>
           <h3>
-            Welcome to Platinum Portal, {userr.personalInfo.fullName}
+            Welcome to Platinum Portal, {user.displayName}
           </h3>
         </div>
 

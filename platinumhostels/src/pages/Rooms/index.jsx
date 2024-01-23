@@ -28,12 +28,17 @@ const loadAvailableRooms = (hostelLocation, roomType, gender) => {
     return defer({availableRooms: availableRoomsPromise});
 }
 
-export default function Rooms() {   
-    /* console.log('room'); */
+export default function Rooms() {  
+    console.log('room component mounted'); 
+    const navigate = useNavigate()
+
+    //search params from loader function
     const {hostelLocation, roomType, gender} = useLoaderData()
 
+    //forces component to be remounted on state value change
     const [refreshComponent, setRefreshComponent] = useState(false)
 
+    //rooms are fetched one initial component mount and when component is refreshed
     const availableRoomsPromise = useMemo(() => {
         return loadAvailableRooms(hostelLocation, roomType, gender)
     }, [hostelLocation, roomType, gender, refreshComponent])
@@ -41,13 +46,9 @@ export default function Rooms() {
     //use booking context
     const {
         bookNowFormData, 
-        handleRoomData, 
-        roomBookData, 
         defaultValues,
         isBookNowFormDataReady,
-        makeRoomBookDataReady
     } = useBookNowContext()
-    const navigate = useNavigate()
     
     //handle illegal routing to rooms page
     useEffect(() => {
@@ -55,25 +56,8 @@ export default function Rooms() {
             navigate('/booknow?message=Fill booking form first.', {replace: true})
         }
     },[isBookNowFormDataReady, bookNowFormData, navigate])
-    
-    //adds event listner for summary box
-    useEffect(() => {
-        const closeSummaryBox = (event) =>{
-            if (event.key === 'Escape' || event.key === 'Esc') {
-                toggleShowSummaryBox(false)
-            }      
-        }
-         
-        //add eventlistener
-        document.addEventListener('keydown', closeSummaryBox)
 
-        // Remove event listener on component unmount
-        return () => {
-            document.removeEventListener('keydown', closeSummaryBox);
-        };
-    }, [])
-
-    //handle confirmation of page reload
+    //user is asked to confirm page reload
     useEffect(() => {
         // Add event listener to intercept page refresh
         const handleBeforeUnload = (e) => {
@@ -93,18 +77,18 @@ export default function Rooms() {
     
     }, [bookNowFormData, defaultValues])
 
-    const [view, setView] =useState('pictorial')
+    const [roomResultsView, setRoomResultsView] =useState('pictorial')
     const [showSummaryBox, setShowSummaryBox] =useState(false)
     const [selectedRoom, setSelectedRoom] = useState('')    
     
     //switches display view between table and pictorial
-    const toggleView = (view) => {
-        return setView(view)
+    const toggleRoomResultsView = (roomResultsView) => {
+        return setRoomResultsView(roomResultsView)
     }
     
     //opens or closes the summary dialogue box
-    const toggleShowSummaryBox = (state) => {
-        return setShowSummaryBox(state)
+    const toggleShowSummaryBox = (isOpened) => {
+        return setShowSummaryBox(isOpened)
     }
     
     //handle rooms user selects
@@ -153,19 +137,19 @@ export default function Rooms() {
                     <div className='flex gap-4'
                     >
                         <div 
-                            id={view === 'table' ? "tableView" : ''}
+                            id={roomResultsView === 'table' ? "tableView" : ''}
                             className={`room-info-view cursor-pointer rounded-[50%] p-3  hover:bg-primary`}
                             title='Table View'
-                            onClick={() => (toggleView('table'))}
+                            onClick={() => (toggleRoomResultsView('table'))}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><path d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z" /></svg>
                         </div>
 
                         <div 
-                            id={view === 'pictorial' ? "pictorialView" : ''}
+                            id={roomResultsView === 'pictorial' ? "pictorialView" : ''}
                             className={`room-info-view cursor-pointer rounded-[50%] p-3  hover:bg-primary`}
                             title='Pictorial View'
-                            onClick={() => (toggleView('pictorial'))}
+                            onClick={() => (toggleRoomResultsView('pictorial'))}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><path d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" /></svg>
                         </div>
@@ -193,7 +177,7 @@ export default function Rooms() {
                             return (
                                 <div className=''> 
                                     { 
-                                        view === 'pictorial' ? 
+                                        roomResultsView === 'pictorial' ? 
                                         <PictorialView 
                                             availableRooms={availableRooms}
                                             handleSelectedRoom={handleSelectedRoom}

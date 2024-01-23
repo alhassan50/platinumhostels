@@ -24,7 +24,7 @@ export default function PictorialView({availableRooms, handleSelectedRoom}) {
                                     id={room.roomID} 
                                     className='cursor-pointer hover:bg-primary group flex justify-center items-center bg-secondary border- w-[80px] h-[80px] rounded-[50%]'
                                     title={`
-                                        Hostel: ${room.hostelLocation}\nRoom Type: ${room.roomType}\nRoom Number: ${room.roomNumber}\nCapacity: ${room.capacity}\nCurrent Occupants: ${room.currentOccupants}
+                                        Hostel: ${room.hostelLocation}\nBlock: ${room.roomBlock}\nRoom Type: ${room.roomType}\nRoom Number: ${room.roomNumber}\nCapacity: ${room.capacity}\nCurrent Occupants: ${room.currentOccupants}
                                     `}
                                     onClick={() => (
                                         handleSelectedRoom(room)

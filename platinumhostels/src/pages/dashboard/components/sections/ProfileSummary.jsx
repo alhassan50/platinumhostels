@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'
 
 import arrow from '../../../../assets/icons/right-arrow.png'
 
+//context
+import { useUserContext } from '../../../../Context/UserContext'
+
 export default function ProfileSummary(props) {
+    const {user} = useUserContext()
   return (
     <div className='mt-4 py-8 px-4 bg-white rounded-md border'>
         <div className='flex gap-4 items-center'>
@@ -13,17 +17,21 @@ export default function ProfileSummary(props) {
 
             <div>
                 <h3>
-                    {props.user.personalInfo.fullName}
+                    {user.displayName}
                 </h3>
 
                 <p className='mt-1 text-sm text-primary'>
-                    {props.user.personalInfo.phoneNumber}
+                    {user.email}
+                </p>
+
+                <p className='mt-1 text-sm text-primary'>
+                    {user.phoneNumber}
                 </p>
                 
 
                 <Link to={'/platinumportal/profile'} className='mt-1 group flex gap-1 items-center hover:underline'>
                     <p className='text-sm text-primary'>
-                        More Profile Details 
+                        Profile Details 
                     </p>
 
                     <figure className='arrow w-4 group-hover:translate-x-1 transition-all duration-150'>

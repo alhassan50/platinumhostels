@@ -5,6 +5,7 @@ const BookNowContext = createContext()
 
 
 export function BookNowContextProvider({children}) {
+    //book now form default values
     const defaultValues = {
         fullName: '',
         phoneNumber: '',
@@ -17,49 +18,27 @@ export function BookNowContextProvider({children}) {
         hostelLocation: 'none',
         roomType: 'none',
     }
-    const navigate = useNavigate()
-
     const [bookNowFormData, setBookNowFormData] = useState(defaultValues)
-    const [roomBookData, setRoomBookData] = useState(null)
-    
     const [isBookNowFormDataReady, setIsBookNowFormDataReady] = useState(false)
-    const [isRoomBookDataReady, setIsRoomBookDataReady] = useState(false)
 
+    //book now form step
     const [formStep, setFormStep] = useState(0) 
 
     const makeBookNowFormDataReady = () => {
         setIsBookNowFormDataReady(true)
     }
 
-    const makeRoomBookDataReady = () => {
-        setIsRoomBookDataReady(true)
-    }
-
     const handleFormData = (formData) => {
-        /* console.log('start handling'); */
-
         setBookNowFormData(formData)
-        
-        /* console.log('stop handling'); */
-    }
-
-    const handleRoomData = (roomData) => {
-        /* console.log('start handling room data'); */
-        setRoomBookData(roomData)
-        /* console.log('stop handling room data'); */
     }
 
   return (
     <BookNowContext.Provider value={{
         defaultValues,
         bookNowFormData,
-        roomBookData,
         handleFormData,
-        handleRoomData,
         isBookNowFormDataReady,
-        isRoomBookDataReady,
         makeBookNowFormDataReady,
-        makeRoomBookDataReady,
         formStep,
         setFormStep
     }}>
