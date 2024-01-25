@@ -20,129 +20,159 @@ const loadRoomDetails = (userTokenID) => {
 }
 
 export default function RoomDetails() {
+    //console.log('mounting room details component');
+
     const {userTokenID} = useUserContext()
+
     const [refreshComponent, setRefreshComponent] = useState(false)
+    const [tokenState, setTokenState] = useState('pending')
+    const [initialRender, setInitialRender] = useState(true)
+
     const roomPromise = useMemo(() => {
-        return loadRoomDetails(userTokenID)
+        if (userTokenID) {
+            setTokenState('valid')
+            return loadRoomDetails(userTokenID)
+        } else {
+            if (!initialRender) {
+                setTokenState(null)
+            }
+        }
+        setInitialRender(false)
     }, [userTokenID, refreshComponent])
    
 
   return (
     <div className='bg-white rounded-md border py-8 px-4 row-span-2'>
         <h3>Room Details</h3>
-        <React.Suspense
-            fallback={
-                <div className='mt-4 flex justify-start items-center'>
-                    <p>
-                        Fetching rooms details. Please wait 
-                    </p>
-                    &nbsp;
-                    <Loader/>
-                </div>
-            }
-        >
-            <Await
-                resolve={roomPromise.data.room}
-                errorElement={
-                    <TryAgain 
-                        errorMessage={"Something went wrong."} 
-                        setRefreshComponent={setRefreshComponent}
-                    />
-                }
-            >
-                {(room) => {
-                    //console.log("room res: ", room);
-                    return (<div>
-                        <table className='w-full mt-4'>
-                            <tbody>
-                                <tr>
-                                    <th>
-                                        Hostel Location
-                                    </th>
-                                    <td>
-                                        {room.hostelLocation}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        Block Name
-                                    </th>
-                                    <td>
-                                        {room.roomBlock}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        Room Floor
-                                    </th>
-                                    <td>
-                                        {
-                                            room.roomFloor === 0 ?
-                                                'Ground Floor'
-                                            :
-                                                room.roomFloor
-                                        }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        Room Number
-                                    </th>
-                                    <td>
-                                        {room.roomNumber}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        Room Type
-                                    </th>
-                                    <td>
-                                        {room.roomType}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        Room Price
-                                    </th>
-                                    <td>
-                                        GHC {room.roomPrice}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        Room Capacity
-                                    </th>
-                                    <td>
-                                        {room.hostelLocation}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        Current Occupants
-                                    </th>
-                                    <td>
-                                        {room.currentOccupants}
-                                    </td>
-                                </tr>
-                        
-                            </tbody>
-                        </table>
+        {
+            tokenState === 'valid' ?
+                <React.Suspense
+                    fallback={
+                        <div className='mt-4 flex justify-start items-center'>
+                            <p>
+                                Fetching rooms details. Please wait 
+                            </p>
+                            &nbsp;
+                            <Loader/>
+                        </div>
+                    }
+                >
+                    <Await
+                        resolve={roomPromise.data.room}
+                        errorElement={
+                            <TryAgain 
+                                errorMessage={"Something went wrong."} 
+                                setRefreshComponent={setRefreshComponent}
+                            />
+                        }
+                    >
+                        {(room) => {
+                            //console.log("room res: ", room);
+                            return (<div>
+                                <table className='w-full mt-4'>
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                Hostel Location
+                                            </th>
+                                            <td>
+                                                {room.hostelLocation}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Block Name
+                                            </th>
+                                            <td>
+                                                {room.roomBlock}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Room Floor
+                                            </th>
+                                            <td>
+                                                {
+                                                    room.roomFloor === 0 ?
+                                                        'Ground Floor'
+                                                    :
+                                                        room.roomFloor
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Room Number
+                                            </th>
+                                            <td>
+                                                {room.roomNumber}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Room Type
+                                            </th>
+                                            <td>
+                                                {room.roomType}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Room Price
+                                            </th>
+                                            <td>
+                                                GHC {room.roomPrice}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Room Capacity
+                                            </th>
+                                            <td>
+                                                {room.hostelLocation}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Current Occupants
+                                            </th>
+                                            <td>
+                                                {room.currentOccupants}
+                                            </td>
+                                        </tr>
+                                
+                                    </tbody>
+                                </table>
 
-                        <Link 
-                            to={'/platinumportal/payment'} 
-                            className=''
-                        >
-                            <button className='btn-primary1 flex justify-center items-center gap-2 group mt-8 text-white'>
-                            Download Room Details
-                            <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
-                                <img src={arrow} alt='right arrow'/>
-                            </figure>
-                            </button>
-                        </Link>
-                    </div>)
-                }}
-            </Await>
-        </React.Suspense>
+                                <Link 
+                                    to={'/platinumportal/payment'} 
+                                    className=''
+                                >
+                                    <button className='btn-primary1 flex justify-center items-center gap-2 group mt-8 text-white'>
+                                    Download Room Details
+                                    <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
+                                        <img src={arrow} alt='right arrow'/>
+                                    </figure>
+                                    </button>
+                                </Link>
+                            </div>)
+                        }}
+                    </Await>
+                </React.Suspense>
+            :
+                tokenState === 'pending' ?
+                    <div className='mt-4 flex justify-start items-center'>
+                        <p>
+                            Fetching rooms details. Please wait 
+                        </p>
+                        &nbsp;
+                        <Loader/>
+                    </div>
+                :   
+                    <div className='mt-4 flex justify-start items-center'>
+                        <p>Couldn't find your room details.</p>
+                    </div>
+        }
     </div>
   )
 }

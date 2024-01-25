@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useOutletContext } from "react-router-dom";
 
+//components
 import PaymentSectionHeader from './components/PaymentSectionHeader'
 import PaymentDetails from './components/PaymentDetails'
 import PaymentHistory from './components/PaymentHistory'
 
 export default function Payment() {
+  const {toggleSideBar} = useOutletContext();
+  useEffect(() => {toggleSideBar(false)}, [])
+
   return (
     <div>
         <div>

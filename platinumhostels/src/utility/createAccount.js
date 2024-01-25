@@ -1,5 +1,5 @@
 export default async function createAccount(accountData) {
-    console.log(accountData);
+    //console.log(accountData);
     try {
         /* let responseRAW = await fetch(
           `https://platinumfunctions.netlify.app/.netlify/functions/getAvailableRooms?hostelLocation=${hostelLocation}&roomType=${roomType}&gender=${gender}`, {
@@ -8,7 +8,8 @@ export default async function createAccount(accountData) {
             }
           }
         ) */
-        /* let customTokenStr = await fetch(
+
+        let response = await fetch(
           `http://localhost:8888/.netlify/functions/createAccount`, {
             method: 'POST',
             headers: {
@@ -18,25 +19,27 @@ export default async function createAccount(accountData) {
           }
         )
     
-        if (!customTokenStr.ok) {
-          throw new Error(`Couldn't fetch rooms! Status: ${customTokenStr.status}.`);
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(errorMessage);
         }
         
-        const customTokenJSON = await customTokenStr.json()
+        const {customToken} = await response.json()
 
-        console.log(customTokenJSON); */
+        return customToken
         
-        let dummyResponse = []
+        /* let dummyResponse = []
 
         if (dummyResponse.length !== 0) {throw new Error('error')}
 
-        return dummyResponse
+        return dummyResponse */
     
-        //return availableRoomsJSON.availableRooms;
-        //throw new Error("dummy error");
-        //return []
+        /* return availableRoomsJSON.availableRooms;
+        throw new Error("dummy error");
+        return [] */
       } catch (error) {
-        console.log("fetch error: ", error);
-        //throw error;
+        const errorMsg = error.message.replace(/"/g, '')
+        //console.log("createAccount error: ", errorMsg);
+        throw errorMsg;
       }  
 }

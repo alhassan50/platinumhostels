@@ -36,7 +36,7 @@ export default function PersonalDetailsSummary() {
                 <th>
                     Email:
                 </th>
-                <td>
+                <td className='normal-case'>
                     {bookNowFormData.email}
                 </td>
             </tr>

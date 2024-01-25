@@ -1,17 +1,10 @@
 export default async function getBookingSummary(userTokenID) {
     try {
-        /* let bookingSummaryStr = await fetch('http://localhost:8888/.netlify/functions/bookingSummary',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ userTokenID: userTokenID }),
-            }
-        ) */
+        if (!userTokenID) {
+            throw new Error ("Invalid user token")
+        }
 
-        
-        let bookingSummaryStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/bookingSummary',
+        let bookingSummaryStr = await fetch('http://localhost:8888/.netlify/functions/bookingSummary',
             {
                 method: 'POST',
                 headers: {
@@ -20,6 +13,17 @@ export default async function getBookingSummary(userTokenID) {
                 body: JSON.stringify({ userTokenID: userTokenID }),
             }
         )
+
+        
+        /* let bookingSummaryStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/bookingSummary',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userTokenID: userTokenID }),
+            }
+        ) */
        
         if (!bookingSummaryStr.ok) {
             throw new Error(`Couldn't fetch rooms! Status: ${bookingSummaryStr.status}.`);

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useOutletContext } from "react-router-dom";
+
 
 import faqs from '../../data/FAQs.json'
 
 export default function FAQs() {
+    const {toggleSideBar} = useOutletContext();
+    useEffect(() => {toggleSideBar(false)}, [])
+
     const [openedFAQ, setOpenedFAQ] = useState(null);
 
   const toggleIsOpened = (faqId) => {

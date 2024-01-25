@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useOutletContext } from "react-router-dom";
 
 //data
 import userr from '../../data/user.json'
@@ -13,7 +14,11 @@ import ArrivalEvacuation from './components/sections/ArrivalEvacuation';
 import { useUserContext } from '../../Context/UserContext';
 
 export default function Dashboard() { 
+  //console.log('mounting dashoard');
   const {user} = useUserContext()
+  const {toggleSideBar} = useOutletContext();
+
+  useEffect(() => {toggleSideBar(false)}, [])
 
   return (
     <div>

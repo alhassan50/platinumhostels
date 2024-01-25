@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useOutletContext } from "react-router-dom";
 
 //components
 import EmailSettings from './components/EmailSettings.jsx'
 import PasswordSettings from './components/PasswordSettings.jsx'
 
 export default function AccountSettings() {
+    const {toggleSideBar} = useOutletContext();
+    useEffect(() => {toggleSideBar(false)}, [])
+
   return (
     <div>
         <div>

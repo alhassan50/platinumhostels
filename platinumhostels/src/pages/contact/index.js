@@ -15,7 +15,7 @@ export default function Contact() {
         <ContactHero/>
         <section>
             <div className='section-container'>
-                <div className='grid s-lg:grid-cols-3 gap-10'>
+                <div className='flex flex-wrap items-center justify-center gap-10'>
                     {
                         hostelsdata.map(hostel => (
                             <div key={hostel.id}>

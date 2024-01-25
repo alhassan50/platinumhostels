@@ -29,7 +29,6 @@ const loadAvailableRooms = (hostelLocation, roomType, gender) => {
 }
 
 export default function Rooms() {  
-    console.log('room component mounted'); 
     const navigate = useNavigate()
 
     //search params from loader function

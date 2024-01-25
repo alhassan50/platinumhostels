@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useOutletContext } from "react-router-dom";
 
+//components
 import ProfileForm from './components/ProfileForm'
 
 
 
 export default function Profile() {
+    const {toggleSideBar} = useOutletContext();
+    useEffect(() => {toggleSideBar(false)}, [])
+
   return (
     <div className=''>
         <div className='bg-white rounded-md py-8 px-4 border'>

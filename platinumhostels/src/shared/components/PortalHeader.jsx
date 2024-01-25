@@ -10,8 +10,8 @@ import { signOutUser } from '../../utility/authUtility';
 //context
 import { useUserContext } from '../../Context/UserContext';
 
-export default function PortalHeader() {
-  const {setUserSignedOut, showSideBar, toggleSideBar} = useUserContext()
+export default function PortalHeader({showSideBar, toggleSideBar}) {
+  const {setUserSignedOut} = useUserContext()
 
   const handleSignOut = () => {
     setUserSignedOut(true)
@@ -42,7 +42,7 @@ export default function PortalHeader() {
   return (
     <div>
       {showSideBar && 
-        <div className={`fixed top-0 left-0 w-full h-full`}>
+        <div className={`fixed top-0 left-0 w-full h-full s-lg:hidden`}>
           <div className='absolute top-0 left-0 w-full h-full opacity-40 bg-neutral-400'></div>
           <button 
             className='bg-white absolute p-4 opacity-100 top-[1%] right-[1%] flex justify-center items-center text-primary rounded-[50%] w-18 h-18 hover:bg-primary group'

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useOutletContext } from "react-router-dom";
 
 //section
 import SectionHeder from './components/sections/SectionHeder'
@@ -7,6 +8,9 @@ import SectionHeder from './components/sections/SectionHeder'
 import RoomieCard from './components/cards/RoomieCard'
 
 export default function MyRoomie() {
+    const {toggleSideBar} = useOutletContext();
+    useEffect(() => {toggleSideBar(false)}, [])
+    
   return (
     <div>
         <div>

@@ -27,12 +27,6 @@ export function UserContextProvider({children}) {
     const [userTokenID, setUserTokenID] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [userSignedOut, setUserSignedOut] = useState(false)
-
-    const [showSideBar, setShowSideBar] = useState(false)
-
-    const toggleSideBar = () => {
-        setShowSideBar(prevValue => (!prevValue))
-      }
     
 
     useEffect(() => { 
@@ -44,7 +38,7 @@ export function UserContextProvider({children}) {
 
     return (
         <UserContext.Provider
-            value={{user, userTokenID, userSignedOut, setUserSignedOut, showSideBar, toggleSideBar}}
+            value={{user, userTokenID, userSignedOut, setUserSignedOut}}
         >
             {   
                 isLoading ? 

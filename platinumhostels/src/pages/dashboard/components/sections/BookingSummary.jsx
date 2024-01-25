@@ -21,89 +21,121 @@ const loadBookingSummary = (userTokenID) => {
 }
 
 export default function BookingSummary() {
+    //console.log('mounting booking summary component');
+
     const {userTokenID} = useUserContext()
+
     const [refreshComponent, setRefreshComponent] = useState(false)
+
+    const [tokenState, setTokenState] = useState('pending')
+    const [initialRender, setInitialRender] = useState(true)
+    
     const bookingSummarypPromise = useMemo(() => {
-        return loadBookingSummary(userTokenID)
-    }, [userTokenID, refreshComponent]) 
+        if (userTokenID) {
+            setTokenState('valid')
+            return loadBookingSummary(userTokenID)
+        } else {
+            if (!initialRender) {
+                setTokenState(null)
+            }
+        }
+        setInitialRender(false)
+    }, [userTokenID, refreshComponent])
+    
 
   return (
     <div className='bg-white rounded-md py-8 px-4 border'>
         <h3>Booking Summary</h3>
-        <React.Suspense
-            fallback={
-                <div className='mt-8 flex justify-start items-center'>
-                    <p>
-                        Fetching your booking summary. Please wait 
-                    </p>
-                    &nbsp;
-                    <Loader/>
-                </div>
-            }
-        >
-            <Await
-                resolve={bookingSummarypPromise.data.bookingSummary}
-                errorElement={
-                    <TryAgain 
-                        errorMessage={"Something went wrong."} 
-                        setRefreshComponent={setRefreshComponent}
-                    />
-                }
-            >
-                {
-                    (bookingSummary) => {
-                        //console.log("book sum: ", bookingSummary);
-                        return (<div>
-                            <table className='w-full mt-4'>
-                                <tbody>
-                                    <tr>
-                                        <th> 
-                                            Booking Date
-                                        </th>
-                                        <td>
-                                            {bookingSummary.bookingDate}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Amount Paid
-                                        </th>
-                                        <td>
-                                            GHC {bookingSummary.amountPaid}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Payment Deadline
-                                        </th>
-                                        <td>
-                                            {bookingSummary.paymentDeadline}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <div className='mt-8 flex flex-wrap gap-4 items-center'>
-                                <Link to={'/platinumportal/payment'} className=''>
-                                    <button className='btn-primary1 flex justify-center items-center gap-2 group text-white'>
-                                        Make Payment
-                                        <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
-                                            <img src={arrow} alt='right arrow'/>
-                                        </figure>
-                                    </button>
-                                </Link>
-
-                                <Link to={'/platinumportal/payment'} className=''>
-                                    <button className='btn-ghost2 flex justify-center items-center gap-2 group text-primary'>
-                                        View Payment Details
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>)
+        {
+            tokenState === 'valid' ?
+                <React.Suspense
+                    fallback={
+                        <div className='mt-4 flex justify-start items-center'>
+                            <p>
+                                Fetching your booking summary. Please wait 
+                            </p>
+                            &nbsp;
+                            <Loader/>
+                        </div>
                     }
-                }
-            </Await>
-        </React.Suspense>
+                >
+                    <Await
+                        resolve={bookingSummarypPromise.data.bookingSummary}
+                        errorElement={
+                            <TryAgain 
+                                errorMessage={"Something went wrong."} 
+                                setRefreshComponent={setRefreshComponent}
+                            />
+                        }
+                    >
+                        {
+                            (bookingSummary) => {
+                                //console.log("book sum: ", bookingSummary);
+                                return (<div>
+                                    <table className='w-full mt-4'>
+                                        <tbody>
+                                            <tr>
+                                                <th> 
+                                                    Booking Date
+                                                </th>
+                                                <td>
+                                                    {bookingSummary.bookingDate}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    Amount Paid
+                                                </th>
+                                                <td>
+                                                    GHC {bookingSummary.amountPaid}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    Payment Deadline
+                                                </th>
+                                                <td>
+                                                    {bookingSummary.paymentDeadline}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div className='mt-8 flex flex-wrap gap-4 items-center'>
+                                        <Link to={'/platinumportal/payment'} className=''>
+                                            <button className='btn-primary1 flex justify-center items-center gap-2 group text-white'>
+                                                Make Payment
+                                                <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
+                                                    <img src={arrow} alt='right arrow'/>
+                                                </figure>
+                                            </button>
+                                        </Link>
+
+                                        <Link to={'/platinumportal/payment'} className=''>
+                                            <button className='btn-ghost2 flex justify-center items-center gap-2 group text-primary'>
+                                                View Payment Details
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>)
+                            }
+                        }
+                    </Await>
+                </React.Suspense>
+            :
+                tokenState === 'pending' ?
+                    <div className='mt-4 flex justify-start items-center'>
+                        <p>
+                            Fetching booking summary. Please wait 
+                        </p>
+                        &nbsp;
+                        <Loader/>
+                    </div>
+                :   
+                    <div className='mt-4 flex justify-start items-center'>
+                        <p>Couldn't find your booking summary.</p>
+                    </div>
+        }
     </div>
   )
 }
