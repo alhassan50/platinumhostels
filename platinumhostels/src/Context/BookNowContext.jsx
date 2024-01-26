@@ -1,8 +1,6 @@
 import React, { useState, useContext, createContext, useEffect } from 'react'
-import {useNavigate} from 'react-router-dom';
 
 const BookNowContext = createContext()
-
 
 export function BookNowContextProvider({children}) {
     //book now form default values

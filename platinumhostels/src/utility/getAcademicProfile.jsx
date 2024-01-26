@@ -1,23 +1,26 @@
-export default async function createAccount(accountData) {
-    //console.log(accountData);
+export default async function getAcademicProfile(userTokenID) {
     try {
+        if (!userTokenID) {
+            throw new Error('Invalid user')
+        }
+
         let response = await fetch(
-          `https://platinumfunctions.netlify.app/.netlify/functions/createAccount`, {
+          `https://platinumfunctions.netlify.app/.netlify/functions/getAcademicProfile`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(accountData)
+            body: JSON.stringify({ userTokenID: userTokenID })
           }
         )
-        
+
         /* let response = await fetch(
-          `http://localhost:8888/.netlify/functions/createAccount`, {
+          `http://localhost:8888/.netlify/functions/getAcademicProfile`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(accountData)
+            body: JSON.stringify({ userTokenID: userTokenID })
           }
         ) */
     
@@ -26,9 +29,12 @@ export default async function createAccount(accountData) {
           throw new Error(errorMessage);
         }
         
-        const {customToken} = await response.json()
+        const {academicProfile} = await response.json()
+        
+        //console.log(academicProfile);
+        return academicProfile
 
-        return customToken
+        //console.log(academicProfile);
         
         /* let dummyResponse = []
 
@@ -41,7 +47,7 @@ export default async function createAccount(accountData) {
         return [] */
       } catch (error) {
         const errorMsg = error.message.replace(/"/g, '')
-        //console.log("createAccount error: ", errorMsg);
+        //console.log("getAcademicProfile error: ", errorMsg);
         throw errorMsg;
-      }  
+      } 
 }

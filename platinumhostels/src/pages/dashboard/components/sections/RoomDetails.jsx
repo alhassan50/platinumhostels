@@ -7,6 +7,7 @@ import arrow from '../../../../assets/icons/right-arrow-3.png'
 //component
 import Loader from '../../../../shared/components/Loader'
 import TryAgain from '../../../Rooms/components/TryAgain'
+import RoomDetailsLoader from './RoomDetailsLoader'
 
 //context
 import { useUserContext } from '../../../../Context/UserContext'
@@ -48,13 +49,7 @@ export default function RoomDetails() {
             tokenState === 'valid' ?
                 <React.Suspense
                     fallback={
-                        <div className='mt-4 flex justify-start items-center'>
-                            <p>
-                                Fetching rooms details. Please wait 
-                            </p>
-                            &nbsp;
-                            <Loader/>
-                        </div>
+                        <RoomDetailsLoader/>
                     }
                 >
                     <Await
@@ -68,7 +63,8 @@ export default function RoomDetails() {
                     >
                         {(room) => {
                             //console.log("room res: ", room);
-                            return (<div>
+                            return (
+                            <div>
                                 <table className='w-full mt-4'>
                                     <tbody>
                                         <tr>
@@ -143,6 +139,7 @@ export default function RoomDetails() {
                                 
                                     </tbody>
                                 </table>
+                                
 
                                 <Link 
                                     to={'/platinumportal/payment'} 
@@ -155,19 +152,85 @@ export default function RoomDetails() {
                                     </figure>
                                     </button>
                                 </Link>
+
+                                {/* <table className='w-full mt-4'>
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
+                                            </th>
+                                            <td>
+                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                    <div className='bg-neutral-200 rounded-lg animate-pulse py-3 px-6 mt-8 h-11 w-full max-w-[245px]'>
+                                    </div>
+                                </table> */}
                             </div>)
                         }}
                     </Await>
                 </React.Suspense>
             :
                 tokenState === 'pending' ?
-                    <div className='mt-4 flex justify-start items-center'>
-                        <p>
-                            Fetching rooms details. Please wait 
-                        </p>
-                        &nbsp;
-                        <Loader/>
-                    </div>
+                    <RoomDetailsLoader />
                 :   
                     <div className='mt-4 flex justify-start items-center'>
                         <p>Couldn't find your room details.</p>

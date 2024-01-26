@@ -36,6 +36,10 @@ export function UserContextProvider({children}) {
         }
     }, [])
 
+    useEffect(() => {
+        
+    }, [userTokenID])
+
     return (
         <UserContext.Provider
             value={{user, userTokenID, userSignedOut, setUserSignedOut}}

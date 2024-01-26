@@ -1,10 +1,10 @@
 export default async function getBookingSummary(userTokenID) {
     try {
         if (!userTokenID) {
-            throw new Error ("Invalid user token")
+            throw new Error ("Invalid user")
         }
 
-        let bookingSummaryStr = await fetch('http://localhost:8888/.netlify/functions/bookingSummary',
+        let bookingSummaryStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/bookingSummary',
             {
                 method: 'POST',
                 headers: {
@@ -13,9 +13,8 @@ export default async function getBookingSummary(userTokenID) {
                 body: JSON.stringify({ userTokenID: userTokenID }),
             }
         )
-
         
-        /* let bookingSummaryStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/bookingSummary',
+        /* let bookingSummaryStr = await fetch('http://localhost:8888/.netlify/functions/bookingSummary',
             {
                 method: 'POST',
                 headers: {
@@ -41,7 +40,7 @@ export default async function getBookingSummary(userTokenID) {
 
         return bookingSummaryJSON;
     } catch (error) {
-        console.log('error from fetch: ', error);
+        //console.log('error from fetch: ', error);
         throw error
     }
 }

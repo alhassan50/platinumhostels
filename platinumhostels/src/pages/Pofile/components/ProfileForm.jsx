@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
+import {Await, defer} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 
@@ -8,35 +9,56 @@ import { useUserContext } from '../../../Context/UserContext'
 //icon
 import arrow from '../../../assets/icons/right-arrow-3.png'
 
+//utility
+import getAcademicProfile from '../../../utility/getAcademicProfile'
+import AcademicProfileLoader from './AcademicProfileLoader'
+import TryAgain from '../../Rooms/components/TryAgain'
+
+//load
+const loadAcademicProfile = (userTokenID) => {
+    const academicProfilePromise = getAcademicProfile(userTokenID)
+    return defer({academicProfile: academicProfilePromise})
+}
+
 export default function ProfileForm() {
-    const {user} = useUserContext()
+    const {user, userTokenID} = useUserContext()
 
-    const {register, handleSubmit, trigger, formState: {errors, dirtyFields, isValid, isDirty}, control} = useForm(
-        {
-            defaultValues:{
-                fullName: `${user.displayName ? user.displayName : 'John Doe'}`,
-                phoneNumber: `${user.phoneNumber ? user.phoneNumber : '0123456789'}`,
-                gender: 'male',
-                course: 'BSc Physics',
-                level: '300',
-               /*  privacyProfilePic: false,  
-                privacyFullName: true,  
-                privacyPhoneNumber: true,  
-                privacyEmail: false,  
-                privacyCourse: false,  
-                privacyLevel: false,  */
-            },
-            mode: "onChange"
-        })
+    const [refreshComponent, setRefreshComponent] = useState(false)
+    const [tokenState, setTokenState] = useState('pending')
+    const [initialRender, setInitialRender] = useState(true)
 
+    const academicProfilePromise = useMemo(() => {
+        if (userTokenID) {
+            setTokenState('valid')
+            return loadAcademicProfile(userTokenID)
+        } else {
+            if (!initialRender) {
+                setTokenState(null)
+            }
+        }
+        setInitialRender(false)
+    }, [userTokenID, refreshComponent])
 
-  const enableBtn = () => {
-    return;
-  }
+    
+    const onSubmit = (formData) => {
+        console.log(dirtyFields);
+    }
 
-  const onSubmit = (formData) => {
-    console.log(dirtyFields);
-  }
+    const {
+        register,
+        handleSubmit,
+        trigger,
+        formState: { errors, dirtyFields, isValid, isDirty },
+        control,
+        setValue,
+    } = useForm({
+        defaultValues: {
+          fullName: `${user.displayName ? user.displayName : 'N/A'}`,
+          phoneNumber: `${user.phoneNumber ? user.phoneNumber : 'N/A'}`,
+          gender: 'male',
+        },
+        mode: 'onChange',
+    })
 
   return (
     <div>
@@ -113,54 +135,88 @@ export default function ProfileForm() {
                     My Academic Profile
                 </h3>
                 
-                <div className='mt-5 student-info grid grid-cols-1 sm:grid-cols-2 gap-5'>
-                    <div className='flex flex-col gap-2'>
-                        <label className='text-primary text-sm'>
-                            Course/Program
-                        </label>
-                        <input 
-                            type='text'
-                            {...register('course', {required: "Your course is required"})}
-                            id='course'
-                            placeholder='BSc Physics'
-                            
-                            className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
-                        />
+                <div className=''>
+                    {
+                        tokenState === 'valid' ?
+                            <React.Suspense
+                                fallback={
+                                    <AcademicProfileLoader />
+                                }
+                            >
+                                <Await
+                                    resolve={academicProfilePromise.data.academicProfile}
+                                    errorElement={
+                                        <TryAgain 
+                                            errorMessage={"Something went wrong."} 
+                                            setRefreshComponent={setRefreshComponent}
+                                        />
+                                    }
+                                >
+                                    {
+                                        (academicProfile) => {
+                                            setValue('course', academicProfile.course)
+                                            setValue('level', academicProfile.level)
+                                            return (
+                                                <div className='mt-5 student-info grid grid-cols-1 sm:grid-cols-2 gap-5'>
+                                                    <div className='flex flex-col gap-2'>
+                                                        <label className='text-primary text-sm'>
+                                                            Course/Program
+                                                        </label>
+                                                            <input 
+                                                                type='text'
+                                                                {...register('course', {required: "Your course is required"})}
+                                                                id='course'
+                                                                placeholder='BSc Physics'
+                                                                className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
+                                                            />
 
-                        <div className='max-w-[300px]'>
-                            <p className='text-red-600 text-[12px]'>{errors.course?.message}</p>
-                        </div>
-                    </div>
+                                                        <div className='max-w-[300px]'>
+                                                            <p className='text-red-600 text-[12px]'>{errors.course?.message}</p>
+                                                        </div>
+                                                    </div>
 
-                    <div className='flex flex-col gap-2'>
-                        <label className='text-primary text-sm'>
-                            Level
-                        </label>
-                        <select 
-                            {...register('level', {
-                                validate: (levelValue) => (
-                                    levelValue !== 'none' || 
-                                    "Oops! You forgot to select a level"
-                                )
-                            })}
-                            id='level'
-                            
-                            className='text-[14px] border outline-primary rounded py-2 px-4 cursor-pointer'
-                        >
-                            <option value={'none'}></option>
-                            <option value={'100'}>Level 100</option>
-                            <option value={'200'}>Level 200</option>
-                            <option value={'300'}>Level 300</option>
-                            <option value={'400'}>Level 400</option>
-                            <option value={'500'}>Level 500</option>
-                            <option value={'600'}>Level 600</option>
-                            <option value={'700'}>Level 700</option>
-                        </select>
+                                                    <div className='flex flex-col gap-2'>
+                                                        <label className='text-primary text-sm'>
+                                                            Level
+                                                        </label>
+                                                        <select 
+                                                            {...register('level', {
+                                                                validate: (levelValue) => (
+                                                                    levelValue !== 'none' || 
+                                                                    "Oops! You forgot to select a level"
+                                                                )
+                                                            })}
+                                                            id='level'
+                                                            className='text-[14px] border outline-primary rounded py-2 px-4 cursor-pointer'
+                                                        >
+                                                            <option value={'none'}></option>
+                                                            <option value={'100'}>Level 100</option>
+                                                            <option value={'200'}>Level 200</option>
+                                                            <option value={'300'}>Level 300</option>
+                                                            <option value={'400'}>Level 400</option>
+                                                            <option value={'500'}>Level 500</option>
+                                                            <option value={'600'}>Level 600</option>
+                                                            <option value={'700'}>Level 700</option>
+                                                        </select>
 
-                        <div className='max-w-[300px]'>
-                            <p className='text-red-600 text-[12px]'>{errors.level?.message}</p>
-                        </div>
-                    </div>
+                                                        <div className='max-w-[300px]'>
+                                                            <p className='text-red-600 text-[12px]'>{errors.level?.message}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    }
+                                </Await>
+                            </React.Suspense>
+                        :
+                        tokenState === 'pending' ?
+                            <AcademicProfileLoader />
+                        :   
+                            <div className='mt-4 flex justify-start items-center'>
+                                <p>Couldn't load your academic profile.</p>
+                            </div>
+                    }
                 </div>
             </div>
 
@@ -274,7 +330,7 @@ export default function ProfileForm() {
 
             </div>
         </form>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
     </div>
   )
 }

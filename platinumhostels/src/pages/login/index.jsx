@@ -41,14 +41,14 @@ export default function Login() {
 
       const redirectUrl = searchParams.get("redirect")
       if (redirectUrl) {
-        console.log('naving to redi');
+        //console.log('naving to redi');
         navigate(redirectUrl, {replace: true})
       } else {
-        console.log('naving to /');
+        //console.log('naving to /');
         navigate('/platinumportal', {replace: true})
       }
     } catch(error) {
-      console.log(error.message);
+      //console.log(error.message);
 
       if (error.message === "Firebase: Error (auth/invalid-credential).") {
         setMessage("Invalid email or password")

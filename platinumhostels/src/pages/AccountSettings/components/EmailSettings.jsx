@@ -4,10 +4,15 @@ import { useForm } from 'react-hook-form'
 //icons
 import arrow from '../../../assets/icons/right-arrow-3.png'
 
+//context
+import { useUserContext } from '../../../Context/UserContext'
+
 export default function EmailSettings() {
+    const {user} = useUserContext()
+
     const {register, handleSubmit, formState: {errors, dirtyFields, isDirty, isValid}} = useForm({
         defaultValues: {
-            email: 'abc@gmail.com'
+            email: user.email
         }
     })
 
