@@ -7,7 +7,6 @@ const getAvailableRooms = async (hostelLocation, roomType, gender) => {
         }
       }
     )
-
     /* let responseRAW = await fetch(
       `http://localhost:8888/.netlify/functions/getAvailableRooms?hostelLocation=${hostelLocation}&roomType=${roomType}&gender=${gender}`, {
         headers: {

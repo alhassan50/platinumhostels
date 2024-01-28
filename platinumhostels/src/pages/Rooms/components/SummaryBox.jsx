@@ -14,6 +14,7 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 
 //utility
 import createAccount from '../../../utility/createAccount'
+import createRecord from '../../../utility/createRecord'
 import { signInUserWithToken } from '../../../utility/authUtility'
 
 export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
@@ -30,7 +31,9 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
     const [isBookingConfirmed, setIsBookingConfirmed] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [customToken, setCustomToken] = useState(null)
+    const [userRecord, setUserRecord] = useState(null)
     const [errorMsg, setErrorMsg] = useState(null)
+    const [signUpStatus, setSignUpStatus] = useState(null)
 
     //confirms rooms user selects
     const confirmSelectedRoom = (room) => {
@@ -48,11 +51,30 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
 
     //listen to changes in student account data and booking confirmation
     useEffect(() => {
-        async function getCustomToken(studentAccountData) {
+        async function createUserAccount(studentAccountData) {
+            try {     
+                const userRecord = await createAccount(studentAccountData)
+
+                /* console.log("userRecord: ", userRecord);
+                console.log(userRecord.accountData);
+                console.log(userRecord.uid); */
+
+                const customToken = await getCustomToken(userRecord.accountData, userRecord.uid)
+                //console.log(customToken);
+                setCustomToken(customToken)
+                return userRecord
+            } catch (error) {
+                setErrorMsg(error)
+                setIsLoading(false)
+            }
+        }
+
+        async function getCustomToken(studentAccountData, uid) {
             let customToken
             try {     
-                customToken = await createAccount(studentAccountData)
-                setCustomToken(customToken)
+                customToken = await createRecord(studentAccountData, uid)
+                return customToken
+                //console.log(customToken);
             } catch (error) {
                 setErrorMsg(error)
                 setIsLoading(false)
@@ -60,12 +82,32 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
         }
 
         if (isBookingConfirmed && Object.keys(studentAccountData).length !== 0) {
-            getCustomToken(studentAccountData)
+            createUserAccount(studentAccountData)
         }
     }, [studentAccountData, isBookingConfirmed])
 
     //listens for customTokens and signs user in
     useEffect(() => {
+        const signInUser = async () => {
+            try {
+                setSignUpStatus('sign in')
+                await signInUserWithToken(customToken)
+                navigate('/platinumportal/dashboard', {replace: true})
+            } catch (error) {
+                console.log("token login error: ", error);
+                setErrorMsg(error.message)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        if(customToken) {
+            signInUser(customToken) 
+        }
+    }, [customToken])
+    
+    //listens for user
+    /* useEffect(() => {
         const signInUser = async () => {
             try {
                 await signInUserWithToken(customToken)
@@ -80,7 +122,7 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
         if(customToken) {
             signInUser(customToken) 
         }
-    }, [customToken])
+    }, [customToken]) */
 
     //listens for error messages and logs them 
     /* useEffect(() => {
@@ -107,7 +149,14 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
         <div className='booking-summary overflow-y-auto fixed bg-[#000000c0] left-0 top-0 w-full h-full flex justify-center items-center py-[40px] px-[5%]'>
             <div className='booking-summary-box overflow-scroll min-w-[400px] p-4 bg-white border rounded shadow-primary  w-[500px] h-[500px]'>
                 {
-                    
+                    signUpStatus === 'sign in' ?
+                        <div className='flex justify-center items-center flex-col w-full h-full'>
+                            <Loader />
+                            <p>
+                                Setting up your account. Please do not refresh the page!
+                            </p>
+                        </div>
+                    :
                         <div className=''>
                             <div className='flex gap-4 justify-between items-center'>
                                 <h2 className='font-normal text-[20px] capitalize'>
@@ -187,7 +236,7 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
                                     }
                                 </button>
                             </div>
-                        </div>
+                        </div>                        
                 }
             </div>
         </div>

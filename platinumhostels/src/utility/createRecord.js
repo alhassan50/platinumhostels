@@ -1,23 +1,23 @@
-export default async function createAccount(studentAccountData) {
-    //console.log(studentAccountData);
+export default async function createRecord(accountData, uid) {
+    //console.log(accountData);
     try {
         let response = await fetch(
-          `https://platinumfunctions.netlify.app/.netlify/functions/createAccount`, {
+          `https://platinumfunctions.netlify.app/.netlify/functions/createRecord`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(studentAccountData)
+            body: JSON.stringify({accountData: accountData, uid: uid})
           }
         )
         
         /* let response = await fetch(
-          `http://localhost:8888/.netlify/functions/createAccount`, {
+          `http://localhost:8888/.netlify/functions/createRecord`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(studentAccountData)
+            body: JSON.stringify({accountData: accountData, uid: uid})
           }
         ) */
     
@@ -26,9 +26,9 @@ export default async function createAccount(studentAccountData) {
           throw new Error(errorMessage);
         }
         
-        const {accountData, uid} = await response.json()
+        const {customToken} = await response.json()
 
-        return {accountData: accountData, uid: uid}
+        return customToken
         
         /* let dummyResponse = []
 
@@ -41,7 +41,7 @@ export default async function createAccount(studentAccountData) {
         return [] */
       } catch (error) {
         const errorMsg = error.message.replace(/"/g, '')
-        //console.log("createAccount error: ", errorMsg);
+        //console.log("createRecord error: ", errorMsg);
         throw errorMsg;
       }  
 }
