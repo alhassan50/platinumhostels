@@ -55,7 +55,7 @@ export default function ProfileSummary() {
                 <Link to={'/platinumportal/profile'} 
                     className='mt-1 group flex gap-1 items-center hover:underline justify-center s-sm:justify-normal'>
                     <p className='text-sm text-primary'>
-                        Profile Details 
+                        Edit Profile 
                     </p>
 
                     <figure className='arrow w-4 group-hover:translate-x-1 transition-all duration-150'>

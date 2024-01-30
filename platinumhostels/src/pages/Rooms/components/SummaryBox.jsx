@@ -40,7 +40,7 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
         if (room) {
             setErrorMsg(null)
             if (isBookNowFormDataReady) {
-                setStudentAccountData({...bookNowFormData, roomID: room.roomID, roomPrice: room.roomPrice})
+                setStudentAccountData({...bookNowFormData, roomID: room.roomID, roomPrice: room.roomPrice, roomType: room.roomType})
                 setIsBookingConfirmed(true)
                 setIsLoading(true)
             } else {
@@ -105,40 +105,6 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
             signInUser(customToken) 
         }
     }, [customToken])
-    
-    //listens for user
-    /* useEffect(() => {
-        const signInUser = async () => {
-            try {
-                await signInUserWithToken(customToken)
-                navigate('/platinumportal/dashboard', {replace: true})
-            } catch (error) {
-                console.log("token login error: ", error);
-            } finally {
-                setIsLoading(false)
-            }
-        }
-
-        if(customToken) {
-            signInUser(customToken) 
-        }
-    }, [customToken]) */
-
-    //listens for error messages and logs them 
-    /* useEffect(() => {
-        if(errorMsg) {
-            console.log(errorMsg);
-        } else {
-            console.log(errorMsg);
-        }
-    }, [errorMsg]) */
-
-    //dummy useffect
-    /* useEffect(() => {
-        if (isLoading) {
-            setTimeout(() => (setIsLoading(false)), 5000)
-        }
-    }, [isLoading]) */
 
     const closeSummaryBox = () => {
         setStudentAccountData({})

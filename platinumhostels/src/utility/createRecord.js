@@ -10,7 +10,6 @@ export default async function createRecord(accountData, uid) {
             body: JSON.stringify({accountData: accountData, uid: uid})
           }
         )
-        
         /* let response = await fetch(
           `http://localhost:8888/.netlify/functions/createRecord`, {
             method: 'POST',

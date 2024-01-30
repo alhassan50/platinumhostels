@@ -117,7 +117,7 @@ export default function RoomDetails() {
                                                 Room Price
                                             </th>
                                             <td>
-                                                GHC {room.roomPrice}
+                                                GH₵ {room.roomPrice}
                                             </td>
                                         </tr>
                                         <tr>

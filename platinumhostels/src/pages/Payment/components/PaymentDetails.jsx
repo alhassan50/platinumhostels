@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PaymentDetails() {
+export default function PaymentDetails({paymentDetails}) {
   return (
     <div>
         <div className='bg-white rounded-md py-8 px-4 row-span-2 border'>
@@ -11,8 +11,8 @@ export default function PaymentDetails() {
                         <th>
                             Room Type
                         </th>
-                        <td>
-                            Single
+                        <td className='capitalize'>
+                            {paymentDetails.roomType}
                         </td>
                     </tr>
                     <tr>
@@ -20,7 +20,7 @@ export default function PaymentDetails() {
                             Room Price
                         </th>
                         <td>
-                            GHC 8000.00
+                        {paymentDetails.roomPrice}
                         </td>
                     </tr>
                     <tr>
@@ -28,7 +28,7 @@ export default function PaymentDetails() {
                             Amount Paid
                         </th>
                         <td>
-                            GHC 0.00
+                            {paymentDetails.amountPaid}
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +36,7 @@ export default function PaymentDetails() {
                             Amount Remaining
                         </th>
                         <td>
-                            GHC 8000.00
+                            {paymentDetails.amountRemaining}
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@ export default function PaymentDetails() {
                             Payment Deadline
                         </th>
                         <td>
-                            Wednesday, 08th January, 2023
+                            {paymentDetails.paymentDeadline}
                         </td>
                     </tr>            
                 </tbody>

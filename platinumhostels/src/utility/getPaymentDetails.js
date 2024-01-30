@@ -1,10 +1,10 @@
-export default async function getBookingSummary(userTokenID) {
+export default async function getPaymentDetails(userTokenID) {
     try {
         if (!userTokenID) {
             throw new Error ("Invalid user")
         }
 
-        let bookingSummaryStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/bookingSummary',
+        let response = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/paymentDetails',
             {
                 method: 'POST',
                 headers: {
@@ -13,8 +13,8 @@ export default async function getBookingSummary(userTokenID) {
                 body: JSON.stringify({ userTokenID: userTokenID }),
             }
         )
-
-        /* let bookingSummaryStr = await fetch('http://localhost:8888/.netlify/functions/bookingSummary',
+        
+        /* let response = await fetch('http://localhost:8888/.netlify/functions/paymentDetails',
             {
                 method: 'POST',
                 headers: {
@@ -24,23 +24,23 @@ export default async function getBookingSummary(userTokenID) {
             }
         ) */
        
-        if (!bookingSummaryStr.ok) {
-            throw new Error(`Couldn't fetch rooms! Status: ${bookingSummaryStr.status}.`);
+        if (!response.ok) {
+            throw new Error(`Couldn't fetch payment details! Status: ${response.status}.`);
         }
 
         
-        const bookingSummaryJSON = await bookingSummaryStr.json()
+        const paymentDetails = await response.json()
 
-        //bookingSummaryJSON = {}
+        //paymentDetails = {}
 
-        if (Object.keys(bookingSummaryJSON).length === 0) {
+        if (Object.keys(paymentDetails).length === 0) {
             throw new Error('booking summary empty')
         }
 
 
-        return bookingSummaryJSON;
+        return paymentDetails;
     } catch (error) {
-        //console.log('error from fetch: ', error);
-        throw error
+        console.log('error from getPaymentDetails fetch: ', error);
+        //throw error
     }
 }

@@ -83,7 +83,7 @@ export default function BookingSummary() {
                                                         Amount Paid
                                                     </th>
                                                     <td>
-                                                        GHC {bookingSummary.amountPaid}
+                                                        GH₵ {bookingSummary.amountPaid}
                                                     </td>
                                                 </tr>
                                                 <tr>

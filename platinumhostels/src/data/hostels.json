@@ -28,21 +28,21 @@
         "id": "single",
         "name": "Single Room", 
         "occupants": "1",
-        "price": "GHC 8,000.00",
+        "price": "GH₵ 8,000.00",
         "image": "/assets/ayeduase/ayeduase-bed-1.webp"
       },
       {
         "id": "double",
         "name": "Double Room", 
         "occupants": "2",
-        "price": "GHC 5,000.00",
+        "price": "GH₵ 5,000.00",
         "image": "/assets/ayeduase/ayeduase-bed-2.webp"
       },
       {
         "id": "shared",
         "name": "Shared Room", 
         "occupants": "3",
-        "price": "GHC 4,000.00",
+        "price": "GH₵ 4,000.00",
         "image": "/assets/ayeduase/ayeduase-bed-2.webp"
       }
     ],
@@ -88,21 +88,21 @@
         "id": "single",
         "name": "Single Room", 
         "occupants": "1",
-        "price": "GHC 8,000.00",
+        "price": "GH₵ 8,000.00",
         "image": "/assets/bomso/bomso-bed-1.webp"
       },
       {
         "id": "double",
         "name": "Double Room", 
         "occupants": "2",
-        "price": "GHC 5,000.00",
+        "price": "GH₵ 5,000.00",
         "image": "/assets/bomso/bomso-bed-2.webp"
       },
       {
         "id": "shared",
         "name": "Shared Room", 
         "occupants": "3",
-        "price": "GHC 4,000.00",
+        "price": "GH₵ 4,000.00",
         "image": "/assets/bomso/bomso-bed-3.webp"
       }
     ],
@@ -148,21 +148,21 @@
         "id": "single",
         "name": "Single Room", 
         "occupants": "1",
-        "price": "GHC 8,000.00",
+        "price": "GH₵ 8,000.00",
         "image": "/assets/gaza/gaza-bed-1.webp"
       },
       {
         "id": "double",
         "name": "Double Room", 
         "occupants": "2",
-        "price": "GHC 5,000.00",
+        "price": "GH₵ 5,000.00",
         "image": "/assets/gaza/gaza-bed-2.webp"
       },
       {
         "id": "shared",
         "name": "Shared Room", 
         "occupants": "3",
-        "price": "GHC 4,000.00",
+        "price": "GH₵ 4,000.00",
         "image": "/assets/gaza/gaza-bed-3.webp"
       }
     ],

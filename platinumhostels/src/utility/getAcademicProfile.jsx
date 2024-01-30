@@ -13,7 +13,6 @@ export default async function getAcademicProfile(userTokenID) {
             body: JSON.stringify({ userTokenID: userTokenID })
           }
         )
-
         /* let response = await fetch(
           `http://localhost:8888/.netlify/functions/getAcademicProfile`, {
             method: 'POST',

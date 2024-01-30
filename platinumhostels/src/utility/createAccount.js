@@ -10,7 +10,7 @@ export default async function createAccount(studentAccountData) {
             body: JSON.stringify(studentAccountData)
           }
         )
-        
+
         /* let response = await fetch(
           `http://localhost:8888/.netlify/functions/createAccount`, {
             method: 'POST',

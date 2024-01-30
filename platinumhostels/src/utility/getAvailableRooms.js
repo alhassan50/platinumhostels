@@ -1,5 +1,5 @@
 const getAvailableRooms = async (hostelLocation, roomType, gender) => {
-  try {
+  try {    
     let responseRAW = await fetch(
       `https://platinumfunctions.netlify.app/.netlify/functions/getAvailableRooms?hostelLocation=${hostelLocation}&roomType=${roomType}&gender=${gender}`, {
         headers: {
