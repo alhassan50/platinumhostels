@@ -4,17 +4,7 @@ export default async function getPaymentDetails(userTokenID) {
             throw new Error ("Invalid user")
         }
 
-        let response = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/paymentDetails',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ userTokenID: userTokenID }),
-            }
-        )
-        
-        /* let response = await fetch('http://localhost:8888/.netlify/functions/paymentDetails',
+        /* let response = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/paymentDetails',
             {
                 method: 'POST',
                 headers: {
@@ -23,6 +13,16 @@ export default async function getPaymentDetails(userTokenID) {
                 body: JSON.stringify({ userTokenID: userTokenID }),
             }
         ) */
+        
+        let response = await fetch('http://localhost:8888/.netlify/functions/paymentDetails',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userTokenID: userTokenID }),
+            }
+        )
        
         if (!response.ok) {
             throw new Error(`Couldn't fetch payment details! Status: ${response.status}.`);

@@ -53,7 +53,7 @@ export default function PaymentHistory({paymentDetails}) {
                                 <td>
                                     Single
                                 </td>
-                            </tr>
+                            </tr>   
                     
                         </tbody>
                     </table>

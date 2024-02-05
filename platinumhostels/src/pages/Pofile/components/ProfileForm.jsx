@@ -13,6 +13,17 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 import getAcademicProfile from '../../../utility/getAcademicProfile'
 import AcademicProfileLoader from './AcademicProfileLoader'
 import TryAgain from '../../Rooms/components/TryAgain'
+import Loader from '../../../shared/components/Loader'
+
+function formatPhoneNumber(inputNumber) {
+    // Remove the country code if present
+    const formattedNumber = inputNumber.replace(/^\+?233/, '');
+
+    // Remove leading zeros if any
+    const finalNumber = formattedNumber.replace(/^0+/, '');
+
+    return finalNumber;
+}
 
 //load
 const loadAcademicProfile = (userTokenID) => {
@@ -26,6 +37,7 @@ export default function ProfileForm() {
     const [refreshComponent, setRefreshComponent] = useState(false)
     const [tokenState, setTokenState] = useState('pending')
     const [initialRender, setInitialRender] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const academicProfilePromise = useMemo(() => {
         if (userTokenID) {
@@ -40,14 +52,35 @@ export default function ProfileForm() {
     }, [userTokenID, refreshComponent])
 
     
+    const enableBtn = () => {
+        return;
+    }
+
+
+    
     const onSubmit = (formData) => {
-        console.log(dirtyFields);
+        if (dirtyFields) {
+            setIsLoading(true)
+
+            let profileInfo = {}
+
+            Object.keys(dirtyFields).forEach(field => {
+                profileInfo[field] = formData[field]
+            })
+
+            console.log(profileInfo);
+
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 5000);
+        } else {
+            console.log('no');
+        }
     }
 
     const {
         register,
         handleSubmit,
-        trigger,
         formState: { errors, dirtyFields, isValid, isDirty },
         control,
         setValue,
@@ -62,7 +95,7 @@ export default function ProfileForm() {
 
   return (
     <div>
-        <form /* onChange={handleSubmit(enableBtn)} */ onSubmit={handleSubmit(onSubmit)}>
+        <form onChange={handleSubmit(enableBtn)} onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <h3>
                     My Personal Profile
@@ -95,12 +128,12 @@ export default function ProfileForm() {
                             {...register('phoneNumber', { 
                                 required: "Your phone number is required to log into the portal",
                                 pattern: {
-                                value: /^\d{10}$/,
-                                message: "Please enter a 10-digit number with no spaces or special characters."
+                                value: /^\+233\d{9}$/,
+                                message: "Your phone number should match the format +233123456789."
                                 }
                             })}
                             id='tel'
-                            placeholder='0123456789'
+                            placeholder='+233123456789'
                             className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
                         />
 
@@ -154,8 +187,8 @@ export default function ProfileForm() {
                                 >
                                     {
                                         (academicProfile) => {
-                                            setValue('course', academicProfile.course)
-                                            setValue('level', academicProfile.level)
+                                            /* setValue('course', academicProfile.course, { shouldTouch: true })
+                                            setValue('level', academicProfile.level, { shouldTouch: true }) */
                                             return (
                                                 <div className='mt-5 student-info grid grid-cols-1 sm:grid-cols-2 gap-5'>
                                                     <div className='flex flex-col gap-2'>
@@ -167,6 +200,7 @@ export default function ProfileForm() {
                                                                 {...register('course', {required: "Your course is required"})}
                                                                 id='course'
                                                                 placeholder='BSc Physics'
+                                                                defaultValue={academicProfile.course}
                                                                 className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
                                                             />
 
@@ -187,6 +221,7 @@ export default function ProfileForm() {
                                                                 )
                                                             })}
                                                             id='level'
+                                                            defaultValue={academicProfile.level}
                                                             className='text-[14px] border outline-primary rounded py-2 px-4 cursor-pointer'
                                                         >
                                                             <option value={'none'}></option>
@@ -314,9 +349,36 @@ export default function ProfileForm() {
 
                     <div className='mt-8'>
                         <button 
+                            disabled={!(isDirty && isValid) || isLoading}
                             className={
                                 `flex justify-center items-center gap-2 
-                                ${(isDirty && isValid) ? ' group btn-primary1 ' : ' btn-disabled '} text-white`
+                                ${(isDirty && isValid) ? ' group btn-primary1 cursor-pointer' : ' btn-disabled cursor-not-allowed'}
+                                ${isLoading && ' btnisfckingdis btn-disabled cursor-not-allowed text-lg'} text-white`
+                            }
+                            type='submit'
+                        >
+                            {
+                                isLoading 
+                                ?
+                                    'Saving Changes'
+                                :
+                                    'Save Changes'
+                            }
+                            {
+                                isLoading 
+                                ?
+                                    <Loader />
+                                :
+                                    <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
+                                        <img src={arrow} alt='right arrow'/>
+                                    </figure>
+                            }
+                        </button>
+                        {/* <button 
+                            disabled={!(isDirty && isValid)}
+                            className={
+                                `flex justify-center items-center gap-2 
+                                ${(isDirty && isValid) ? ' group btn-primary1 ' : ' btn-disabled cursor-not-allowed'} text-white`
                             }
                             type='submit'
                         >
@@ -324,7 +386,7 @@ export default function ProfileForm() {
                             <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
                                 <img src={arrow} alt='right arrow'/>
                             </figure>
-                        </button>
+                        </button> */}
                     </div>                         
                 </div>
 

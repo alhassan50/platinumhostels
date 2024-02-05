@@ -16,12 +16,14 @@ export default function EmailSettings() {
         }
     })
 
-    const enableBtn = () => {
+    const enableBtn = (event) => {
         return;
     }
     
     const onSubmit = (formData) => {
-        console.log(dirtyFields);
+        if (dirtyFields.email) {
+            console.log(formData.email);
+        }
     }
 
   return (
@@ -56,7 +58,8 @@ export default function EmailSettings() {
 
             <div className='mt-5'>
                 <button 
-                    className={`${(isDirty && isValid) ? ' group btn-primary1 ' : ' btn-disabled '} text-white flex justify-center items-center gap-2`}
+                    disabled={!(isDirty && isValid)}
+                    className={`${(isDirty && isValid) ? ' group btn-primary1 ' : ' btn-disabled cursor-not-allowed '} text-white flex justify-center items-center gap-2`}
                     type='submit'
                 >
                     Change Email

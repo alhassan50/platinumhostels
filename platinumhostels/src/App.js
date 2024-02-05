@@ -87,6 +87,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       loader={LogInLoader}
     />
 
+    {/* book now routing */}
     <Route
       path="/booknow" 
       element={<BookNowLayout />}
