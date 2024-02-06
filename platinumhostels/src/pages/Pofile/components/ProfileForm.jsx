@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {Await, defer} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
@@ -14,6 +14,7 @@ import getAcademicProfile from '../../../utility/getAcademicProfile'
 import AcademicProfileLoader from './AcademicProfileLoader'
 import TryAgain from '../../Rooms/components/TryAgain'
 import Loader from '../../../shared/components/Loader'
+import updateProfileInfo from '../../../utility/updateProfileInfo'
 
 function formatPhoneNumber(inputNumber) {
     // Remove the country code if present
@@ -58,9 +59,9 @@ export default function ProfileForm() {
 
 
     
-    const onSubmit = (formData) => {
+    const onSubmit = async (formData) => {
         if (dirtyFields) {
-            setIsLoading(true)
+            //setIsLoading(true)
 
             let profileInfo = {}
 
@@ -70,9 +71,12 @@ export default function ProfileForm() {
 
             console.log(profileInfo);
 
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 5000);
+            try {
+                await updateProfileInfo(profileInfo, userTokenID)
+                alert('success')
+            } catch (error) {
+                alert(error)
+            }
         } else {
             console.log('no');
         }
@@ -353,7 +357,7 @@ export default function ProfileForm() {
                             className={
                                 `flex justify-center items-center gap-2 
                                 ${(isDirty && isValid) ? ' group btn-primary1 cursor-pointer' : ' btn-disabled cursor-not-allowed'}
-                                ${isLoading && ' btnisfckingdis btn-disabled cursor-not-allowed text-lg'} text-white`
+                                ${isLoading && ' btn-disabled cursor-not-allowed '} text-white`
                             }
                             type='submit'
                         >
