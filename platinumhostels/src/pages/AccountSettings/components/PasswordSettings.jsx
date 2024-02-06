@@ -3,8 +3,12 @@ import { useForm } from 'react-hook-form'
 
 //icons
 import arrow from '../../../assets/icons/right-arrow-3.png'
+import updatePassword from '../../../utility/updatePassword'
+import { useUserContext } from '../../../Context/UserContext'
 
 export default function PasswordSettings() {
+    const {user, setUser, userTokenID} = useUserContext()
+
     const [isDisabled, setIsDisbaled] = useState(true) 
     const {register, handleSubmit, formState: {errors, dirtyFields, isDirty, isValid}, getValues} = useForm({
         defaultValues: {
@@ -19,8 +23,20 @@ export default function PasswordSettings() {
       console.log(isDisabled);
     }
 
-    const onSubmit = (formData) => {
+    const onSubmit = async(formData) => {
       console.log(formData);
+      try {
+        const newUser = await updatePassword(
+            user.email, 
+            formData.password, 
+            formData.newPassword, 
+            formData.confirmNewPassword,
+            userTokenID)
+        setUser(newUser)
+        alert('success')
+      } catch (error) {
+        alert(error)
+      }
     }
 
     /* const watchNewPassword = watch("newPassword") */

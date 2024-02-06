@@ -26,8 +26,8 @@ export default function EmailSettings() {
             console.log(formData.email);
 
             try {
-                const user = await updateEmail(formData.email, userTokenID)
-                setUser(user)
+                const newUser = await updateEmail(formData.email, userTokenID)
+                setUser(newUser)
                 alert('success')
             } catch (error) {
                 alert(error)
