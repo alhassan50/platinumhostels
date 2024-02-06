@@ -42,7 +42,7 @@ export function UserContextProvider({children}) {
 
     return (
         <UserContext.Provider
-            value={{user, userTokenID, userSignedOut, setUserSignedOut}}
+            value={{user, setUser, userTokenID, userSignedOut, setUserSignedOut}}
         >
             {   
                 isLoading ? 

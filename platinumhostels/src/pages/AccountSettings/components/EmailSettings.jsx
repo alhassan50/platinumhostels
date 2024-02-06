@@ -6,9 +6,10 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 
 //context
 import { useUserContext } from '../../../Context/UserContext'
+import updateEmail from '../../../utility/updateEmail'
 
 export default function EmailSettings() {
-    const {user} = useUserContext()
+    const {user, userTokenID, setUser} = useUserContext()
 
     const {register, handleSubmit, formState: {errors, dirtyFields, isDirty, isValid}} = useForm({
         defaultValues: {
@@ -16,13 +17,21 @@ export default function EmailSettings() {
         }
     })
 
-    const enableBtn = (event) => {
+    const enableBtn = () => {
         return;
     }
     
-    const onSubmit = (formData) => {
+    const onSubmit = async (formData) => {
         if (dirtyFields.email) {
             console.log(formData.email);
+
+            try {
+                const user = await updateEmail(formData.email, userTokenID)
+                setUser(user)
+                alert('success')
+            } catch (error) {
+                alert(error)
+            }
         }
     }
 

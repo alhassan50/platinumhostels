@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import {Await, defer} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 
 //context
 import { useUserContext } from '../../../Context/UserContext'
@@ -14,17 +13,7 @@ import getAcademicProfile from '../../../utility/getAcademicProfile'
 import AcademicProfileLoader from './AcademicProfileLoader'
 import TryAgain from '../../Rooms/components/TryAgain'
 import Loader from '../../../shared/components/Loader'
-import updateProfileInfo from '../../../utility/updateProfileInfo'
-
-function formatPhoneNumber(inputNumber) {
-    // Remove the country code if present
-    const formattedNumber = inputNumber.replace(/^\+?233/, '');
-
-    // Remove leading zeros if any
-    const finalNumber = formattedNumber.replace(/^0+/, '');
-
-    return finalNumber;
-}
+import updateAcademicProfile from '../../../utility/updateAcademicProfile'
 
 //load
 const loadAcademicProfile = (userTokenID) => {
@@ -72,7 +61,7 @@ export default function AcademicProfileForm() {
             console.log(profileInfo);
 
             try {
-                await updateProfileInfo(profileInfo, userTokenID)
+                await updateAcademicProfile(profileInfo, userTokenID)
                 alert('success')
             } catch (error) {
                 alert(error)
@@ -86,12 +75,9 @@ export default function AcademicProfileForm() {
         register,
         handleSubmit,
         formState: { errors, dirtyFields, isValid, isDirty },
-        control,
-        setValue,
     } = useForm({
         defaultValues: {
-          course: '', 
-          level: ''
+          gender: 'male'
         },
         mode: 'onChange',
     })

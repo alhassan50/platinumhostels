@@ -1,4 +1,4 @@
-export default async function updateProfileInfo(profileInfo, userTokenID) {
+export default async function updateEmail(email, userTokenID) {
     //console.log(profileInfo);
     try {
         /* let response = await fetch(
@@ -12,12 +12,12 @@ export default async function updateProfileInfo(profileInfo, userTokenID) {
         ) */
 
         let response = await fetch(
-          `http://localhost:8888/.netlify/functions/updateProfile`, {
+          `http://localhost:8888/.netlify/functions/updateEmail`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({profileInfo: profileInfo, userTokenID: userTokenID})
+            body: JSON.stringify({email: email, userTokenID: userTokenID})
           }
         )
     
@@ -26,11 +26,11 @@ export default async function updateProfileInfo(profileInfo, userTokenID) {
           throw new Error(errorMessage);
         }
         
-        const userRecord = await response.json()
+        const user = await response.json()
 
-        console.log(userRecord);
+        //console.log(user);
 
-        return userRecord
+        return user
         
         /* let dummyResponse = []
 

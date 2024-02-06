@@ -10,7 +10,7 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 //utility
 import getAcademicProfile from '../../../utility/getAcademicProfile'
 import Loader from '../../../shared/components/Loader'
-import updateProfileInfo from '../../../utility/updateProfileInfo'
+import updatePersonalProfile from '../../../utility/updatePersonalProfile'
 
 /* function formatPhoneNumber(inputNumber) {
     // Remove the country code if present
@@ -23,7 +23,7 @@ import updateProfileInfo from '../../../utility/updateProfileInfo'
 } */
 
 export default function PersonalProfileForm() {
-    const {user, userTokenID} = useUserContext()
+    const {user, setUser,userTokenID} = useUserContext()
 
     const [tokenState, setTokenState] = useState('pending')
     const [isLoading, setIsLoading] = useState(false)
@@ -47,7 +47,8 @@ export default function PersonalProfileForm() {
             console.log(profileInfo);
 
             try {
-                await updateProfileInfo(profileInfo, userTokenID)
+                const user = await updatePersonalProfile(profileInfo, userTokenID)
+                setUser(user)
                 alert('success')
             } catch (error) {
                 alert(error)
