@@ -133,7 +133,13 @@ export default function Login() {
 
           <div className='flex flex-col gap-2 mt-5'>
               <button className={`${isSubmitting ? 'btn-disabled' : 'btn-primary1 group'} text-white flex justify-center items-center gap-2`}>
-                  {isSubmitting ? "Logging in" : 'Login'}
+                  {
+                    isSubmitting 
+                    ? 
+                      "Logging in" 
+                    : 
+                      'Login'
+                  }
                   {
                     isSubmitting ? 
                       <Loader />  

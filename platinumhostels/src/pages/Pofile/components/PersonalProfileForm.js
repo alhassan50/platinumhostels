@@ -75,7 +75,7 @@ export default function PersonalProfileForm() {
     }, [isDirty, isValid, isLoading])
 
   return (
-    <div>
+    <div className='max-w-[573px]'>
         <form onChange={handleSubmit(enableBtn)} onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <h3>
@@ -145,7 +145,7 @@ export default function PersonalProfileForm() {
             
 
             <div>
-                <div className='mt-5 grid grid-cols-1 sm:grid-cols-3 gap-5'>
+                <div className=''>
                     <div className='mt-8'>
                         <button 
                             disabled={isDisabled}

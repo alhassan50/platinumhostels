@@ -60,7 +60,7 @@
 
               {/* <div></div> */}
 
-              <div className='bg-[#fbfbfb] px-4 pb-4 pt-16 s-lg:pt-4 max-w-[1060px] min-h-screen'>
+              <div className='bg-[#fbfbfb] px-4 pb-4 pt-16 s-lg:pt-4 max-w-[1437px] min-h-screen'>
                   <PortalMobileHeader 
                     showSideBar={showSideBar} 
                     toggleSideBar={toggleSideBar} 
