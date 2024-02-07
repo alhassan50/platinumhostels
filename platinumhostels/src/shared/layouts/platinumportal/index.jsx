@@ -52,7 +52,7 @@
     return (
       <div className='overflow-x-hidden platinum-portal'>
           <ScrollRestoration/>
-          <div className='grid grid-cols-1 s-lg:grid-cols-[250px,auto]'>
+          <div className='grid bg-[#fbfbfb] grid-cols-1 s-lg:grid-cols-[250px,auto]'>
               <PortalHeader 
                 showSideBar={showSideBar} 
                 toggleSideBar={toggleSideBar}
@@ -60,7 +60,7 @@
 
               {/* <div></div> */}
 
-              <div className='bg-[#fbfbfb] px-4 pb-4 pt-16 s-lg:pt-4 min-h-screen'>
+              <div className='bg-[#fbfbfb] px-4 pb-4 pt-16 s-lg:pt-4 max-w-[1060px] min-h-screen'>
                   <PortalMobileHeader 
                     showSideBar={showSideBar} 
                     toggleSideBar={toggleSideBar} 

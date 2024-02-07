@@ -91,9 +91,9 @@ export default function EmailSettings() {
                     {
                         isLoading 
                         ?
-                            'Change Email'
-                        :
                             'Changing Email'
+                        :
+                            'Change Email'
                     }
                     {
                         isLoading 

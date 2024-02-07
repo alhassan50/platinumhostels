@@ -146,9 +146,9 @@ export default function PasswordSettings() {
                     {
                         isLoading 
                         ?
-                            'Change Password'
-                        :
                             'Changing Password'
+                        :
+                            'Change Password'
                     }
                     {
                         isLoading 
