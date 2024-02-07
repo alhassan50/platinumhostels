@@ -1,7 +1,7 @@
 export default async function createAccount(studentAccountData) {
     //console.log(studentAccountData);
     try {
-        /* let response = await fetch(
+        let response = await fetch(
           `https://platinumfunctions.netlify.app/.netlify/functions/createAccount`, {
             method: 'POST',
             headers: {
@@ -9,9 +9,8 @@ export default async function createAccount(studentAccountData) {
             },
             body: JSON.stringify(studentAccountData)
           }
-        ) */
-
-        let response = await fetch(
+        )
+        /* let response = await fetch(
           `http://localhost:8888/.netlify/functions/createAccount`, {
             method: 'POST',
             headers: {
@@ -19,7 +18,7 @@ export default async function createAccount(studentAccountData) {
             },
             body: JSON.stringify(studentAccountData)
           }
-        )
+        ) */
     
         if (!response.ok) {
           const errorMessage = await response.text();

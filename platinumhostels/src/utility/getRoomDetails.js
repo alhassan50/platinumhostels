@@ -4,16 +4,7 @@ async function getRoomDetails(userTokenID) {
       throw new Error ("Invalid user token")
     }
 
-    /* let roomStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/getRoomDetails',
-        {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ userTokenID: userTokenID }),
-        }
-    ) */
-    let roomStr = await fetch('http://localhost:8888/.netlify/functions/getRoomDetails',
+    let roomStr = await fetch('https://platinumfunctions.netlify.app/.netlify/functions/getRoomDetails',
         {
           method: 'POST',
           headers: {
@@ -22,6 +13,16 @@ async function getRoomDetails(userTokenID) {
           body: JSON.stringify({ userTokenID: userTokenID }),
         }
     )
+
+    /* let roomStr = await fetch('http://localhost:8888/.netlify/functions/getRoomDetails',
+        {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ userTokenID: userTokenID }),
+        }
+    ) */
    
     if (!roomStr.ok) {
         throw new Error(`Couldn't fetch rooms! Status: ${roomStr.status}.`);

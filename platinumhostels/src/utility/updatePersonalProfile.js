@@ -1,18 +1,8 @@
 export default async function updatePersonalProfile(profileInfo, userTokenID) {
     //console.log(profileInfo);
     try {
-        /* let response = await fetch(
-          `https://platinumfunctions.netlify.app/.netlify/functions/createAccount`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(profileInfo)
-          }
-        ) */
-
         let response = await fetch(
-          `http://localhost:8888/.netlify/functions/updatePersonalProfile`, {
+          `https://platinumfunctions.netlify.app/.netlify/functions/updatePersonalProfile`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -21,6 +11,16 @@ export default async function updatePersonalProfile(profileInfo, userTokenID) {
           }
         )
     
+        /* let response = await fetch(
+          `http://localhost:8888/.netlify/functions/updatePersonalProfile`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({profileInfo: profileInfo, userTokenID: userTokenID})
+          }
+        )
+     */
         if (!response.ok) {
           const errorMessage = await response.text();
           throw new Error(errorMessage);

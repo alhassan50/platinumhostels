@@ -1,18 +1,8 @@
 export default async function updateEmail(email, userTokenID) {
     //console.log(profileInfo);
     try {
-        /* let response = await fetch(
-          `https://platinumfunctions.netlify.app/.netlify/functions/createAccount`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(profileInfo)
-          }
-        ) */
-
         let response = await fetch(
-          `http://localhost:8888/.netlify/functions/updateEmail`, {
+          `https://platinumfunctions.netlify.app/.netlify/functions/updateEmail`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -21,6 +11,16 @@ export default async function updateEmail(email, userTokenID) {
           }
         )
     
+        /* let response = await fetch(
+          `http://localhost:8888/.netlify/functions/updateEmail`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: email, userTokenID: userTokenID})
+          }
+        )
+     */
         if (!response.ok) {
           const errorMessage = await response.text();
           throw new Error(errorMessage);

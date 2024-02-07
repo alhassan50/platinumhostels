@@ -1,18 +1,9 @@
 export default async function updatePassword(email, currentPassword, newPassword, confirmNewPassword, userTokenID) {
     //console.log(profileInfo);
     try {
-        /* let response = await fetch(
-          `https://platinumfunctions.netlify.app/.netlify/functions/createAccount`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(profileInfo)
-          }
-        ) */
 
         let response = await fetch(
-          `http://localhost:8888/.netlify/functions/updatePassword`, {
+          `https://platinumfunctions.netlify.app/.netlify/functions/updatePassword`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -27,6 +18,22 @@ export default async function updatePassword(email, currentPassword, newPassword
           }
         )
     
+        /* let response = await fetch(
+          `http://localhost:8888/.netlify/functions/updatePassword`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email, 
+                currentPassword: currentPassword, 
+                newPassword: newPassword, 
+                confirmNewPassword: confirmNewPassword,
+                userTokenID: userTokenID
+            })
+          }
+        )
+     */
         if (!response.ok) {
           const errorMessage = await response.text();
           throw new Error(errorMessage);
