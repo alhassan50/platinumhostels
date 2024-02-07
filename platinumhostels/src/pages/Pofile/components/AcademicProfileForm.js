@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import {Await, defer} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
@@ -23,11 +23,12 @@ const loadAcademicProfile = (userTokenID) => {
 
 export default function AcademicProfileForm() {
     const {userTokenID} = useUserContext()
-
+    
     const [refreshComponent, setRefreshComponent] = useState(false)
     const [tokenState, setTokenState] = useState('pending')
     const [initialRender, setInitialRender] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(true)
 
     const academicProfilePromise = useMemo(() => {
         if (userTokenID) {
@@ -45,29 +46,24 @@ export default function AcademicProfileForm() {
     const enableBtn = () => {
         return;
     }
-
-
     
     const onSubmit = async (formData) => {
         if (dirtyFields) {
-            //setIsLoading(true)
+            setIsLoading(true)
 
             let profileInfo = {}
-
             Object.keys(dirtyFields).forEach(field => {
                 profileInfo[field] = formData[field]
             })
 
-            console.log(profileInfo);
-
             try {
                 await updateAcademicProfile(profileInfo, userTokenID)
-                alert('success')
+                alert('Changes saved successfully.')
             } catch (error) {
-                alert(error)
+                alert("Couldn't save changes. Try again.")
+            } finally {
+                setIsLoading(false)
             }
-        } else {
-            console.log('no');
         }
     }
 
@@ -81,6 +77,14 @@ export default function AcademicProfileForm() {
         },
         mode: 'onChange',
     })
+
+    useEffect(() => {
+        if (!(isDirty && isValid) || isLoading) {
+            setIsDisabled(true)
+        } else {
+            setIsDisabled(false)
+        }
+    }, [isDirty, isValid, isLoading])
 
   return (
     <div>
@@ -181,12 +185,8 @@ export default function AcademicProfileForm() {
                 <div className='mt-5 grid grid-cols-1 sm:grid-cols-3 gap-5'>
                     <div className='mt-8'>
                         <button 
-                            disabled={!(isDirty && isValid) || isLoading}
-                            className={
-                                `flex justify-center items-center gap-2 
-                                ${(isDirty && isValid) ? ' group btn-primary1 cursor-pointer' : ' btn-disabled cursor-not-allowed'}
-                                ${isLoading && ' btn-disabled cursor-not-allowed '} text-white`
-                            }
+                            disabled={isDisabled}
+                            className={`${isDisabled ? ' btn-disabled ' : ' group btn-primary1 '} text-white flex justify-center items-center gap-2`}
                             type='submit'
                         >
                             {

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 //context
@@ -8,7 +8,6 @@ import { useUserContext } from '../../../Context/UserContext'
 import arrow from '../../../assets/icons/right-arrow-3.png'
 
 //utility
-import getAcademicProfile from '../../../utility/getAcademicProfile'
 import Loader from '../../../shared/components/Loader'
 import updatePersonalProfile from '../../../utility/updatePersonalProfile'
 
@@ -25,36 +24,32 @@ import updatePersonalProfile from '../../../utility/updatePersonalProfile'
 export default function PersonalProfileForm() {
     const {user, setUser,userTokenID} = useUserContext()
 
-    const [tokenState, setTokenState] = useState('pending')
     const [isLoading, setIsLoading] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(true)
 
     
     const enableBtn = () => {
         return;
     }
 
-
     const onSubmit = async (formData) => {
         if (dirtyFields) {
-            //setIsLoading(true)
+            setIsLoading(true)
 
             let profileInfo = {}
-
             Object.keys(dirtyFields).forEach(field => {
                 profileInfo[field] = formData[field]
             })
 
-            console.log(profileInfo);
-
             try {
                 const user = await updatePersonalProfile(profileInfo, userTokenID)
                 setUser(user)
-                alert('success')
+                alert('Changes saved successfully')
             } catch (error) {
-                alert(error)
+                alert("Couldn't save changes. Try again.")
+            } finally {
+                setIsLoading(false)
             }
-        } else {
-            console.log('no');
         }
     }
 
@@ -62,8 +57,6 @@ export default function PersonalProfileForm() {
         register,
         handleSubmit,
         formState: { errors, dirtyFields, isValid, isDirty },
-        control,
-        setValue,
     } = useForm({
         defaultValues: {
           fullName: `${user.displayName ? user.displayName : 'N/A'}`,
@@ -72,6 +65,14 @@ export default function PersonalProfileForm() {
         },
         mode: 'onChange',
     })
+
+    useEffect(() => {
+        if (!(isDirty && isValid) || isLoading) {
+            setIsDisabled(true)
+        } else {
+            setIsDisabled(false)
+        }
+    }, [isDirty, isValid, isLoading])
 
   return (
     <div>
@@ -147,12 +148,8 @@ export default function PersonalProfileForm() {
                 <div className='mt-5 grid grid-cols-1 sm:grid-cols-3 gap-5'>
                     <div className='mt-8'>
                         <button 
-                            disabled={!(isDirty && isValid) || isLoading}
-                            className={
-                                `flex justify-center items-center gap-2 
-                                ${(isDirty && isValid) ? ' group btn-primary1 cursor-pointer' : ' btn-disabled cursor-not-allowed'}
-                                ${isLoading && ' btn-disabled cursor-not-allowed '} text-white`
-                            }
+                            disabled={isDisabled}
+                            className={`${isDisabled ? ' btn-disabled ' : ' group btn-primary1 '} text-white flex justify-center items-center gap-2`}
                             type='submit'
                         >
                             {
