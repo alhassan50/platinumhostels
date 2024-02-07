@@ -1,16 +1,19 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form'
 
 //icons
 import arrow from '../../../assets/icons/right-arrow-3.png'
 import updatePassword from '../../../utility/updatePassword'
 import { useUserContext } from '../../../Context/UserContext'
+import Loader from '../../../shared/components/Loader'
 
 export default function PasswordSettings() {
     const {user, setUser, userTokenID} = useUserContext()
 
-    const [isDisabled, setIsDisbaled] = useState(true) 
-    const {register, handleSubmit, formState: {errors, dirtyFields, isDirty, isValid}, getValues} = useForm({
+    const [isDisabled, setIsDisabled] = useState(true) 
+    const [isLoading, setIsLoading] = useState(false)
+
+    const {register, handleSubmit, formState: {errors, dirtyFields, isDirty, isValid}, reset, getValues} = useForm({
         defaultValues: {
             password: "",
             newPassword: "",
@@ -19,23 +22,38 @@ export default function PasswordSettings() {
     })
 
     const enableBtn = () => {
-      setIsDisbaled(false)
+      setIsDisabled(false)
       console.log(isDisabled);
     }
+
+    useEffect(() => {
+        if (isDirty || isLoading) {
+            setIsDisabled(true)
+        } else {
+            setIsDisabled(false)
+        }
+    }, [isDirty, isLoading])
 
     const onSubmit = async(formData) => {
       console.log(formData);
       try {
+        setIsLoading(true)
+        
         const newUser = await updatePassword(
             user.email, 
             formData.password, 
             formData.newPassword, 
             formData.confirmNewPassword,
-            userTokenID)
+            userTokenID
+        )
+
         setUser(newUser)
-        alert('success')
+        alert('Password updated successfully')
+        reset()
       } catch (error) {
-        alert(error)
+        alert('Unable to update your password')
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -120,13 +138,27 @@ export default function PasswordSettings() {
 
             <div className='mt-5'>
                 <button 
-                    className={`${(isDirty) ? ' group btn-primary1 ' : ' btn-disabled '} text-white flex justify-center items-center gap-2`}
+                    disabled={isDisabled}
+                    className={`${isDisabled ? ' btn-disabled ' : ' group btn-primary1 '} 
+                    text-white flex justify-center items-center gap-2`}
                     type='submit'
                 >
-                    Change Password
-                    <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
-                        <img src={arrow} alt='right arrow'/>
-                    </figure>
+                    {
+                        isLoading 
+                        ?
+                            'Change Password'
+                        :
+                            'Changing Password'
+                    }
+                    {
+                        isLoading 
+                        ?
+                            <Loader />
+                        :
+                            <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
+                                <img src={arrow} alt='right arrow'/>
+                            </figure>
+                    }
                 </button>
             </div>
         </div>

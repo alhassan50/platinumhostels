@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
 
 //icons
@@ -7,15 +7,29 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 //context
 import { useUserContext } from '../../../Context/UserContext'
 import updateEmail from '../../../utility/updateEmail'
+import Loader from '../../../shared/components/Loader'
 
 export default function EmailSettings() {
     const {user, userTokenID, setUser} = useUserContext()
 
+    const [isLoading, setIsLoading] = useState(false)
+    
+    
     const {register, handleSubmit, formState: {errors, dirtyFields, isDirty, isValid}} = useForm({
         defaultValues: {
             email: user.email
         }
     })
+    
+    const [isDisabled, setIsDisabled] = useState(true)
+
+    useEffect(() => {
+        if (!(isDirty && isValid) || isLoading) {
+            setIsDisabled(true)
+        } else {
+            setIsDisabled(false)
+        }
+    }, [isDirty, isValid, isLoading])
 
     const enableBtn = () => {
         return;
@@ -26,11 +40,14 @@ export default function EmailSettings() {
             console.log(formData.email);
 
             try {
+                setIsLoading(true)
                 const newUser = await updateEmail(formData.email, userTokenID)
                 setUser(newUser)
-                alert('success')
+                alert('Email updated successfully')
             } catch (error) {
-                alert(error)
+                alert('Unable to update your email')
+            } finally {
+                setIsLoading(false)
             }
         }
     }
@@ -67,14 +84,26 @@ export default function EmailSettings() {
 
             <div className='mt-5'>
                 <button 
-                    disabled={!(isDirty && isValid)}
-                    className={`${(isDirty && isValid) ? ' group btn-primary1 ' : ' btn-disabled cursor-not-allowed '} text-white flex justify-center items-center gap-2`}
+                    disabled={isDisabled}
+                    className={`${isDisabled ? ' btn-disabled cursor-not-allowed ' : ' group btn-primary1 '} text-white flex justify-center items-center gap-2`}
                     type='submit'
                 >
-                    Change Email
-                    <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
-                        <img src={arrow} alt='right arrow'/>
-                    </figure>
+                    {
+                        isLoading 
+                        ?
+                            'Change Email'
+                        :
+                            'Changing Email'
+                    }
+                    {
+                        isLoading 
+                        ?
+                            <Loader />
+                        :
+                            <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
+                                <img src={arrow} alt='right arrow'/>
+                            </figure>
+                    }
                 </button>
             </div>
         </div>
