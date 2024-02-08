@@ -31,7 +31,7 @@
 
     const path = useLoaderData()
 
-    if (!user) {
+    /* if (!user) {
       return (
         userSignedOut ?
           <Navigate
@@ -44,7 +44,7 @@
             replace
           />
       )
-    }
+    } */
 
     //console.log('user: ', user);
     //console.log('user token: ', userTokenID);

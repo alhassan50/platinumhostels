@@ -118,7 +118,7 @@ export default function PersonalProfileForm() {
                             className='text-[14px] border outline-primary rounded py-2 px-4 placeholder:font-light'
                         />
 
-                        <div className='sm:max-w-[300px] max-w-[200px]'>
+                        <div className='max-w-[300px] sm:max-w-[200px]'>
                             <p className='text-red-600 text-[12px]'>{errors.phoneNumber?.message}</p>
                         </div>
                     </div>
