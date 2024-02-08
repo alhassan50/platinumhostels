@@ -242,14 +242,25 @@ svg {
 
 @keyframes loaderAnimation {
   0% {
-    transform: translateX(0%);
   }
+
+  25% {
+    width: 100%;
+    transition: 100%;
+  }
+
   50% {
-    transform: translateX(100%);
-    width: 40px;
+    transform: scaleX(.2);
+    transform-origin: right;
   }
-  10%, 100% {
-    transform: translateX(0%);
+
+  75% {
+    width: 100%;
+    transition: 100%;
+  }
+
+  100% {
+    
   }
 }
 
