@@ -240,7 +240,22 @@ svg {
   border: 0px
 }
 
+@keyframes loaderAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(100%);
+    width: 40px;
+  }
+  10%, 100% {
+    transform: translateX(0%);
+  }
+}
 
+.page-loader {
+  animation: loaderAnimation 1.5s ease-in-out infinite;
+}
 
 @media screen and (min-width: 768px) {
   .dropdown {

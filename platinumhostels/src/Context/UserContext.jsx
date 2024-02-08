@@ -2,24 +2,8 @@ import React, { useState, useEffect, useContext, createContext } from 'react'
 
 //utility
 import { unsubscribe } from '../utility/authUtility'
+import PageLoader from '../shared/components/PageLoader'
 
-//component
-import Loader from '../shared/components/Loader'
-
-
-const PageLoader = () => {
-    return (
-        <div className='min-h-screen flex justify-center items-center'>
-            <div className='flex justify-center items-center'>
-                <h3>
-                    Please Wait
-                </h3>
-                &nbsp;
-                <Loader />
-            </div>
-        </div>
-    )
-}
 const UserContext = createContext()
 
 export function UserContextProvider({children}) {
