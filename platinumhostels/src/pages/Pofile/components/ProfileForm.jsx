@@ -6,9 +6,9 @@ import AcademicProfileForm from './AcademicProfileForm'
 
 export default function ProfileForm() {
   return (
-    <div>
+    <>
         <PersonalProfileForm />
         <AcademicProfileForm />
-    </div>
+    </>
   )
 }

@@ -451,19 +451,20 @@ export default function BookNow() {
             }
 
             {
-                (formStep >= 0 & formStep <= 2) ?
-                <div className='mt-10 flex flex-col md:flex-row gap-4'>
-                    {   
-                        (formStep !== 0) &&
-                        <PrevBtn decreaseFormStep={decreaseFormStep} />
-                    }
-                    <NextBtn 
-                        formStep={formStep}
-                        increaseFormStep={increaseFormStep} 
-                    />
-                </div>
+                (formStep >= 0 & formStep <= 2) 
+                ?
+                    <div className='mt-10 flex flex-col md:flex-row gap-4'>
+                        {   
+                            (formStep !== 0) &&
+                            <PrevBtn decreaseFormStep={decreaseFormStep} />
+                        }
+                        <NextBtn 
+                            formStep={formStep}
+                            increaseFormStep={increaseFormStep} 
+                        />
+                    </div>
                 :
-                null
+                    null
             }
           </form>
           <DevTool control={control} />
