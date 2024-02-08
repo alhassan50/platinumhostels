@@ -125,8 +125,8 @@ export default function Login() {
 
           <div className='mt-5'>
               <Link>
-                  <p className='capitalize text-primary text-[14px] inline-block hover:underline'>
-                      forgot password?
+                  <p className='text-primary text-[14px] inline-block hover:underline'>
+                      Forgot password?
                   </p>
               </Link>
           </div>
@@ -149,6 +149,20 @@ export default function Login() {
                       </figure>                    
                   }
               </button>
+          </div>
+
+          <div className='mt-5'>
+            <p className=' text-black text-[14px] inline-block'>
+                Don't have an account? 
+            </p>
+            
+            &nbsp;
+
+            <Link to={'/bookNow'}>
+                <p className='text-primary text-[14px] inline-block hover:underline'>
+                    Book room now!
+                </p>
+            </Link>
           </div>
 
         </form>
