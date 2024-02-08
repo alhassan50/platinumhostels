@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import { Link, useNavigate, redirect, useLoaderData, defer, Await } from 'react-router-dom';
+import { Link, useNavigate, useLoaderData, defer, Await } from 'react-router-dom';
 import { useBookNowContext } from '../../Context/BookNowContext';
 
 //utility

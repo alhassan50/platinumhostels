@@ -146,14 +146,14 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
 
                             <div className='flex gap-4 '>
                                 <h4
-                                    className={`${summaryHeader === 'personalDetails' ? 'active-box-link' : ''} pb-1 cursor-pointer`}
+                                    className={`${summaryHeader === 'personalDetails' ? 'active-box-link' : 'opacity-50'} font-bold pb-1  cursor-pointer`}
                                     onClick={() => (setSummaryHeader('personalDetails'))}
                                 >
                                     Personal Details
                                 </h4>
 
                                 <h4
-                                    className={`${summaryHeader === 'roomDetails' ? 'active-box-link' : ''} pb-1 cursor-pointer`}
+                                    className={`${summaryHeader === 'roomDetails' ? 'active-box-link' : 'opacity-50'} pb-1 cursor-pointer font-bold`}
                                     onClick={() => (setSummaryHeader('roomDetails'))}
                                 >
                                     Room Details

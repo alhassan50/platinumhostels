@@ -140,7 +140,7 @@ mb-2 leading-6 text-slate-900 font-semibold dark:text-slate-200 */
   }
 
   .active-box-link {
-    @apply font-bold border-b-2 border-primary
+    @apply border-b-2 border-primary opacity-100
   }
 }
 
