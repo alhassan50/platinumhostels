@@ -268,6 +268,22 @@ svg {
   animation: loaderAnimation 1.5s ease-in-out infinite;
 }
 
+@keyframes logoAnimation {
+  0% {
+    transform: scaleY(.7);
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+.animate-logo {
+  animation: logoAnimation .2s linear;
+}
+
 @media screen and (min-width: 768px) {
   .dropdown {
     display: inline-block;
