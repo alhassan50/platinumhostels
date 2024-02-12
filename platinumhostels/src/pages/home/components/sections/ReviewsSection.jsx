@@ -1,6 +1,8 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import {motion} from "framer-motion"
+import { fadeIn } from '../../../../shared/components/MotionVariants'
 
 // css
 import 'swiper/css';
@@ -22,9 +24,14 @@ export default function ReviewsSection() {
     <section className='review-section bg-[#fafafa]'>
         <div className='section-container'>
             <div className='section-header capitalize text-center'>
-                <h2>
+                <motion.h2
+                  variants={fadeIn("up", .5, 0)}
+                  initial="offscreen"
+                  whileInView="onscreen"
+                  viewport={{ once: true, amount: 0 }}
+                >
                   hear from our community
-                </h2>
+                </motion.h2>
             </div>
 
             <div className='section-body'>
@@ -36,9 +43,19 @@ export default function ReviewsSection() {
                   className=''
               >
                 {
-                  Reviewers.map(reviewer => (
-                    <SwiperSlide key={reviewer.name} className=''>
-                      <ReviewCard reviewer={reviewer}/>
+                  Reviewers.map((reviewer, index) => (
+                    <SwiperSlide 
+                      key={reviewer.name} 
+                      className=''
+                    >
+                      <motion.div
+                        variants={fadeIn("up", .5, 0)}
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ once: true, amount: 0 }}
+                      >
+                        <ReviewCard reviewer={reviewer}/>
+                      </motion.div>
                     </SwiperSlide>
                   ))
                 }

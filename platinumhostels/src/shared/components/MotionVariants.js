@@ -1,4 +1,4 @@
-export const fadeIn = (direction,duration ,delay) => {
+export const fadeIn = (direction, duration, delay, opacity) => {
   return {
     offscreen: {
       y: direction === 'up' ? 70 : direction === 'down' ? -70 : 0,
@@ -14,7 +14,7 @@ export const fadeIn = (direction,duration ,delay) => {
     onscreen: {
       y: 0,
       x: 0,
-      opacity: 1,
+      opacity: opacity ? opacity : 1,
       transition: {
         type: 'tween',
         duration: duration,
@@ -74,7 +74,7 @@ return {
       type: 'tween',
       duration: duration,
       delay: delay,
-      ease: [0.1, 0.1, 0.1, .15],
+      ease: [0.4, 0.0, 0.2, 1],
     },
   },
   onscreen: {
@@ -85,7 +85,7 @@ return {
       type: 'tween',
       duration: duration,
       delay: delay,
-      ease: [0.1, 0.1, 0.1, .15],
+      ease: [0.4, 0.0, 0.2, 1],
     },
   },
 }};
