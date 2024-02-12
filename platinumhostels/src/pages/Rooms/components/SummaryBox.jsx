@@ -55,17 +55,14 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
             try {     
                 const userRecord = await createAccount(studentAccountData)
 
-                /* console.log("userRecord: ", userRecord);
-                console.log(userRecord.accountData);
-                console.log(userRecord.uid); */
-
                 const customToken = await getCustomToken(userRecord.accountData, userRecord.uid)
-                //console.log(customToken);
+
                 setCustomToken(customToken)
                 return userRecord
             } catch (error) {
                 setErrorMsg(error)
                 setIsLoading(false)
+                setSignUpStatus(null)
             }
         }
 
@@ -74,10 +71,8 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
             try {     
                 customToken = await createRecord(studentAccountData, uid)
                 return customToken
-                //console.log(customToken);
             } catch (error) {
-                setErrorMsg(error)
-                setIsLoading(false)
+                throw error
             }
         }
 

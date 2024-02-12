@@ -106,7 +106,7 @@ export default function AcademicProfileForm() {
                                     resolve={academicProfilePromise.data.academicProfile}
                                     errorElement={
                                         <TryAgain 
-                                            errorMessage={"Something went wrong."} 
+                                            errorMessage={"Something went wrong.\n"} 
                                             setRefreshComponent={setRefreshComponent}
                                         />
                                     }

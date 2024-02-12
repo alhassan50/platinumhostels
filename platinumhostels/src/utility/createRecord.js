@@ -1,7 +1,7 @@
 export default async function createRecord(accountData, uid) {
     //console.log(accountData);
     try {
-        let response = await fetch(
+        /* let response = await fetch(
           `https://platinumfunctions.netlify.app/.netlify/functions/createRecord`, {
             method: 'POST',
             headers: {
@@ -9,8 +9,9 @@ export default async function createRecord(accountData, uid) {
             },
             body: JSON.stringify({accountData: accountData, uid: uid})
           }
-        )
-        /* let response = await fetch(
+        ) */
+        
+        let response = await fetch(
           `http://localhost:8888/.netlify/functions/createRecord`, {
             method: 'POST',
             headers: {
@@ -18,7 +19,7 @@ export default async function createRecord(accountData, uid) {
             },
             body: JSON.stringify({accountData: accountData, uid: uid})
           }
-        ) */
+        )
     
         if (!response.ok) {
           const errorMessage = await response.text();

@@ -1,4 +1,7 @@
 import React from 'react'
+import { motion } from "framer-motion"
+import { fadeIn } from './MotionVariants'
+
 
 export default function Hero({children, headerText, desc, bgImage}) {
   return (
@@ -8,18 +11,33 @@ export default function Hero({children, headerText, desc, bgImage}) {
             <div 
                 className='flex justify-center items-center flex-col max-w-[900px] mx-auto'
             >
-                <h1>
+                <motion.h1
+                    variants={fadeIn("up", 0.5, 0.2)}
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0 }}
+                >
                     {headerText}
-                </h1>
+                </motion.h1>
 
-                <p 
-                    className='hero-desc'>
+                <motion.p 
+                    variants={fadeIn("up", 0.5, 0.4)}
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0 }}
+                    className='hero-desc'
+                >
                     {desc}
-                </p>
+                </motion.p>
 
-                <div>
+                <motion.div
+                    variants={fadeIn("up", 0.5, 0.6)}
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0 }}
+                >
                     {children}
-                </div>
+                </motion.div>
             </div>
         </div>
     </section>
