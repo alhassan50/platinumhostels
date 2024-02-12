@@ -21,7 +21,7 @@ export default function Hero({children, headerText, desc, bgImage}) {
                 </motion.h1>
 
                 <motion.p 
-                    variants={fadeIn("up", 0.5, 0.4)}
+                    variants={fadeIn("up", 0.5, 0.3)}
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{ once: true, amount: 0 }}
@@ -31,7 +31,7 @@ export default function Hero({children, headerText, desc, bgImage}) {
                 </motion.p>
 
                 <motion.div
-                    variants={fadeIn("up", 0.5, 0.6)}
+                    variants={fadeIn("up", 0.5, 0.4)}
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{ once: true, amount: 0 }}
