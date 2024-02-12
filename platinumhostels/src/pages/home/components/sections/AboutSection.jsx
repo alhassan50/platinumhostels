@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
 import { fadeIn } from '../../../../shared/components/MotionVariants'
 
 //images
@@ -9,7 +9,7 @@ export default function AboutSection() {
   return (
     <section className='bg-[#fafafa]'>
         <div className='section-container'>
-            <div className='grid s-lg:grid-cols-2 gap-10 s-lg:gap-16'>
+            <div className='grid s-lg:grid-cols-2 gap-10'>
                 <motion.div
                     variants={fadeIn("up", .5, 0)}
                     initial="offscreen"
@@ -35,15 +35,9 @@ export default function AboutSection() {
                     </div>
                 </motion.div>
 
-                <motion.figure 
-                    variants={fadeIn("up", .5, 0)}
-                    initial="offscreen"
-                    whileInView="onscreen"
-                    viewport={{ once: true, amount: 0 }}
-                    className='section-image overflow-hidden shadow-primary rounded-md'
-                >
+                <figure className='section-image overflow-hidden shadow-primary rounded-md'>
                     <img src={hallway} alt='hallway' className='object-cover object-center w-full h-full'/>
-                </motion.figure>
+                </figure>
             </div>
         </div>
     </section>

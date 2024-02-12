@@ -48,14 +48,7 @@ export default function ReviewsSection() {
                       key={reviewer.name} 
                       className=''
                     >
-                      <motion.div
-                        variants={fadeIn("up", .5, 0)}
-                        initial="offscreen"
-                        whileInView="onscreen"
-                        viewport={{ once: true, amount: 0 }}
-                      >
                         <ReviewCard reviewer={reviewer}/>
-                      </motion.div>
                     </SwiperSlide>
                   ))
                 }
