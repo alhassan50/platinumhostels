@@ -22,6 +22,7 @@ import AccountSettings from './pages/AccountSettings';
 import Payment from './pages/Payment';
 import FAQs from './pages/FAQs';
 import Rooms, {loader as RoomsLoader} from './pages/Rooms';
+import FAQComponent from './shared/components/FAQComponent';
 
 
 //layouts
@@ -54,7 +55,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='contact' element={<Contact/>} />
       
       <Route path='faqs' element={<FAQsContainer />}>
-        <Route index element={<FAQs />} />
+        <Route index element={<FAQComponent />} />
       </Route>
       
       <Route path='*' element={<NotFound/>} />
