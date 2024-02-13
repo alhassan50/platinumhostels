@@ -10,7 +10,7 @@ export default function AboutHostel({aboutHostel, amenities, hostelLocation}) {
         <div className='section-container'>
             <div className='section-header'>
                 <motion.h2 
-                    variants={fadeIn("up", 0.5, 0.4)}
+                    variants={fadeIn("up", 0.5, 0)}
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{ once: true, amount: 0 }}
@@ -25,7 +25,7 @@ export default function AboutHostel({aboutHostel, amenities, hostelLocation}) {
             <div className='grid s-lg:grid-cols-2 gap-16'>
                 <div>
                     <motion.div 
-                        variants={fadeIn("up", 0.5, 0.4)}
+                        variants={fadeIn("up", 0.5, 0)}
                         initial="offscreen"
                         whileInView="onscreen"
                         viewport={{ once: true, amount: 0 }}
@@ -47,7 +47,7 @@ export default function AboutHostel({aboutHostel, amenities, hostelLocation}) {
                 <div>
                     <motion.div 
                         className='section-header'
-                        variants={fadeIn("up", 0.5, 0.4)}
+                        variants={fadeIn("up", 0.5, 0)}
                         initial="offscreen"
                         whileInView="onscreen"
                         viewport={{ once: true, amount: 0 }}
@@ -60,7 +60,7 @@ export default function AboutHostel({aboutHostel, amenities, hostelLocation}) {
                     <div className='mt-4 grid gap-5 sm:grid-cols-2'>
                         {amenities.map(amenity => (
                             <motion.div 
-                                variants={fadeIn("up", 0.5, 0.4)}
+                                variants={fadeIn("up", 0.5, 0)}
                                 initial="offscreen"
                                 whileInView="onscreen"
                                 viewport={{ once: true, amount: 0 }}

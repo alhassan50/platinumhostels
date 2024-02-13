@@ -9,7 +9,7 @@ export default function Gallery({gallery}) {
         <div className='section-container'>
             <div className='section-header'>
                 <motion.h2 
-                    variants={fadeIn("up", 0.5, 0.4)}
+                    variants={fadeIn("up", 0.5, 0)}
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{ once: true, amount: 0 }}
@@ -24,7 +24,7 @@ export default function Gallery({gallery}) {
                     {gallery.map((image, index) => (
                         <motion.div
                             key={index}
-                            variants={fadeIn("up", 0.5, 0.4)}
+                            variants={fadeIn("up", 0.5, 0)}
                             initial="offscreen"
                             whileInView="onscreen"
                             viewport={{ once: true, amount: 0 }}

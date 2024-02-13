@@ -11,7 +11,7 @@ export default function RoomSection({roomdetails, hostelLocation}) {
         <div className='section-container'>
             <div className='section-header'>
                 <motion.h2 
-                    variants={fadeIn("up", 0.5, 0.4)}
+                    variants={fadeIn("up", 0.5, 0)}
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{ once: true, amount: 0 }}
@@ -25,7 +25,7 @@ export default function RoomSection({roomdetails, hostelLocation}) {
                 <div className='grid md:grid-cols-2 s-lg:grid-cols-3 gap-10'>
                     {roomdetails.map(room => (
                         <motion.div 
-                            variants={fadeIn("up", 0.5, 0.4)}
+                            variants={fadeIn("up", 0.5, 0)}
                             initial="offscreen"
                             whileInView="onscreen"
                             viewport={{ once: true, amount: 0 }}
