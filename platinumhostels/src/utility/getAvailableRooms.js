@@ -1,20 +1,20 @@
 const getAvailableRooms = async (hostelLocation, roomType, gender) => {
   try { 
-    /* let responseRAW = await fetch(
+    let responseRAW = await fetch(
       `https://platinumfunctions.netlify.app/.netlify/functions/getAvailableRooms?hostelLocation=${hostelLocation}&roomType=${roomType}&gender=${gender}`, {
         headers: {
           'Content-Type': 'application/json'
         }
       }
-    ) */
+    )
 
-    let responseRAW = await fetch(
+    /* let responseRAW = await fetch(
       `http://localhost:8888/.netlify/functions/getAvailableRooms?hostelLocation=${hostelLocation}&roomType=${roomType}&gender=${gender}`, {
         headers: {
           'Content-Type': 'application/json'
         }
       }
-    )
+    ) */
 
     if (!responseRAW.ok) {
       throw new Error(`Couldn't fetch rooms! Status: ${responseRAW.status}.`);
