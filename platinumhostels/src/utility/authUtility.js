@@ -5,7 +5,8 @@ import {
     signInWithEmailAndPassword, 
     signOut ,
     getIdToken,
-    signInWithCustomToken
+    signInWithCustomToken,
+    sendPasswordResetEmail
 } from "firebase/auth"
 
 export const signUpUser = async (email, password) => {
@@ -41,3 +42,17 @@ export const unsubscribe = async (setCurrenUser, setIsLoading, setUserTokenID) =
         setIsLoading(false)
     })
 }
+
+export const resetPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      return 'Reset link sent to your email.';
+    } catch (error) {
+        console.log(error);
+        const errorMessage = error.message
+        if (errorMessage === 'Firebase: Error (auth/network-request-failed).') {
+            throw new Error("Couldn't send link. Check your internet connection.");
+        }
+        throw new Error('Error sending password reset email');
+    }
+  };
