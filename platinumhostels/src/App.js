@@ -23,6 +23,7 @@ import Payment from './pages/Payment';
 import FAQs from './pages/FAQs';
 import Rooms, {loader as RoomsLoader} from './pages/Rooms';
 import FAQComponent from './shared/components/FAQComponent';
+import ResetPassword from './pages/ResetPassword';
 
 
 //layouts
@@ -86,6 +87,11 @@ const router = createBrowserRouter(createRoutesFromElements(
       path='/login' 
       element={<Login/>}
       loader={LogInLoader}
+    />
+    
+    <Route 
+      path='/resetpassword' 
+      element={<ResetPassword/>}
     />
 
     {/* book now routing */}

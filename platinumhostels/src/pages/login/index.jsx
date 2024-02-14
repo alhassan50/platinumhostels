@@ -124,7 +124,7 @@ export default function Login() {
           </div>
 
           <div className='mt-5'>
-              <Link>
+              <Link to={'/resetpassword'}>
                   <p className='text-primary text-[14px] inline-block hover:underline'>
                       Forgot password?
                   </p>
