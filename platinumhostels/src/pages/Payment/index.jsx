@@ -46,33 +46,39 @@ export default function Payment() {
         <div>
             <PaymentSectionHeader />
 
-            <React.Suspense
-              fallback={
-                <div className=''>
-                    <PaymentLoader />
-                </div>
-              }
-            >
-              <Await 
-                resolve={paymentDetailsPromise.data.paymentDetails}
-                errorElement={
-                    <TryAgain 
-                        setRefreshComponent={setRefreshComponent}
-                    />
-                }
-              >
-                {
-                  (paymentDetails) => {
-                      return(
-                        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 justify-center items-start mt-4'>
-                            <PaymentDetails paymentDetails={paymentDetails} />
-                            <PaymentHistory paymentDetails= {paymentDetails} />
-                        </div>
-                      )
+            {
+              tokenState !== 'valid' 
+              ?
+                <PaymentLoader />
+              :
+                <React.Suspense
+                  fallback={
+                    <div className=''>
+                        <PaymentLoader />
+                    </div>
                   }
-                }
-              </Await>
-            </React.Suspense>
+                >
+                  <Await 
+                    resolve={paymentDetailsPromise.data.paymentDetails}
+                    errorElement={
+                        <TryAgain 
+                            setRefreshComponent={setRefreshComponent}
+                        />
+                    }
+                  >
+                    {
+                      (paymentDetails) => {
+                          return(
+                            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 justify-center items-start mt-4'>
+                                <PaymentDetails paymentDetails={paymentDetails} />
+                                <PaymentHistory paymentDetails= {paymentDetails} />
+                            </div>
+                          )
+                      }
+                    }
+                  </Await>
+                </React.Suspense>
+            }
         </div>
     </div>
   )

@@ -124,7 +124,9 @@ export default function Login() {
           </div>
 
           <div className='mt-5'>
-              <Link to={'/resetpassword'}>
+              <Link 
+                to={`/resetpassword${searchParams.get("redirect") ? `?redirect=${searchParams.get("redirect")}` : ''}`}
+              >
                   <p className='text-primary text-[14px] inline-block hover:underline'>
                       Forgot password?
                   </p>

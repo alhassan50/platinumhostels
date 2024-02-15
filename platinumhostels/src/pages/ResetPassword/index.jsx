@@ -50,7 +50,7 @@ export default function ResetPassword() {
     <div className='relative'>
         <div className='absolute top-[2%] left-[2%]'>
             <Link
-                to={'/login'}
+                to={`/login${searchParams.get("redirect") ? `?redirect=${searchParams.get("redirect")}` : ''}`}
             > 
                 <div className='flex gap-2 items-center group'>
                     <figure className='w-4 rotate-180 group-hover:-translate-x-1 transition-all duration-150'>
