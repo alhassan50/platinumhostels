@@ -16,10 +16,6 @@
       "to": "payment"
     },
     {
-      "title": "Book Room",
-      "to": "booknow"
-    },
-    {
       "title": "FAQs",
       "to": "faqs"
     },

@@ -35,6 +35,7 @@ import {BooNow as BookNowLayout }  from './shared/layouts/BookNow';
 
 //styles
 import './styles/App.css';
+import BookingPDF from './pages/dashboard/components/docs/BookingPDF';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -54,6 +55,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       </Route>
       <Route path='ourteam' element={<Team/>} />
       <Route path='contact' element={<Contact/>} />
+      <Route path='pdf' element={<BookingPDF/>} />
       
       <Route path='faqs' element={<FAQsContainer />}>
         <Route index element={<FAQComponent />} />
@@ -78,6 +80,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='profile' element={<Profile />} />
       <Route path='myroomie' element={<MyRoomie />} />
       <Route path='payment' element={<Payment />} />
+      <Route path='booknow' element={<Payment />} />
       <Route path='faqs' element={<FAQs />} />
       <Route path='accountsettings' element={<AccountSettings />} />
       <Route path='*' element={<NotFound/>} />

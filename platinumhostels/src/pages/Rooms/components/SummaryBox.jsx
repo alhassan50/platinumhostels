@@ -16,6 +16,7 @@ import arrow from '../../../assets/icons/right-arrow-3.png'
 import createAccount from '../../../utility/createAccount'
 import createRecord from '../../../utility/createRecord'
 import { signInUserWithToken } from '../../../utility/authUtility'
+import createRoomie from '../../../utility/createRoomie'
 
 export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
     const navigate = useNavigate()
@@ -55,6 +56,8 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
             try {     
                 const userRecord = await createAccount(studentAccountData)
 
+                await addRoomie(userRecord.accountData, userRecord.uid)
+
                 const customToken = await getCustomToken(userRecord.accountData, userRecord.uid)
 
                 setCustomToken(customToken)
@@ -66,6 +69,14 @@ export default function SummaryBox({toggleShowSummaryBox, selectedRoom}) {
             }
         }
 
+        async function addRoomie(studentAccountData, uid) {
+            try {     
+                await createRoomie(studentAccountData, uid)
+            } catch (error) {
+                throw error
+            }
+        }
+        
         async function getCustomToken(studentAccountData, uid) {
             let customToken
             try {     
