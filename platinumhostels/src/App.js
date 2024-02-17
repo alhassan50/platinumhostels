@@ -55,7 +55,6 @@ const router = createBrowserRouter(createRoutesFromElements(
       </Route>
       <Route path='ourteam' element={<Team/>} />
       <Route path='contact' element={<Contact/>} />
-      <Route path='pdf' element={<BookingPDF/>} />
       
       <Route path='faqs' element={<FAQsContainer />}>
         <Route index element={<FAQComponent />} />
@@ -91,6 +90,8 @@ const router = createBrowserRouter(createRoutesFromElements(
       element={<Login/>}
       loader={LogInLoader}
     />
+
+    <Route path='/pdf' element={<BookingPDF/>} />
     
     <Route 
       path='/resetpassword' 

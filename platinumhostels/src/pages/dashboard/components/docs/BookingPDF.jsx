@@ -2,20 +2,25 @@ import React from 'react'
 
 //image
 import {FullLogo2} from '../../../../shared/components/Logo'
+import { useUserContext } from '../../../../Context/UserContext'
 
-export default function BookingPDF() {
+export default function BookingPDF({room}) {
+  const {user} = useUserContext()
+
   return (
-    <div className='px-5 py-10 max-w-2xl'>
+    <div className='px-10 py-10 max-w-2xl'>
       <div className=''>
         <FullLogo2 />
 
-        <div className='mt-4'>
-          <h3>Abdullahi Alhassan Baaba</h3>
-          <p>+233557169843</p>
-          <p>alhassan@1gmail.com</p>
+        <hr className='my-4'/>
+        
+        <div className=''>
+          <h3>{user.displayName}</h3>
+          <p>{user.phoneNumber}</p>
+          <p>{user.email}</p>
         </div>
 
-        <table className='w-full mt-10'>
+        <table className='w-full mt-4 border-secondary border'>
           <tbody>
               <tr>
                   <th>
@@ -96,8 +101,8 @@ export default function BookingPDF() {
               </tr>
           </tbody>
         </table>
-
-        <div className='mt-10'>
+        
+        <div className='mt-4'>
           <h3>Platinum Hostels</h3>
           <p>Ayeduase Lane, Kumasi</p>
           <p>+233123456789</p>
