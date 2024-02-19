@@ -1,29 +1,41 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-import { saveAs } from 'file-saver';
-import { pdf } from '@react-pdf/renderer';
 import logo from '../../../../assets/brand/logo3.png';
-import { useUserContext } from '../../../../Context/UserContext';
-
-const tableData = [
-  { th: 'Hostel Location', td: 'Ayeduase' },
-  { th: 'Block Name', td: 'Tower B' },
-  { th: 'Room Floor', td: 'Ground Floor' },
-  { th: 'Room Number', td: '2' },
-  { th: 'Room Type', td: 'Single' },
-  { th: 'Room Price', td: 'GHC 9000' },
-  { th: 'Room Capacity', td: '1' },
-  { th: 'Current Occupants', td: '1' },
-];
 
 const TableRows = ({ data }) => (
   <>
-    {data.map(({ th, td }, index) => (
-      <View style={styles.table} key={index}>
-        <Text style={styles.th}>{th}: </Text>
-        <Text style={styles.td}>{td}</Text>
-      </View>
-    ))}
+    <View style={styles.table} key={0}>
+      <Text style={styles.th}>Hostel Location: </Text>
+      <Text style={styles.td}>{data.hostelLocation}</Text>
+    </View>
+    <View style={styles.table} key={1}>
+      <Text style={styles.th}>Block Name: </Text>
+      <Text style={styles.td}>{data.roomBlock}</Text>
+    </View>
+    <View style={styles.table} key={2}>
+      <Text style={styles.th}>Room Floor: </Text>
+      <Text style={styles.td}>{data.roomFloor}</Text>
+    </View>
+    <View style={styles.table} key={3}>
+      <Text style={styles.th}>Room Number: </Text>
+      <Text style={styles.td}>{data.roomNumber}</Text>
+    </View>
+    <View style={styles.table} key={4}>
+      <Text style={styles.th}>Room Type: </Text>
+      <Text style={styles.td}>{data.roomType}</Text>
+    </View>
+    <View style={styles.table} key={5}>
+      <Text style={styles.th}>Room Price: </Text>
+      <Text style={styles.td}>{data.roomPrice}</Text>
+    </View>
+    <View style={styles.table} key={6}>
+      <Text style={styles.th}>Room Capacity: </Text>
+      <Text style={styles.td}>{data.capacity}</Text>
+    </View>
+    <View style={styles.table} key={7}>
+      <Text style={styles.th}>Current Occupants: </Text>
+      <Text style={styles.td}>{data.currentOccupants}</Text>
+    </View>
   </>
 );
 
@@ -68,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 300,
     width: '60%',
+    textTransform: 'capitalize'
   },
   tableContainer: {
     marginVertical: 20,
@@ -95,7 +108,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const BookingDetailsDoc = ({displayName, email, phoneNumber}) => (
+export const BookingDetailsDoc = ({displayName, email, phoneNumber, room}) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -106,18 +119,17 @@ const BookingDetailsDoc = ({displayName, email, phoneNumber}) => (
         <Text style={styles.header}>{displayName}</Text>
         <Text style={styles.p}>{email}</Text>
         <Text style={styles.p}>{phoneNumber}</Text>
-        <Text style={styles.p}>{phoneNumber}</Text>
         
         <View style={styles.tableContainer}>
-          <TableRows data={tableData} />
+          <TableRows data={room} />
         </View>
 
-        <Text style={styles.header}>Platinum Hostels, Kumasio</Text>
+        <Text style={styles.header}>Platinum Hostels, Kumasi</Text>
         <Text style={styles.p}>platinumhostelsgh@gmail.com</Text>
         <Text style={styles.p}>+233123456789</Text>
 
         <Text style={styles.notice}>
-          Please Note that you are to make Payment of GHS 5,000.00 Latest by 12th January, 2024 in order to keep your room. Failure will lead to cancellation of Booking.
+          {`Please Note that you are to make Payment of ${room.roomPrice} Latest by 12th January, 2024 in order to keep your room. Failure will lead to cancellation of Booking.`}
         </Text>
         
         <Text style={styles.notice}>
@@ -125,7 +137,7 @@ const BookingDetailsDoc = ({displayName, email, phoneNumber}) => (
         </Text>
         
         <Text style={styles.contact}>
-          In case of any challenges with payment, please contact any of these Phone Numbers: 0243463320, 0243463320, 0243463320, or email us at platinumhostelsgh@gmail.com for assistance.
+          In case of any challenges with payment, please contact any of these Phone Numbers: +233557169843, +233509080776 or email us at platinumhostelsgh@gmail.com for assistance.
         </Text>
         
         <Text style={styles.thankyou}>
@@ -136,35 +148,3 @@ const BookingDetailsDoc = ({displayName, email, phoneNumber}) => (
   </Document>
 );
 
-
-export default function BookingPDF() {
-  const {user} = useUserContext()
-  console.log(user);
-
-  const downloadPdf = async () => {
-    const fileName = 'Booking Details.pdf';
-
-    const blob = await pdf(
-      <BookingDetailsDoc 
-      displayName={user.displayName}
-      email={user.email}
-      phoneNumber={user.phoneNumber}
-      />  
-    ).toBlob();
-    saveAs(blob, fileName);
-  };
-
-
-  return (
-    <div>
-      <BookingDetailsDoc 
-        displayName={user.displayName}
-        email={user.email}
-        phoneNumber={user.phoneNumber}
-      />
-      <button onClick={() => (downloadPdf(user.displayName, user.email, user.phoneNumber))}>
-        Download PDF
-      </button>
-    </div>
-  );
-}

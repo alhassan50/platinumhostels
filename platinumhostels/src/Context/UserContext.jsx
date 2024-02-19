@@ -28,13 +28,12 @@ export function UserContextProvider({children}) {
         <UserContext.Provider
             value={{user, setUser, userTokenID, userSignedOut, setUserSignedOut}}
         >
-            {/* {   
+            {   
                 isLoading ? 
                     <PageLoader />
                 :
                     children
-            } */}
-            {children}
+            }
         </UserContext.Provider>
     )
 }

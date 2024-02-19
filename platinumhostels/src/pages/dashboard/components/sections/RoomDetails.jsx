@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link, defer, Await } from 'react-router-dom'
+import { saveAs } from 'file-saver';
+import { pdf } from '@react-pdf/renderer';
 
 //icons
 import arrow from '../../../../assets/icons/right-arrow-3.png'
@@ -8,6 +10,7 @@ import arrow from '../../../../assets/icons/right-arrow-3.png'
 import Loader from '../../../../shared/components/Loader'
 import TryAgain from '../../../Rooms/components/TryAgain'
 import RoomDetailsLoader from './RoomDetailsLoader'
+import { BookingDetailsDoc } from '../docs/BookingPDF'
 
 //context
 import { useUserContext } from '../../../../Context/UserContext'
@@ -23,11 +26,36 @@ const loadRoomDetails = (userTokenID) => {
 export default function RoomDetails() {
     //console.log('mounting room details component');
 
-    const {userTokenID} = useUserContext()
+    const {user, userTokenID} = useUserContext()
 
     const [refreshComponent, setRefreshComponent] = useState(false)
     const [tokenState, setTokenState] = useState('pending')
     const [initialRender, setInitialRender] = useState(true)
+    const [isDownloading, setIsDownloading] = useState(false)
+
+    const downloadPdf = async (room) => {
+        console.log(room);
+        
+        setIsDownloading(true)
+        try {
+            const fileName = 'Booking Details.pdf';
+        
+            const blob = await pdf(
+              <BookingDetailsDoc 
+                displayName={user.displayName}
+                email={user.email}
+                phoneNumber={user.phoneNumber}
+                room={room}
+              />  
+            ).toBlob();
+        
+            saveAs(blob, fileName);
+        } catch(error) {
+            alert("Couldn't download booking details")
+        } finally {
+            setIsDownloading(false)
+        }
+    };
 
     const roomPromise = useMemo(() => {
         if (userTokenID) {
@@ -141,89 +169,27 @@ export default function RoomDetails() {
                                 </table>
                                 
 
-                                <Link 
-                                    to={'/platinumportal/payment'} 
-                                    className=''
+                                <button 
+                                    onClick={() => (downloadPdf(room))}
+                                    disabled={isDownloading}
+                                    className={`${isDownloading ? ' btn-disabled ' : ' group btn-primary1 '} text-white flex justify-center items-center mt-8 gap-2`}
                                 >
-                                    <button className='btn-primary1 flex justify-center items-center gap-2 group mt-8 text-white'>
-                                    Download Room Details
-                                    <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
-                                        <img src={arrow} alt='right arrow'/>
-                                    </figure>
-                                    </button>
-                                </Link>
-
-                                {/* <table className='w-full mt-4'>
-                                    <tbody>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>
-                                            </th>
-                                            <td>
-                                                <div className='bg-neutral-200 animate-pulse w-[100%] h-4 rounded-lg'></div>                        
-                                            </td>
-                                        </tr>
-                                    </tbody>
-
-                                    <div className='bg-neutral-200 rounded-lg animate-pulse py-3 px-6 mt-8 h-11 w-full max-w-[245px]'>
-                                    </div>
-                                </table> */}
+                                    {
+                                        isDownloading ?
+                                            'Please wait'
+                                        :
+                                            'Download Room Details'
+                                    }
+                                        
+                                    {
+                                        isDownloading ?
+                                            <Loader />
+                                        :
+                                            <figure className='arrow w-5 group-hover:translate-x-1 transition-all duration-150'>
+                                                <img src={arrow} alt='right arrow'/>
+                                            </figure>
+                                    }
+                                </button>
                             </div>)
                         }}
                     </Await>
